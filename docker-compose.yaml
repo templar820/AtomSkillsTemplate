@@ -26,6 +26,15 @@ x-frontend: &frontend
     - /frontend/node_modules
 
 services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
   backend:
     <<: *backend
     command: npm run start
