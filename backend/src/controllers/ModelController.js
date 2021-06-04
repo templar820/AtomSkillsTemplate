@@ -1,4 +1,4 @@
-import {ServerError} from "../middleware/errorHandler";
+import {ServerError} from "../middleware/errorHandler.js";
 
 class ModelController {
   async create(req, res) {
