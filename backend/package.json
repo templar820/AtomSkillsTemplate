@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --ignore sessions/ src/index.js"
+    "start": "nodemon --legacy-watch --ignore sessions/ src/index.js"
   },
   "author": "",
   "license": "ISC",
