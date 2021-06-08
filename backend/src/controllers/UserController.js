@@ -1,9 +1,10 @@
 import {ServerError} from "../middleware/errorHandler.js";
+import UserService from "../services/UserService.js";
 
-class ModelController {
+class UserController {
   async create(req, res) {
-    // const post = await PostService.create(req.body, req.files.picture)
-    res.json("Привет")
+    const user = await UserService.create(req.body, req.files.picture)
+    res.json(user)
   }
 
   async getAll(req, res) {
@@ -29,5 +30,5 @@ class ModelController {
 }
 
 
-export default new ModelController();
+export default new UserController();
 

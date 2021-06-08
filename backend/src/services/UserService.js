@@ -1,8 +1,11 @@
-class ModelService {
-  async create(post, picture) {
-    // const fileName = fileService.saveFile(picture);
-    // const createdPost = await Post.create({...post, picture: fileName});
-    return "";
+import {User} from "../models/User.js";
+import bcrypt from 'bcrypt';
+
+class UserService {
+  async create(user) {
+    const hashPassword = await bcrypt.hash(password, 5)
+    const newUser = await User.create({email, role, password: hashPassword})
+    return newUser;
   }
 
   async getAll() {
@@ -34,4 +37,4 @@ class ModelService {
   }
 }
 
-export default new ModelService()
+export default new UserService()

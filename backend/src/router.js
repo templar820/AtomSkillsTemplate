@@ -1,5 +1,5 @@
 import Router from 'express'
-import ModelController from "./controllers/ModelController.js";
+import ModelController from "./controllers/UserController.js";
 import {asyncMiddleware} from "./middleware/asyncMiddleware.js";
 
 const router = new Router();

@@ -3,7 +3,7 @@ import router from "./router.js";
 import authRouter from "./auth/authRouter.js";
 import {errorHandler} from "./middleware/errorHandler.js";
 import fileUpload from 'express-fileupload';
-import sequelize from "./dbInit.js"
+import db from "./db.js"
 import passport from 'passport';
 // import session from 'express-session'
 // import SessionFileStore from 'session-file-store'
@@ -14,13 +14,14 @@ const PORT = process.env.BACKEND_PORT || 8080;
 
 const app = express();
 
-//
-// try{
-//   await sequelize.authenticate();
-//   console.log("success")
-// } catch (e) {
-//   console.log(e);
-// }
+
+try{
+  await db.authenticate();
+  await db.sync()
+  console.log("success")
+} catch (e) {
+  console.log(e);
+}
 
 
 app.get('/', (req, res) => {
