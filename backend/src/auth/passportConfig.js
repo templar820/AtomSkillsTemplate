@@ -2,7 +2,7 @@ import passport from 'passport';
 import Local from 'passport-local';
 
 
-const LocalStrategy= Local.Strategy
+const LocalStrategy = Local.Strategy
 
 const userDB = {
   id: 136345,

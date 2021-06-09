@@ -243,16 +243,6 @@ html,body, #root{
   }
 }
 
-.btn{
-  background-color: $primary;
-  border-color: $primary;
-  border-radius: 25px;
-  color: $white;
-  &:hover{
-    color: $white;
-  }
-}
-
 @mixin btn-secondary-active () {
   color: $black !important;
   background-color: rgba(129,104,240,.7) !important;

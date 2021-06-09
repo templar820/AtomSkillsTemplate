@@ -2,7 +2,7 @@ import MyError from '@/services/MyError';
 
 export default class NetworkService {
   constructor({ endpoint, loaderStore, handleTokenErrors }) {
-    this.endpoint = `${endpoint}/api/`;
+    this.endpoint = `${endpoint}`;
     this.loaderStore = loaderStore;
     this.handleTokenErrors = handleTokenErrors;
   }
@@ -40,6 +40,7 @@ export default class NetworkService {
       method: type,
       headers: this.buildHeaders(),
     };
+    console.log(this.options)
 
     if (parameters) this.options.body = JSON.stringify(parameters);
     this.loaderStore.startLoader();

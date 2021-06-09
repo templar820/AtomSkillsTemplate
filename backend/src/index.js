@@ -4,6 +4,7 @@ import authRouter from "./auth/authRouter.js";
 import {errorHandler} from "./middleware/errorHandler.js";
 import fileUpload from 'express-fileupload';
 import db from "./db.js"
+import cors from 'cors';
 import passport from 'passport';
 // import session from 'express-session'
 // import SessionFileStore from 'session-file-store'
@@ -31,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
 
-
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(authRouter);
