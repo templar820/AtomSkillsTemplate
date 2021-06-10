@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import './AuthorizationCard.scss'
 import ModalBox from "../System/ModalBox";
 import {inject, observer} from "mobx-react";
+import MyError from "../../services/MyError";
 
 const AuthorizationCard = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password1, setPassword1] = useState('');
   const [isRemember, setIsRemember] = useState(false);
   const [viewState, setViewState] = useState('authorization');
 
@@ -21,6 +23,7 @@ const AuthorizationCard = (props) => {
           onSubmit={(e) => {
             e.preventDefault();
             viewState === 'authorization' && props.services.requestService.login(email, password, isRemember);
+            if (password !== password1) throw new MyError({status: 400, detail: "Пароли не совпадают"})
             viewState === 'register' && props.services.requestService.register(email, password, isRemember);
           }}
         >
@@ -50,18 +53,34 @@ const AuthorizationCard = (props) => {
             />
             <label htmlFor="inputPassword">Пароль</label>
           </div>
-
-          <div className="custom-control custom-checkbox mb-3">
+          {viewState === 'register' &&
+          <div className="form-label-group">
             <input
-              id="customCheck1"
-              type="checkbox"
-              className="custom-control-input"
-              value={isRemember}
-              onChange={(e) => setIsRemember(e.target.checked)}
-
+              id="inputPassword"
+              type="password"
+              className="form-control"
+              placeholder="Повторите пароль"
+              required
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
             />
-            <label className="custom-control-label" htmlFor="customCheck1">Запомнить пароль</label>
-          </div>
+            <label htmlFor="inputPassword">Повторите пароль</label>
+          </div>}
+
+          {viewState === 'authorization' &&
+            <div className="custom-control custom-checkbox mb-3">
+              <input
+                id="customCheck1Пароль"
+                type="checkbox"
+                className="custom-control-input"
+                value={isRemember}
+                onChange={(e) => setIsRemember(e.target.checked)}
+
+              />
+              <label className="custom-control-label" htmlFor="customCheck1">Запомнить пароль</label>
+            </div>
+          }
+
           <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">
             {viewState === 'authorization' && "Войти"}
             {viewState === 'register' && "Зарегистрироватсья"}

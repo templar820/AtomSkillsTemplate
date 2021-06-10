@@ -5,6 +5,7 @@ class UserService {
   async create(user) {
     const hashPassword = await bcrypt.hash(password, 5)
     const newUser = await User.create({email, role, password: hashPassword})
+    console.log(newUser);
     return newUser;
   }
 

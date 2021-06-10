@@ -11,7 +11,7 @@ export default class RequestService {
   async login(email, password) {
 
     const user = await this.networkService.fetch('login', {email, password});
-    console.log(a)
+    // console.log(a)
   }
 
   async register(email, password) {

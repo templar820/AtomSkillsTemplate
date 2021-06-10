@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {inject, observer} from 'mobx-react';
-import {StoresNames} from '@/services/common/constDictionary';
-import {Redirect, withRouter} from 'react-router-dom';
 import {Navbar} from "react-bootstrap";
 import AuthorizationCard from "../AuthorizationCard/AuthorizationCard";
-import ModalBox from "./ModalBox";
 
 const Header = () => {
   const [show, setShow] = useState(false);

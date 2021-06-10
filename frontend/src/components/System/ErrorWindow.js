@@ -13,8 +13,7 @@ export default class ErrorWindow extends React.Component {
     };
     this.closeDialog = this.closeDialog.bind(this);
     window.onerror = (msg, url, lineNo, columnNo, error) => { this.errorListener(error); };
-    window.onunhandledrejection = e => { console.log(false); this.errorListener(e.reason); };
-    // window = e => { this.errorListener(e); };
+    window.onunhandledrejection = e => { this.errorListener(e.reason); };
   }
 
   errorListener(e) {

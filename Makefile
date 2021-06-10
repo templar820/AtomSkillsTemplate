@@ -12,19 +12,6 @@ db:
 		docker exec -it hacktemplate_postgres_1 \
 			bash -c 'psql -U hacktemplate -d hacktemplate -h localhost'
 
-
-
-
-
-
-delete-images:
-	docker rmi $(docker images -a -q)
-delete-containers:
-	docker rm $(docker ps -a -q)
-delete-volumes:
-	docker volume prune
 delete-all:
 	docker-compose down
-	docker rm $(docker ps -a -q)
-	docker rmi $(docker images -a -q)
-	docker volume prune
+	docker system prune

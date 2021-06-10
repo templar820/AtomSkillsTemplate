@@ -23,7 +23,7 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
-router.post('/login', (req, res, next) => {
+router.post('/api/user/login', (req, res, next) => {
   passport.authenticate('local', function(err, user) {
     if (err) {
       return next(err);
@@ -39,6 +39,8 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
+
+
 
 
 
