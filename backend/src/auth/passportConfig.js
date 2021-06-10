@@ -1,35 +1,31 @@
 import passport from 'passport';
 import Local from 'passport-local';
+import UserService from "../services/UserService.js";
 
 
 const LocalStrategy = Local.Strategy
 
-const userDB = {
-  id: 136345,
-  email: 'test@mail.ru',
-  password: '123',
-};
-
 passport.serializeUser(function(user, done) {
-  console.log('Сериализация: ', user);
+  console.log('Serrialize', user.email);
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  console.log('Десериализация: ', id);
-  const user = userDB.id === id ? userDB : false;
+passport.deserializeUser(function(user, done) {
+  console.log('Десериализация: ', user);
+  // const user = userDB.id === id ? userDB : false;
   done(null, user);
 });
 
 passport.use(
-  new LocalStrategy({ usernameField: 'email' }, function(
+  new LocalStrategy({ usernameField: 'email' }, async function(
     email,
     password,
     done
   ) {
     //Проверяем пользователя на наличие
-    if (email === userDB.email && password === userDB.password) {
-      return done(null, userDB);
+    const user = await UserService.loginUser({email,password})
+    if(user){
+      return done(null, user);
     } else {
       return done(null, false);
     }

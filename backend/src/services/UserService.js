@@ -3,39 +3,21 @@ import bcrypt from 'bcrypt';
 
 class UserService {
   async create(user) {
-    const hashPassword = await bcrypt.hash(password, 5)
-    const newUser = await User.create({email, role, password: hashPassword})
-    console.log(newUser);
+    const hashPassword = await this.getPassword(user.password)
+    const newUser = await User.create({email: user.email, password: hashPassword})
     return newUser;
   }
 
-  async getAll() {
-    // const posts = await Post.find();
-    return "posts";
-  }
-  async getOne(id) {
-    if (!id) {
-      throw new Error('не указан ID')
-    }
-    // const post = await Post.findById(id);
-    return "post";
+  async loginUser(user){
+    const dbUser = await User.findOne({ where: { email: user.email }});
+
+    return await this.checkPassword(user.password, dbUser.password) ? dbUser : null;
   }
 
-  async update(post) {
-    if (!post._id) {
-      throw new Error('не указан ID')
-    }
-    // const updatedPost = await Post.findByIdAndUpdate(post._id, post, {new: true})
-    return "updatedPost";
-  }
+  getPassword = async (password) => await bcrypt.hash(password, 5)
 
-  async delete(id) {
-    if (!id) {
-      throw new Error('не указан ID')
-    }
-    // const post = await Post.findByIdAndDelete(id);
-    return "post";
-  }
+  checkPassword = async (password, passwordHash) => await bcrypt.compare(password, passwordHash)
+
 }
 
 export default new UserService()

@@ -3,7 +3,7 @@ import UserService from "../services/UserService.js";
 
 class UserController {
   async create(req, res) {
-    const user = await UserService.create(req.body, req.files.picture)
+    const user = await UserService.create(req.body)
     res.json(user)
   }
 

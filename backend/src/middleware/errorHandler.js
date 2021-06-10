@@ -9,7 +9,7 @@ export class ServerError extends Error{
 }
 
 export const errorHandler = (err, req, res, next) => {
-  console.log(err);
+  console.log("Error:", err);
   if (err instanceof ServerError) {
     return res.status(err.status).json({message: err.message});
   }
