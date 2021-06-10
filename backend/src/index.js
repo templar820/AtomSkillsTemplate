@@ -19,10 +19,6 @@ app.use(express.static('static'));
 app.use(fileUpload({}));
 
 
-
-
-
-
 try{
   await db.authenticate();
   await db.sync()
@@ -32,7 +28,13 @@ try{
 }
 
 
-
+var totalBytes = 0;
+app.use(function(req, res, next) {
+  res.on('finish', function() {
+    totalBytes += Number(res.get('Content-Length') || 0);
+  });
+  next();
+});
 
 app.use(authMiddleware);
 app.use('/api', authRouter);

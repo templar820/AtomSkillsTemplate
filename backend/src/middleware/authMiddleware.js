@@ -22,9 +22,6 @@ authMiddleware.use(
 );
 
 
-
-
-
 import '../auth/passportConfig.js'
 authMiddleware.use(passport.initialize());
 authMiddleware.use(passport.session());
@@ -32,14 +29,7 @@ authMiddleware.use(passport.session());
 
 
 
-const auth = async (req, res, next) => {
-    console.log("isAuthenticated", req.isAuthenticated());
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        return res.redirect('/');
-    }
-};
+const auth = passport.authenticate('jwt', {session: false})
 
 
 export {

@@ -10,8 +10,10 @@ export default class RequestService {
 
   async login(email, password) {
 
-    const user = await this.networkService.fetch('user/login', {email, password});
-    // console.log(a)
+    const {token} = await this.networkService.fetch('user/login', {email, password});
+    this.networkService.setToken(token)
+    const a = await this.networkService.fetch('posts',null,"GET")
+    console.log(a);
   }
 
   async register(email, password) {

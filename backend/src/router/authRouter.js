@@ -3,23 +3,26 @@ import passport from "passport";
 const authRouter = new Router();
 import {asyncMiddleware} from "../middleware/asyncMiddleware.js";
 import UserController from "../controllers/UserController.js";
-
+import jwt from "jsonwebtoken";
 
 
 
 authRouter.post('/user/login', (req, res, next) => {
-  passport.authenticate('local', function(err, user) {
+  passport.authenticate('local', {session: false} ,function(err, user) {
     if (err) {
       return next(err);
     }
+    console.log(err, user);
     if (!user) {
       return res.send('Укажите правильный email или пароль!');
     }
-    req.logIn(user, function(err) {
+    req.logIn(user, {session: false}, function(err) {
       if (err) {
         return next(err);
       }
-      return res.redirect("/api/posts");
+      const {email, id} = user
+      const token = jwt.sign({email, id}, process.env.SECRET_KEY);
+      return res.json({token});
     });
   })(req, res, next);
 });
