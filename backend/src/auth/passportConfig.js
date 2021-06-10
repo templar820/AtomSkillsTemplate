@@ -11,10 +11,12 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  console.log('Десериализация: ', user);
+  console.log('Deserialization', user);
   // const user = userDB.id === id ? userDB : false;
   done(null, user);
 });
+
+
 
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, async function(
@@ -25,7 +27,9 @@ passport.use(
     //Проверяем пользователя на наличие
     const user = await UserService.loginUser({email,password})
     if(user){
-      return done(null, user);
+      const {email, id, password} = user;
+      console.log(111111111);
+      return done(null, {email, id, password});
     } else {
       return done(null, false);
     }

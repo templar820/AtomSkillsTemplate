@@ -5,42 +5,58 @@ import {errorHandler} from "./middleware/errorHandler.js";
 import fileUpload from 'express-fileupload';
 import db from "./db.js"
 import cors from 'cors';
-import {authMiddleware} from "./middleware/authMiddleware.js";
+import {auth, authMiddleware} from "./middleware/authMiddleware.js";
+
 
 const PORT = process.env.BACKEND_PORT || 8080;
 
 const app = express();
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static('static'));
+app.use(fileUpload({}));
+
+
+
+
+
 
 try{
   await db.authenticate();
   await db.sync()
-  console.log("success")
+  console.log("DB CONNECT")
 } catch (e) {
   console.log(e);
 }
 
+
+
+
+app.use(authMiddleware);
+app.use('/api', authRouter);
+
+app.get('/admin', auth, (req, res) => {
+    res.send('Admin page!');
+});
+
+
+app.use('/api', auth, router);
 
 app.get('/', (req, res) => {
   console.log(req.session);
   res.send('HomePage');
 });
 
-app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
-
-app.use(cors());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-app.use(authMiddleware);
-app.use('/api', authRouter);
 
 
 
 
 
 
-app.use(express.static('static'));
-app.use(fileUpload({}));
-// app.use('/api', auth, router);
+
+
+
 app.use(errorHandler);
+app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));

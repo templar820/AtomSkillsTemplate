@@ -1,9 +1,9 @@
 import Router from 'express'
 import passport from "passport";
 const authRouter = new Router();
-import "../auth/passportConfig.js"
 import {asyncMiddleware} from "../middleware/asyncMiddleware.js";
 import UserController from "../controllers/UserController.js";
+
 
 
 
@@ -15,15 +15,16 @@ authRouter.post('/user/login', (req, res, next) => {
     if (!user) {
       return res.send('Укажите правильный email или пароль!');
     }
+    console.log(2);
+
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
-      return res.json({message: "success"});
+      return res.redirect("/admin");
     });
   })(req, res, next);
 });
-
 
 
 authRouter.post('/user/register', asyncMiddleware(UserController.create));

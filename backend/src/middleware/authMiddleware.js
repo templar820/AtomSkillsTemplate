@@ -1,15 +1,11 @@
-import passport from "passport";
-import Router from 'express'
-import "../auth/passportConfig.js"
 import session from 'express-session'
 import SessionFileStore from 'session-file-store'
+import passport from "passport";
+import Router from 'express'
 const FileStore = SessionFileStore(session);
 const authMiddleware = new Router();
 
 
-
-authMiddleware.use(passport.initialize());
-authMiddleware.use(passport.session());
 
 authMiddleware.use(
     session({
@@ -25,7 +21,18 @@ authMiddleware.use(
     })
 );
 
-const auth = (req, res, next) => {
+
+
+
+
+import '../auth/passportConfig.js'
+authMiddleware.use(passport.initialize());
+authMiddleware.use(passport.session());
+
+
+
+
+const auth = async (req, res, next) => {
     console.log("isAuthenticated", req.isAuthenticated());
     if (req.isAuthenticated()) {
         next();
@@ -33,9 +40,6 @@ const auth = (req, res, next) => {
         return res.redirect('/');
     }
 };
-
-
-
 
 
 export {
