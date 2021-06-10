@@ -23,7 +23,7 @@ const AuthorizationCard = (props) => {
           onSubmit={(e) => {
             e.preventDefault();
             viewState === 'authorization' && props.services.requestService.login(email, password, isRemember);
-            if (password !== password1) throw new MyError({status: 400, detail: "Пароли не совпадают"})
+            if (password !== password1 && viewState === 'register') throw new MyError({status: 400, detail: "Пароли не совпадают"})
             viewState === 'register' && props.services.requestService.register(email, password, isRemember);
           }}
         >

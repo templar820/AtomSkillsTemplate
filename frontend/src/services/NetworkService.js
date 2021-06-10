@@ -39,6 +39,7 @@ export default class NetworkService {
     this.options = {
       method: type,
       headers: this.buildHeaders(),
+      'credentials': "same-origin",
     };
     // console.log(this.options)
 
@@ -50,9 +51,7 @@ export default class NetworkService {
   }
 
   buildHeaders = () => ({
-
     'Content-Type': 'application/json',
-
     ...(this.token ? { Authorization: `Token ${this.token}` } : {})
   })
 }
