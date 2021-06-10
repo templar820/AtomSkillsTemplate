@@ -19,7 +19,7 @@ authRouter.post('/user/login', (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.redirect("/api/posts");
+      return res.json({message: "success"});
     });
   })(req, res, next);
 });
