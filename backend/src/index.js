@@ -37,10 +37,6 @@ try{
 app.use(authMiddleware);
 app.use('/api', authRouter);
 
-app.get('/admin', auth, (req, res) => {
-    res.send('Admin page!');
-});
-
 
 app.use('/api', auth, router);
 

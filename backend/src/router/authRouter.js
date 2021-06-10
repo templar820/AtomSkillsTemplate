@@ -15,13 +15,11 @@ authRouter.post('/user/login', (req, res, next) => {
     if (!user) {
       return res.send('Укажите правильный email или пароль!');
     }
-    console.log(2);
-
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
-      return res.redirect("/admin");
+      return res.redirect("/api/posts");
     });
   })(req, res, next);
 });

@@ -28,7 +28,6 @@ passport.use(
     const user = await UserService.loginUser({email,password})
     if(user){
       const {email, id, password} = user;
-      console.log(111111111);
       return done(null, {email, id, password});
     } else {
       return done(null, false);
