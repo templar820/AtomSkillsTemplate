@@ -12,6 +12,8 @@ const User = db.define('user', {
 
 
 
+
+
 export {
   User,
 }

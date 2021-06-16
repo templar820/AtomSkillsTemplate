@@ -12,7 +12,6 @@ authRouter.post('/user/login', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    console.log(err, user);
     if (!user) {
       return res.send('Укажите правильный email или пароль!');
     }
