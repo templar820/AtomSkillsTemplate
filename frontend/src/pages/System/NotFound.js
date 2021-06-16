@@ -1,7 +1,7 @@
 import { ArrowBackOutlined } from '@material-ui/icons';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import colors from "@styles/colors.scss"
+import colors from '@styles/colors.modules.scss';
 
 class NotFound extends React.Component {
   render() {
