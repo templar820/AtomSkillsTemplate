@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 
 
 authRouter.post('/user/login', (req, res, next) => {
-  passport.authenticate('local', {session: false} ,function(err, user) {
+  passport.authenticate('local', {session: false}, function(err, user) {
     if (err) {
       return next(err);
     }

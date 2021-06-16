@@ -10,6 +10,7 @@ class UserService {
 
   async loginUser(user){
     const dbUser = await User.findOne({ where: { email: user.email }});
+    if (!dbUser) return null;
 
     return await this.checkPassword(user.password, dbUser.password) ? dbUser : null;
   }

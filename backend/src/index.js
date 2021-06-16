@@ -52,11 +52,5 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
-
-
-
 app.use(errorHandler);
 app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
