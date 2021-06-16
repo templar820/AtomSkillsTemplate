@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Navbar} from "react-bootstrap";
 import AuthorizationCard from "../AuthorizationCard/AuthorizationCard";
+import {useTranslation} from "react-i18next";
 
 const Header = () => {
   const [show, setShow] = useState(false);
+  const {t} = useTranslation();
   return (
     <>
       <div className="d-flex flex-row align-items-center ml-4 mr-4 justify-content-between">
@@ -21,7 +23,7 @@ const Header = () => {
           <button
             className='btn btn-link'
             onClick={() => setShow(true)}
-          >Войти</button>
+          >{t("common.login")}</button>
         </div>
       </div>
       <hr/>
