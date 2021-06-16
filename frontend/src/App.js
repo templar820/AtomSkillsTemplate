@@ -8,8 +8,8 @@ import LoaderStore from '@/stores/LoaderStore';
 import ErrorWindow from '@/components/System/ErrorWindow';
 import Loader from '@/components/System/Loader';
 import UserStore from "./stores/UserStore";
-import colors from './styles/colors.modules.scss';
-console.log(colors);
+import theme from './styles/muiTheme';
+import { MuiThemeProvider } from '@material-ui/core'
 
 class App extends React.Component {
   constructor(props) {
@@ -37,12 +37,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <Provider {...this.stores} services={this.services}>
-        <ErrorWindow>
-          <Loader />
-          <Router />
-        </ErrorWindow>
-      </Provider>
+      <MuiThemeProvider theme={theme}>
+        <Provider {...this.stores} services={this.services}>
+          <ErrorWindow>
+            <Loader />
+            <Router />
+          </ErrorWindow>
+        </Provider>
+      </MuiThemeProvider>
     );
   }
 }

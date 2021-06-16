@@ -1,14 +1,14 @@
 import { ArrowBackOutlined } from '@material-ui/icons';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import ColorConfig from '@styles/Config';
+import colors from '@styles/colors.modules.scss';
 
 class NotFound extends React.Component {
   render() {
     return (
       <div className="maxSize Auth notFound">
         <a className="goBack" onClick={() => { this.props.history.push('/'); }}>
-          <ArrowBackOutlined style={{ color: ColorConfig.black }} fontSize="large" />
+          <ArrowBackOutlined style={{ color: colors.black }} fontSize="large" />
         </a>
         <form>
           <h1>
