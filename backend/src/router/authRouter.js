@@ -22,7 +22,7 @@ authRouter.post('/user/login', (req, res, next) => {
       }
       const {email, id} = user
       const token = jwt.sign({email, id}, process.env.SECRET_KEY);
-      return res.json({token});
+      return res.sendFormat({token});
     });
   })(req, res, next);
 });

@@ -6,6 +6,7 @@ import fileUpload from 'express-fileupload';
 import db from "./db.js"
 import cors from 'cors';
 import {auth, authMiddleware} from "./middleware/authMiddleware.js";
+import {responseHandler} from "./middleware/responseHandler.js";
 
 
 const PORT = process.env.BACKEND_PORT || 8080;
@@ -35,6 +36,7 @@ app.use(function(req, res, next) {
   });
   next();
 });
+app.use(responseHandler);
 
 app.use(authMiddleware);
 app.use('/api', authRouter);
