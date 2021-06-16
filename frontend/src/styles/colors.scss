@@ -33,3 +33,7 @@ $gray: #eeeeee;
   $active: get("palette.active") or $active;
   $gray: get("palette.gray") or $gray;
 }
+
+//:export {
+//  black: $black;
+//}

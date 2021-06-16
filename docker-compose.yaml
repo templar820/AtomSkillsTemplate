@@ -8,6 +8,7 @@ x-backend: &backend
     context: .
     dockerfile: _docker/backend/Dockerfile
   image: backend
+  container_name: "backend"
   volumes:
     - ./backend:/backend
     - /backend/node_modules
@@ -16,32 +17,57 @@ x-backend: &backend
 
 
 
+
+
 x-frontend: &frontend
   build:
     context: .
     dockerfile: _docker/frontend/Dockerfile
   image: frontend
+  container_name: "frontend"
   volumes:
     - ./frontend:/frontend
     - /frontend/node_modules
 
 services:
-  postgres:
-    image: postgres:latest
-    restart: unless-stopped
+#  postgres:
+#    image: postgres:latest
+#    container_name: "postgres"
+#    restart: unless-stopped
+#    volumes:
+#      - db-volume:/var/lib/postgresql/data
+#    ports:
+#      - 5432:5432
+#    env_file:
+#      - .env
+  config_db_verdaccio:
+    build:
+      context: .
+      dockerfile: _docker/verdaccio/Dockerfile
+    command: node index.js
     volumes:
-      - db-volume:/var/lib/postgresql/data
+      - "./verdaccio:/verdaccio"
+
+  verdaccio:
+    image: verdaccio/verdaccio
+    container_name: "verdaccio"
+    restart: unless-stopped
+    environment:
+      - VERDACCIO_PORT=4873
     ports:
-      - 5432:5432
-    env_file:
-      - .env
-  backend:
-    <<: *backend
-    command: npm run start
-    ports:
-      - 8080:8080
-  frontend:
-    <<: *frontend
-    command: npm run start
-    ports:
-    - 3000:3000
+      - "4873:4873"
+    volumes:
+      - "./verdaccio/storage:/verdaccio/storage"
+      - "./verdaccio/conf:/verdaccio/conf"
+      - "./verdaccio/plugins:/verdaccio/plugins"
+#  backend:
+#    <<: *backend
+#    command: npm run start
+#    ports:
+#      - 8080:8080
+#  frontend:
+#    <<: *frontend
+#    command: npm run start
+#    ports:
+#    - 3000:3000
+

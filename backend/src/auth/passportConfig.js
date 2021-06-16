@@ -30,7 +30,6 @@ passport.use(
     done
   ) {
     //Проверяем пользователя на наличие
-    console.log(email, password);
     const user = await UserService.loginUser({email,password})
     if(user){
       const {email, id, password} = user;
