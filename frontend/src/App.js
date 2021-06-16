@@ -8,6 +8,8 @@ import LoaderStore from '@/stores/LoaderStore';
 import ErrorWindow from '@/components/System/ErrorWindow';
 import Loader from '@/components/System/Loader';
 import UserStore from "./stores/UserStore";
+import colors from './styles/colors.modules.scss';
+console.log(colors);
 
 class App extends React.Component {
   constructor(props) {
