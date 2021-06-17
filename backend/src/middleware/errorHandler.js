@@ -11,10 +11,10 @@ export class ServerError extends Error{
 export const errorHandler = (err, req, res, next) => {
   console.log("Error:", err);
   if (err instanceof ServerError) {
-    return res.status(err.status).json({message: err.message});
+    return res.sendFormat(null, err.status, err.message, true);
   }
   if (err instanceof Error) {
-    return res.status(500).json({message: err.message});
+    return res.sendFormat(null, 500, err.message, true);
   }
-  return res.sendStatus(500);
+  return res.sendFormat(null, 500, 'Server Error', true);
 };

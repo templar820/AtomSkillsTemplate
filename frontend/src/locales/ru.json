@@ -1,0 +1,18 @@
+{
+  "common": {
+    "login": "Войти",
+    "save": "Сохранить",
+    "cancel": "Отмена"
+  },
+  "authorizationCard": {
+    "authorization": "Авторизация",
+    "registration": "Регистрация",
+    "email": "Адрес электронной почты",
+    "password": "Пароль",
+    "errorPasswordMismatch": "Пароли не совпадают",
+    "repeatPassword": "Повторите пароль",
+    "rememberPassword": "Запомнить пароль",
+    "register": "Зарегистрироваться",
+    "loginGoogle": "Войти с Google"
+  }
+}
