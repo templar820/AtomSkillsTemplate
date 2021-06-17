@@ -51,6 +51,8 @@ services:
   verdaccio:
     image: verdaccio/verdaccio
     container_name: "verdaccio"
+    depends_on:
+      - config_db_verdaccio
     restart: unless-stopped
     environment:
       - VERDACCIO_PORT=4873
