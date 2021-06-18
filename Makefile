@@ -4,8 +4,10 @@ stop:
 	docker-compose down
 
 build:
+	docker-compose up -d verdaccio
 	docker-compose build
 	docker image prune -f
+	docker-compose down
 db:
 	export $(grep -v '^#' .env | xargs) && \
 		export $PGPASSWORD=$PG_PASS && \

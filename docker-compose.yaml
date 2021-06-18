@@ -7,6 +7,8 @@ x-backend: &backend
   build:
     context: .
     dockerfile: _docker/backend/Dockerfile
+  depends_on:
+    - verdaccio
   image: backend
   container_name: "backend"
   volumes:
@@ -52,7 +54,8 @@ services:
     image: verdaccio/verdaccio
     container_name: "verdaccio"
     depends_on:
-      - config_db_verdaccio
+      config_db_verdaccio:
+          condition: service_completed_successfully
     restart: unless-stopped
     environment:
       - VERDACCIO_PORT=4873
@@ -67,9 +70,9 @@ services:
     command: npm run start
     ports:
       - 8080:8080
-  frontend:
-    <<: *frontend
-    command: npm run start
-    ports:
-    - 3000:3000
+#  frontend:
+#    <<: *frontend
+#    command: npm run start
+#    ports:
+#    - 3000:3000
 

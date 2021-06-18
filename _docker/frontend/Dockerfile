@@ -4,6 +4,8 @@ ADD /frontend /frontend
 
 WORKDIR /frontend
 
+RUN npm cache clean --force
+RUN npm set registry http://host.docker.internal:4873
 RUN npm install
 
 EXPOSE 3000
