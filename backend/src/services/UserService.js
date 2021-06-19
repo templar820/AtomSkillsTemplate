@@ -1,11 +1,16 @@
-import {User} from "../models/User.js";
+import {User, UserDetails} from "../models/User.js";
 import bcrypt from 'bcrypt';
 
 class UserService {
-  async create(user) {
-    const hashPassword = await this.getPassword(user.password)
-    const newUser = await User.create({email: user.email, password: hashPassword})
-    return newUser;
+  async create({email, password, language = "RU"}) {
+    const hashPassword = await this.getPassword(password)
+    return await User.create({email, password: hashPassword, userDetails: {language}}, {
+      include: {
+        model: UserDetails,
+        as: 'userDetails'
+      }
+    });
+
   }
 
   async loginUser(user){

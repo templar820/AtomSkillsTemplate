@@ -28,14 +28,6 @@ try{
   console.log(e);
 }
 
-
-var totalBytes = 0;
-app.use(function(req, res, next) {
-  res.on('finish', function() {
-    totalBytes += Number(res.get('Content-Length') || 0);
-  });
-  next();
-});
 app.use(responseHandler);
 
 app.use(authMiddleware);

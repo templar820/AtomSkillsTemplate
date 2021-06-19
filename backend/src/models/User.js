@@ -10,10 +10,15 @@ const User = db.define('user', {
   role: {type: DataTypes.STRING, defaultValue: "USER"},
 })
 
+const UserDetails = db.define('user_details', {
+  language: {type: DataTypes.STRING},
+})
 
 
+User.hasOne(UserDetails, {foreignKey: 'fk_user_id', targetKey: 'id'});
 
 
 export {
   User,
+  UserDetails
 }
