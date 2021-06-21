@@ -7,6 +7,7 @@ import db from "./db.js"
 import cors from 'cors';
 import {auth, authMiddleware} from "./middleware/authMiddleware.js";
 import {responseHandler} from "./middleware/responseHandler.js";
+import SequelizeErd from 'sequelize-erd';
 
 
 const PORT = process.env.BACKEND_PORT || 8080;
@@ -27,6 +28,12 @@ try{
 } catch (e) {
   console.log(e);
 }
+
+app.get('/erd', (req, res) => {
+  SequelizeErd({source: db}).then(erd => {
+    res.send(erd);
+  });
+});
 
 app.use(responseHandler);
 

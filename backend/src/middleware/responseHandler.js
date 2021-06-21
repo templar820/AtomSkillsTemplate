@@ -1,8 +1,8 @@
 export const responseHandler = (req, res, next) => {
-  res.sendFormat = (data, statusCode = 200, message = 'OK', error = false) => {
+  res.sendFormat = (data, statusCode = 200, message = 'OK', isError = false) => {
     res.status(statusCode).json({
       statusCode: statusCode,
-      error,
+      isError,
       message,
       data,
     });

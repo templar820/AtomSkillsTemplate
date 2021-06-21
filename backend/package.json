@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --legacy-watch --ignore sessions/ src/index.js",
-    "erd": "node generateERD.js"
+    "start": "nodemon --legacy-watch --ignore sessions/ src/index.js"
   },
   "author": "",
   "license": "ISC",
