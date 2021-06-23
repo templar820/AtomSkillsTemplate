@@ -1,0 +1,21 @@
+{
+  "common": {
+    "login": "Login",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "header": {
+    "language": "Language"
+  },
+  "authorizationCard": {
+    "authorization": "Authorization",
+    "registration": "Registration",
+    "email": "Email",
+    "password": "Password",
+    "errorPasswordMismatch": "Password mismatch",
+    "repeatPassword": "Repeat password",
+    "rememberPassword": "Remember password",
+    "register": "Register",
+    "loginGoogle": "Login with Google"
+  }
+}

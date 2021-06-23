@@ -4,6 +4,9 @@
     "save": "Сохранить",
     "cancel": "Отмена"
   },
+  "header": {
+    "language": "Язык"
+  },
   "authorizationCard": {
     "authorization": "Авторизация",
     "registration": "Регистрация",
