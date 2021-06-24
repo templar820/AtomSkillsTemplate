@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --legacy-watch --ignore sessions/ src/index.js"
+    "start": "nodemon --legacy-watch --ignore sessions/ --experimental-json-modules src/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +24,8 @@
     "react": "^17.0.2",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0",
-    "session-file-store": "^1.5.0"
+    "session-file-store": "^1.5.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "sequelize-erd": "^1.3.1"

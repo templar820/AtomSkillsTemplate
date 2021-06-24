@@ -8,7 +8,8 @@ import cors from 'cors';
 import {auth, authMiddleware} from "./middleware/authMiddleware.js";
 import {responseHandler} from "./middleware/responseHandler.js";
 import SequelizeErd from 'sequelize-erd';
-
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 const PORT = process.env.BACKEND_PORT || 8080;
 
@@ -35,6 +36,7 @@ app.get('/erd', (req, res) => {
   });
 });
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(responseHandler);
 
 app.use(authMiddleware);

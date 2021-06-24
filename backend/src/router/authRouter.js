@@ -4,6 +4,7 @@ const authRouter = new Router();
 import {asyncMiddleware} from "../middleware/asyncMiddleware.js";
 import UserController from "../controllers/UserController.js";
 import jwt from "jsonwebtoken";
+import {ServerError} from "../middleware/errorHandler.js";
 
 
 
@@ -13,7 +14,7 @@ authRouter.post('/user/login', (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.send('Укажите правильный email или пароль!');
+      return next(new ServerError(400, 'Incorrect login or password'));
     }
     req.logIn(user, {session: false}, function(err) {
       if (err) {
