@@ -56,10 +56,10 @@ const jsLoaders = p => {
 module.exports = {
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ['@babel/polyfill', './src/index.tsx'],
   },
   resolve: {
-    extensions: ['.js', '.json', '.png'],
+    extensions: ['.js', '.ts', '.tsx', '.json', '.png'],
     modules: [path.resolve(__dirname), 'node_modules/'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -149,7 +149,7 @@ module.exports = {
         },
       },
       {
-        test: /\.m?js$/,
+        test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         use: jsLoaders('@babel/preset-react'),
       },
