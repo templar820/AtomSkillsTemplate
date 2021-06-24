@@ -1,4 +1,4 @@
-import {User, UserDetails} from "../models/User.js";
+import {User, UserDetails} from "../models/DbModel.js";
 import bcrypt from 'bcrypt';
 
 class UserService {

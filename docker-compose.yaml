@@ -70,9 +70,9 @@ services:
     command: npm run start
     ports:
       - 8080:8080
-#  frontend:
-#    <<: *frontend
-#    command: npm run start
-#    ports:
-#    - 3000:3000
+  frontend:
+    <<: *frontend
+    command: npm run start
+    ports:
+    - 3000:3000
 

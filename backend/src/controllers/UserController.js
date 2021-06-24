@@ -13,18 +13,18 @@ class UserController {
   }
 
   async getOne(req, res) {
-    const post = await PostService.getOne(req.params.id)
+    const post = await UserService.getOne(req.params.id)
     if (!post) throw new ServerError(404, 'Post not found');
     return res.sendFormat(post)
   }
 
   async update(req, res) {
-    const updatedPost = await PostService.update(req.body);
+    const updatedPost = await UserService.update(req.body);
     return res.sendFormat(updatedPost);
   }
 
   async delete(req, res) {
-    const post = await PostService.create(req.params.id);
+    const post = await UserService.create(req.params.id);
     return res.sendFormat(post);
   }
 }
