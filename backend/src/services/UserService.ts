@@ -1,16 +1,17 @@
 import {User, UserDetails} from "../models/DbModel";
 import bcrypt from 'bcrypt';
+import db from "../db";
+import BaseService from "./BaseService";
 
-class UserService {
+class UserService extends BaseService{
   async create({email, password, language = "RU"}) {
     const hashPassword = await this.getPassword(password)
-    return await User.create({email, password: hashPassword, userDetails: {language}}, {
+    return await User.create({email, password: hashPassword, user_details: {language}}, {
       include: {
         model: UserDetails,
-        as: 'userDetails'
+        as: "user_details"
       }
     });
-
   }
 
   async loginUser(user){
@@ -24,6 +25,39 @@ class UserService {
 
   checkPassword = async (password, passwordHash) => await bcrypt.compare(password, passwordHash)
 
+  async getAll(){
+    return await User.findAll({
+      attributes: [
+          'email',
+          'role',
+        [db.col('user_details.language'), 'language'],
+      ],
+      include: [{
+        model: UserDetails,
+        as: "user_details",
+        attributes: [],
+        required: true,
+      }],})
+  }
+
+  async getOne(id: number){
+    const user = await User.findOne({
+      where: {id},
+      attributes: [
+          'email',
+          'role',
+      ],
+      include: [{
+        model: UserDetails,
+        as: "user_details",
+        attributes: ['language'],
+        required: true,
+      }],
+      raw: true,
+    })
+    return this.flatKeysForObject(user, UserDetails);
+  
+  }
 }
 
 export default new UserService()

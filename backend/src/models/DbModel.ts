@@ -30,7 +30,9 @@ const Product = db.define('product', {
 Company.hasMany(Product, {foreignKey: 'fk_company_id', sourceKey: 'uuid'});
 Product.belongsTo(Company, {foreignKey: 'fk_company_id', targetKey: 'uuid'});
 
-User.hasOne(UserDetails, {as: "userDetails", foreignKey: 'fk_user_id', targetKey: 'id'});
+// User.hasOne(UserDetails, {as: "user_details", foreignKey: 'fk_user_id', targetKey: 'id'});
+// User.hasOne(UserDetails, {as: 'user_details'});
+User.belongsTo(UserDetails, {as: 'user_details'});
 
 
 export {

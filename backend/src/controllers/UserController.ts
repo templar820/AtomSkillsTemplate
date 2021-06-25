@@ -3,18 +3,18 @@ import UserService from "../services/UserService";
 
 class UserController {
   async create(req, res) {
-    const user = await UserService.create(req.body)
-    res.sendFormat(user)
+    const {email, language} = await UserService.create(req.body)
+    res.sendFormat({message: "Пользователь успешно добавлен", email, language})
   }
 
   async getAll(req, res) {
-    // const posts = await PostService.getAll();
-    return res.sendFormat({hi: "привет"});
+    const users = await UserService.getAll();
+    return res.sendFormat(users);
   }
 
   async getOne(req, res) {
     const post = await UserService.getOne(req.params.id)
-    if (!post) throw new ServerError(404, 'Post not found');
+    if (!post) throw new ServerError(404, 'User not found');
     return res.sendFormat(post)
   }
 
