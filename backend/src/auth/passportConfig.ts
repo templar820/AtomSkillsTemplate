@@ -43,7 +43,7 @@ passport.use(
 passport.use(
     new JWTStrategy(
         {
-          secretOrKey: process.env.SECRET_KEY,
+          secretOrKey: process.env.SECRET_KEY || 'hacktemplate',
           jwtFromRequest: ExtractJWT.fromHeader('token')
         },
         async (token, done) => {

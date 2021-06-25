@@ -9,7 +9,7 @@ class UserService extends BaseService{
     return await User.create({email, password: hashPassword, user_details: {language}}, {
       include: {
         model: UserDetails,
-        as: "user_details"
+        as: UserDetails.name
       }
     });
   }
@@ -34,7 +34,7 @@ class UserService extends BaseService{
       ],
       include: [{
         model: UserDetails,
-        as: "user_details",
+        as: UserDetails.name,
         attributes: [],
         required: true,
       }],})
@@ -49,13 +49,13 @@ class UserService extends BaseService{
       ],
       include: [{
         model: UserDetails,
-        as: "user_details",
+        as: UserDetails.name,
         attributes: ['language'],
         required: true,
       }],
       raw: true,
     })
-    return this.flatKeysForObject(user, UserDetails);
+    return this.flatKeysForObject(user, UserDetails.name);
   
   }
 }

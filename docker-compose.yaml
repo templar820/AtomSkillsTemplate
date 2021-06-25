@@ -65,11 +65,11 @@ services:
       - "./verdaccio/storage:/verdaccio/storage"
       - "./verdaccio/conf:/verdaccio/conf"
       - "./verdaccio/plugins:/verdaccio/plugins"
-  backend:
-    <<: *backend
-    command: npm run start
-    ports:
-      - 8080:8080
+#  backend:
+#    <<: *backend
+#    command: npm run start
+#    ports:
+#      - 8080:8080
   frontend:
     <<: *frontend
     command: npm run start

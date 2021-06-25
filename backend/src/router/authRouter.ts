@@ -21,7 +21,7 @@ authRouter.post('/user/login', (req, res, next) => {
         return next(err);
       }
       const {email, id} = user
-      const token = jwt.sign({email, id}, process.env.SECRET_KEY);
+      const token = jwt.sign({email, id}, process.env.SECRET_KEY || 'hacktemplate');
       return res.sendFormat({token});
     });
   })(req, res, next);
