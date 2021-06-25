@@ -22,7 +22,7 @@ authMiddleware.use(
 );
 
 
-import '../auth/passportConfig.js'
+import '../auth/passportConfig'
 authMiddleware.use(passport.initialize());
 authMiddleware.use(passport.session());
 

@@ -1,12 +1,12 @@
 import express from 'express'
-import router from "./router/router.js";
-import authRouter from "./router/authRouter.js";
-import {errorHandler} from "./middleware/errorHandler.js";
+import router from "./router/router";
+import authRouter from "./router/authRouter";
+import {errorHandler} from "./middleware/errorHandler";
 import fileUpload from 'express-fileupload';
-import db from "./db.js"
+import db from "./db";
 import cors from 'cors';
-import {auth, authMiddleware} from "./middleware/authMiddleware.js";
-import {responseHandler} from "./middleware/responseHandler.js";
+import {auth, authMiddleware} from "./middleware/authMiddleware";
+import {responseHandler} from "./middleware/responseHandler";
 import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
@@ -22,16 +22,16 @@ app.use(express.static('static'));
 app.use(fileUpload({}));
 
 
-try{
-  await db.authenticate();
-  await db.sync()
-  console.log("DB CONNECT")
-} catch (e) {
-  console.log(e);
-}
+// try{
+//   await
+//   await db.sync()
+//
+// } catch (e) {
+//   console.log(e);
+// }
 
 app.get('/erd', (req, res) => {
-  SequelizeErd({source: db}).then(erd => {
+  SequelizeErd({source: db}).then((erd: string) => {
     res.send(erd);
   });
 });
@@ -50,8 +50,8 @@ app.get('/', (req, res) => {
   res.send('HomePage');
 });
 
+Promise.all([db.authenticate(), db.sync()]).then(() => {
+  console.log("DB CONNECT")
+  app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+});
 
-
-
-app.use(errorHandler);
-app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));

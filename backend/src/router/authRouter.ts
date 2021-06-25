@@ -1,10 +1,10 @@
 import Router from 'express'
 import passport from "passport";
 const authRouter = new Router();
-import {asyncMiddleware} from "../middleware/asyncMiddleware.js";
-import UserController from "../controllers/UserController.js";
+import {asyncMiddleware} from "../middleware/asyncMiddleware";
+import UserController from "../controllers/UserController";
 import jwt from "jsonwebtoken";
-import {ServerError} from "../middleware/errorHandler.js";
+import {ServerError} from "../middleware/errorHandler";
 
 
 

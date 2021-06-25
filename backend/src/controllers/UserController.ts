@@ -1,5 +1,5 @@
-import {ServerError} from "../middleware/errorHandler.js";
-import UserService from "../services/UserService.js";
+import {ServerError} from "../middleware/errorHandler";
+import UserService from "../services/UserService";
 
 class UserController {
   async create(req, res) {

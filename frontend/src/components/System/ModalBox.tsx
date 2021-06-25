@@ -30,5 +30,4 @@ class ModalBox extends React.PureComponent {
   }
 }
 
-// @ts-ignore
 export default withStyles(styles)(observer(ModalBox));

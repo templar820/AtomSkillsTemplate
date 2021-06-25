@@ -1,6 +1,6 @@
 import passport from 'passport';
 import Local from 'passport-local';
-import UserService from "../services/UserService.js";
+import UserService from "../services/UserService";
 import passportJWT from "passport-jwt";
 const JWTStrategy =  passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;

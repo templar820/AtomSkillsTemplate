@@ -1,7 +1,8 @@
 /frontend/node_modules
+/frontend/build
+/backend/dist
 /backend/node_modules
 /verdaccio/storage
 .env
 *.idea
-*packega-lock.json
-erd.svg
+package-lock.json
