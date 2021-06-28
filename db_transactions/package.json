@@ -4,7 +4,8 @@
   "description": "",
   "main": "dbInit.ts",
   "scripts": {
-    "start": "ts-node dbInit.ts"
+    "start": "ts-node dbInit.ts",
+    "clean": "ts-node dbDelete.ts"
   },
   "author": "",
   "license": "ISC",

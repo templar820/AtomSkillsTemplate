@@ -16,12 +16,15 @@ const UserDetails = db.define('user_details', {
 
 
 const Product = db.define('products', {
-  name: {type: DataTypes.STRING, unique: true,},
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING,},
 })
 
+
 const Substance = db.define('substance', {
-  name: {type: DataTypes.STRING, unique: true,},
-  code: {type: DataTypes.STRING, unique: true,},
+  id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING},
+  code: {type: DataTypes.STRING},
 })
 
 Substance.hasMany(Product)
