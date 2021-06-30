@@ -1,36 +1,16 @@
-import {
-  action, computed, makeObservable, observable, toJS
-} from 'mobx';
-import UserModel from "../model/UserModel";
-let user = null;
-try {
-  user = JSON.parse(localStorage.getItem("user"));
-} catch (e) {}
+import { action, makeObservable, observable } from 'mobx';
+import UserModel from "@/model/UserModel";
 
-class UserStore {
-  currentUser = user ? new UserModel(user): null;
-  users = []
+export default class UserStore {
+  @observable user: UserModel | null = null;
+  @observable isLogin: boolean = false;
 
   constructor() {
-    makeObservable(this, {
-      currentUser: observable,
-      users: observable,
-      setUser: action,
-    });
+    makeObservable(this);
   }
 
-  setUser(user) {
-    if (!user) {
-      this.currentUser = null;
-    } else {
-      this.currentUser = new UserModel(user);
-    }
-    localStorage.setItem("user", JSON.stringify(user));
-  }
-
-  setUsers(users) {
-    this.users = users.map(el => new UserModel(el));
-  }
+  @action setUser = (obj: any, isLogin: boolean) => {
+    this.user = new UserModel(obj);
+    this.isLogin = isLogin;
+  };
 }
-
-export default UserStore;

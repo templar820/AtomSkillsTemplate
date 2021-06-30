@@ -2,34 +2,44 @@ import {
   BrowserRouter,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import Page from '@/components/System/Page';
 import HomePage from '@pages/HomePage/HomePage';
+import AuthorizationPage from '@pages/AuthorizationPage/AuthorizationPage';
 import NotFound from '@pages/System/NotFound';
+import {StoresNames} from "@/services/common/constDictionary";
+import UserStore from "@/stores/UserStore";
 
 class Router extends React.Component {
-  constructor(props) {
+  userStore: UserStore;
+  constructor(props: any) {
     super(props);
-    this.state = {
-
-    };
+    this.userStore = props[StoresNames.UserStore]
   }
 
-  getPage(routerProps, Component, type) {
+  getPage(routerProps: any, Component: React.ComponentClass) {
+    if (!this.userStore.isLogin) {
+      return <Redirect to="/authorization"/>
+    }
     return (
       <Page>
-        <Component type={type} {...routerProps} />
+        <Component {...routerProps} />
       </Page>
     );
   }
 
   render() {
+    if (!this.userStore.user) return null;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={p => this.getPage(p, HomePage)} />
+          <Route path="/authorization">
+            <AuthorizationPage/>
+          </Route>
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
@@ -37,4 +47,4 @@ class Router extends React.Component {
   }
 }
 
-export default inject('services')(observer(Router));
+export default inject(StoresNames.UserStore, 'services')(observer(Router));

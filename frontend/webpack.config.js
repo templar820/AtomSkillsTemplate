@@ -151,7 +151,7 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: jsLoaders('@babel/preset-react'),
+        use: "ts-loader",
       },
     ],
   },

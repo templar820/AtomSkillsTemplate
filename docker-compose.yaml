@@ -92,9 +92,9 @@ services:
     <<: *db_transactions
     container_name: "db_clean"
     command: npm run clean
-#  frontend:
-#    <<: *frontend
-#    command: npm run start
-#    ports:
-#    - 3000:3000
+  frontend:
+    <<: *frontend
+    command: npm run start
+    ports:
+    - 3000:3000
 

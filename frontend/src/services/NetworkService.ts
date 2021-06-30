@@ -1,17 +1,21 @@
 import MyError from '@/services/MyError';
+import LoaderStore from "@/stores/LoaderStore";
 
 export default class NetworkService {
-  constructor({ endpoint, loaderStore, handleTokenErrors }) {
+  token: string | null = null;
+  endpoint: string;
+  loaderStore: LoaderStore;
+  constructor(endpoint: string, loaderStore: LoaderStore) {
     this.endpoint = `${endpoint}api/`;
     this.loaderStore = loaderStore;
-    this.handleTokenErrors = handleTokenErrors;
   }
 
-  setToken(token) {
+  setToken(token: string | null) {
     this.token = token;
     console.log(this.token);
   }
 
+  //TODO мы присылаем сообщение ошибки в json, переписать
   async checkResponse(res) {
     let response;
     this.loaderStore.setLoader(null);
@@ -35,7 +39,7 @@ export default class NetworkService {
    * @param {Object} parameters
    * @param {Object} extra - экстра параметры file, multipart
    */
-  fetch = (alias, parameters, type = 'POST') => {
+  fetch = (alias: string, parameters?: object, type = 'POST') => {
     // this.loaderStore.setIsBlocked(true);
     this.options = {
       method: type,

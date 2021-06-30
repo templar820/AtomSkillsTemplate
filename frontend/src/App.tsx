@@ -1,7 +1,6 @@
 import React from 'react';
 import Router from '@/Router';
 import NetworkService from '@/services/NetworkService';
-import RequestService from '@/services/RequestService';
 import { StoresNames } from '@/services/common/constDictionary';
 import { Provider } from 'mobx-react';
 import LoaderStore from '@/stores/LoaderStore';
@@ -10,18 +9,26 @@ import Loader from '@/components/System/Loader';
 import UserStore from "./stores/UserStore";
 import theme from './styles/muiTheme';
 import { MuiThemeProvider } from '@material-ui/core'
+import AuthService from "@/services/AuthService";
 
 class App extends React.Component {
-  constructor(props) {
+  loaderStore: LoaderStore;
+  userStore: UserStore;
+  networkService: NetworkService;
+  authService: AuthService;
+  stores: {[key: string]: any};
+  services: {[key: string]: any};
+
+  constructor(props: {}) {
     super(props);
     // const endpoint = process.env.ENDPOINT;
     const endpoint = 'http://localhost:8080/';
     this.loaderStore = new LoaderStore();
     this.userStore = new UserStore();
-    this.networkService = new NetworkService({ endpoint, loaderStore: this.loaderStore });
-    this.requestService = new RequestService(this.networkService);
-
-    this.networkService.setToken(localStorage.token || 'token');
+    this.networkService = new NetworkService(endpoint, this.loaderStore);
+    this.networkService.setToken(localStorage.getItem('token') || null);
+    // this.requestService = new RequestService(this.networkService);
+    this.authService = new AuthService(this.networkService, this.userStore);
 
     this.stores = {
       [StoresNames.LoaderStore]: this.loaderStore,
@@ -31,8 +38,13 @@ class App extends React.Component {
 
     this.services = {
       networkService: this.networkService,
-      requestService: this.requestService,
+      // requestService: this.requestService,
+      authService: this.authService,
     };
+  }
+
+  componentDidMount() {
+    this.authService.authentication();
   }
 
   render() {

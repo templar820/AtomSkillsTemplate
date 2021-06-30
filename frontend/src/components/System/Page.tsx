@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '@/components/System/Header';
+import Header from '@/components/Header/Header';
 
 class Page extends React.Component {
 
   render() {
     return (
-      <div className="maxSize pageWrapper">
+      <div className="pageWrapper">
         <Header/>
         <div className="container">
           <div className="row">

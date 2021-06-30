@@ -7,6 +7,7 @@ const router = new Router();
 
 
 router.get('/users', asyncMiddleware(UserController.getAll));
+router.get('/users/userInfo', asyncMiddleware(UserController.getUserByToken));
 router.get('/users/:id', asyncMiddleware(UserController.getOne));
 router.put('/users', asyncMiddleware(UserController.update));
 router.delete('/users/:id', asyncMiddleware(UserController.delete));

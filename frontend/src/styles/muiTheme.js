@@ -12,9 +12,9 @@ const theme = createMuiTheme({
   }
 });
 
-theme.overrides.MuiButton = {
+theme.overrides.MuiIconButton = {
   root: {
-    borderRadius: 0,
+    padding: 0,
   },
 }
 

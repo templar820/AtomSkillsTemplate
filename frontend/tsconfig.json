@@ -14,7 +14,7 @@
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "skipLibCheck": true,
     "allowJs": true,
-    "noEmit": true,
+    "noEmitOnError": false,
     "experimentalDecorators": true,
     "paths": {
       "@/*": ["../src/*"],

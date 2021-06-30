@@ -7,4 +7,5 @@ export const StoresNames = {
 
 export const ServicesNames = {
   RequestService: 'RequestService',
+  AuthService: 'AuthService',
 };

@@ -49,10 +49,10 @@ export default class ErrorWindow extends React.Component {
 
   render() {
     return (
-      <div className="maxSize">
+      <>
         {this.getErrorWindow()}
         {this.props.children}
-      </div>
+      </>
     );
   }
 }
