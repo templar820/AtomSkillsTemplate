@@ -10,6 +10,8 @@ import Select from '@material-ui/core/Select';
 import Menu from '@material-ui/core/Menu';
 import colors from '@styles/colors.modules.scss';
 import {IconButton} from "@material-ui/core";
+import {StoresNames} from "@/services/common/constDictionary";
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -36,13 +38,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Header = () => {
+const Header = (props: {services: any}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const {t, i18n} = useTranslation();
   const classes = useStyles();
 
-  const changeLanguage = (language) => {
+  const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
+  };
+
+  const logout = () => {
+    props.services.authService.logout();
   };
 
   return (
@@ -50,12 +56,12 @@ const Header = () => {
       <div className="container align-items-center">
         <div className="row h-100">
           <div className="col-4 d-flex align-items-center">
-            <a href="/" className="d-flex align-items-center">
-              <div className="header__logo d-flex align-items-center justify-content-center">
+            <Link to="/" className="d-flex align-items-center header__logo">
+              <div className="header__logo-box d-flex align-items-center justify-content-center">
                 <h2 className="header__logo-h2 m-0">HT</h2>
               </div>
               <h4 className="header__logo-h4 text-white ml-2 m-0">HackTemplate</h4>
-            </a>
+            </Link>
           </div>
           <div className="col-2 col-lg-1 offset-4 offset-lg-6 d-none d-sm-flex align-items-center justify-content-end">
             <FormControl className={classes.formControl}>
@@ -85,7 +91,9 @@ const Header = () => {
                 onClose={() => setAnchorEl(null)}
               >
                 <MenuItem>Что-то там</MenuItem>
-                <MenuItem>Выход</MenuItem>
+                <MenuItem
+                  onClick={logout}
+                >{t('common.logout')}</MenuItem>
               </Menu>
             </div>
           </div>
@@ -95,4 +103,4 @@ const Header = () => {
   );
 }
 
-export default inject('services')(observer(Header));
+export default inject('services', StoresNames.UserStore)(observer(Header));

@@ -1,6 +1,21 @@
 @import "~@styles/colors.modules.scss";
 @import '~@styles/fonts.scss';
 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
+  info: $info,
+  warning: $warning,
+  success: $success,
+);
+
+@import '~bootstrap/scss/bootstrap';
+
+
+
 * {
   margin: 0;
   padding: 0;

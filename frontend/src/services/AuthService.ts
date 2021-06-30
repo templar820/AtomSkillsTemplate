@@ -11,16 +11,24 @@ export default class AuthService {
 
   async login(email: string, password: string) {
     const {data} = await this.networkService.fetch('user/login', {email, password});
-    this.networkService.setToken(data.token);
+    if (!data) return; //TODO это ошибка, сделать обработку ошибок
+    const {token} = data;
+    if (!token) return;
+    this.networkService.setToken(token);
+    localStorage.setItem('token', token);
   }
 
   async register(email: string, password: string) {
     const {data} = await this.networkService.fetch('user/register', {email, password});
-    this.networkService.setToken(data.token);
+    if (!data) return;
+    const {token} = data;
+    if (!token) return;
+    this.networkService.setToken(token);
+    localStorage.setItem('token', token);
   }
 
   async authentication() {
-    const {data} = await this.networkService.fetch('users/getUserInfo');
+    const {data} = await this.networkService.fetch('users/userInfo');
     if (data) {
       this.userStore.setUser(data, true);
     } else {
@@ -31,6 +39,8 @@ export default class AuthService {
 
 
   async logout() {
-    await this.networkService.fetch('logout');
+    await this.networkService.fetch('user/logout');
+    this.userStore.setUser({}, false);
+    localStorage.removeItem('token');
   }
 }

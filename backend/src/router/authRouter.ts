@@ -30,9 +30,9 @@ authRouter.post('/user/login', (req, res, next) => {
 
 authRouter.post('/user/register', asyncMiddleware(UserController.create));
 
-authRouter.get('/user/logout', (req, res) => {
+authRouter.post('/user/logout', (req, res) => {
   req.logOut();
-  res.redirect('/');
+  res.sendFormat(null);
 });
 
 export default authRouter;

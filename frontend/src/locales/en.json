@@ -1,6 +1,7 @@
 {
   "common": {
     "login": "Login",
+    "logout": "Logout",
     "save": "Save",
     "cancel": "Cancel"
   },

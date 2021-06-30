@@ -38,6 +38,10 @@ class Router extends React.Component {
         <Switch>
           <Route exact path="/" render={p => this.getPage(p, HomePage)} />
           <Route path="/authorization">
+            {
+              this.userStore.isLogin
+              && <Redirect to="/"/>
+            }
             <AuthorizationPage/>
           </Route>
           <Route component={NotFound} />
