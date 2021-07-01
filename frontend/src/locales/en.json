@@ -18,5 +18,8 @@
     "rememberPassword": "Remember password",
     "register": "Register",
     "loginGoogle": "Login with Google"
+  },
+  "homePage": {
+    "products": "Products"
   }
 }

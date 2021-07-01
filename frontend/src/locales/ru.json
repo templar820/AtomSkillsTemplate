@@ -18,5 +18,8 @@
     "rememberPassword": "Запомнить пароль",
     "register": "Зарегистрироваться",
     "loginGoogle": "Войти с Google"
+  },
+  "homePage": {
+    "products": "Продукты"
   }
 }

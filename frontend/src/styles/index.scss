@@ -29,10 +29,10 @@ $theme-colors: (
 //  width: 100%;
 //  height: 100%;
 //}
-//.btn:focus {
-//  outline: 0;
-//  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0);
-//}
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0);
+}
 
 html,body, #root{
   width: 100%;
@@ -43,71 +43,12 @@ body {
   background: $white;
 }
 
-//.MuiIconButton-root{
-//  padding: 0 !important;
-//  &:hover{
-//    background-color: rgba(0,0,0,0) !important;
-//  }
-//}
-//
-//.card{
-//  img{
-//    max-width: 300px;
-//    max-height: 300px;
-//  }
-//}
-//.bm-burger-button{
-//  width: 25px;
-//  height: 25px;
-//  background: red;
-//}
-//
-//.activeCard{
-//  min-width: 100px;
-//}
-//
-//.dialog,
-//.dialog__overlay {
-//
-//  min-width: 100%;
-//  min-height: 100%;
-//  top: 0;
-//  left: 0;
-//}
-//
-//.dialog {
-//  position: fixed;
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//  pointer-events: none;
-//}
-//
-//.dialog__overlay {
-//  position: absolute;
-//  z-index: 1;
-//  background: rgba(55, 58, 71, 0.9);
-//  opacity: 0;
-//  transition: opacity 0.3s;
-//}
-//
-//.dialog--open .dialog__overlay {
-//  opacity: 1;
-//  pointer-events: auto;
-//}
-//
-//.Loader{
-//  position: absolute;
-//  background: rgba(255,255,255, 0.2);
-//
-//  div{
-//    position: relative;
-//    left: 50%;
-//    top: 50%;
-//    transform: translate(-50%, -50%);
-//    animation: Loader 1.4s linear infinite
-//  }
-//}
+@include media-breakpoint-only(sm) {
+  html {
+    font-size: 14px;
+  }
+}
+
 @keyframes Loader {
   0%{
     transform-origin: 50% 50%;
@@ -116,51 +57,7 @@ body {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-//
-//.dialog__content {
-//  width: 50%;
-//  max-width: 416px;
-//  min-width: 290px;
-//  background: #fff;
-//  padding: 16px;
-//  text-align: center;
-//  position: relative;
-//  z-index: 5;
-//  opacity: 0;
-//  display: flex;
-//  flex-direction: column;
-//}
-//
-//.dialog--open .dialog__content {
-//  pointer-events: auto;
-//}
-//
-//
-//
-//.dialog.dialog--open .dialog__content,
-//.dialog.dialog--close .dialog__content {
-//  animation-duration: 0.3s;
-//  animation-fill-mode: forwards;
-//}
-//
-//.dialog.dialog--open .dialog__content {
-//  animation-name: anim-open;
-//}
-//
-//.dialog.dialog--close .dialog__content {
-//  animation-name: anim-close;
-//}
-//
-//@keyframes anim-open {
-//  0% { opacity: 0; transform: scale3d(1.1, 1.1, 1); }
-//  100% { opacity: 1; transform: scale3d(1, 1, 1); }
-//}
-//
-//@keyframes anim-close {
-//  0% { opacity: 1; }
-//  100% { opacity: 0; transform: scale3d(0.9, 0.9, 1); }
-//}
-//
+
 
 .errorWindow{
   display: flex;
