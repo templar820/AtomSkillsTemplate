@@ -1,9 +1,8 @@
 import React from 'react';
 import './HomePage.scss';
 import {inject, observer} from 'mobx-react';
-import {StoresNames} from '@/services/common/constDictionary';
 import {withRouter} from "react-router-dom";
-import {toJS} from "mobx";
+import ContentLoader from "@/components/System/ContentLoader/ContentLoader";
 
 
 class HomePage extends React.Component {
@@ -20,7 +19,18 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <div></div>
+      <div className="home-page">
+        <h4 className="mb-3">Продукты</h4>
+        <div className="row">
+          {
+            [...Array(10).keys()].map((value) => (
+              <div key={value} className="home-page__card col-12 col-sm-6 col-lg-4 mb-3">
+                <ContentLoader/>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     );
   }
 }

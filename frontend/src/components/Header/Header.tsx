@@ -52,7 +52,7 @@ const Header = (props: {services: any}) => {
   };
 
   return (
-    <header className="header d-flex align-items-center">
+    <header className="header d-flex align-items-center fixed-top">
       <div className="container align-items-center">
         <div className="row h-100">
           <div className="col-4 d-flex align-items-center">
