@@ -43,7 +43,7 @@ body {
   background: $white;
 }
 
-@include media-breakpoint-only(sm) {
+@include media-breakpoint-down(sm) {
   html {
     font-size: 14px;
   }
