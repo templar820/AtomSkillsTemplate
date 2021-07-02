@@ -28,7 +28,7 @@ export default class AuthService {
   }
 
   async authentication() {
-    const {data} = await this.networkService.fetch('users/userInfo');
+    const {data} = await this.networkService.fetch('users/userInfo', null, 'GET');
     if (data) {
       this.userStore.setUser(data, true);
     } else {
@@ -39,7 +39,7 @@ export default class AuthService {
 
 
   async logout() {
-    await this.networkService.fetch('user/logout');
+    await this.networkService.fetch('user/logout', null, 'GET');
     this.userStore.setUser({}, false);
     localStorage.removeItem('token');
   }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './HomePage.scss';
 import {inject, observer} from 'mobx-react';
 import {Link, withRouter} from "react-router-dom";
@@ -6,13 +6,17 @@ import ContentLoader from "@/components/System/ContentLoader/ContentLoader";
 import {useTranslation} from "react-i18next";
 
 
-const HomePage:React.FC = () => {
+const HomePage:React.FC = (props: {services: any}) => {
   const {t} = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
 
   setTimeout(() => {
     setIsLoading(false)
   }, 1000);
+
+  useEffect(() => {
+    props.services.productService.getProducts();
+  }, []);
 
   return (
     <div className="home-page">

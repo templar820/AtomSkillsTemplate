@@ -12,7 +12,6 @@ export default class NetworkService {
 
   setToken(token: string | null) {
     this.token = token;
-    console.log(this.token);
   }
 
   //TODO мы присылаем сообщение ошибки в json, переписать
@@ -39,17 +38,17 @@ export default class NetworkService {
    * @param {Object} parameters
    * @param {Object} extra - экстра параметры file, multipart
    */
-  fetch = (alias: string, parameters?: object, type = 'POST') => {
+  fetch = (alias: string, parameters?: object | null, type = 'POST') => {
     // this.loaderStore.setIsBlocked(true);
-    this.options = {
+    const options = {
       method: type,
-      headers: this.buildHeaders(),
+      headers: this.buildHeaders()
     };
     // console.log(this.options)
 
-    if (parameters) this.options.body = JSON.stringify(parameters);
+    if (parameters) options.body = JSON.stringify(parameters);
     this.loaderStore.startLoader();
-    return fetch(`${this.endpoint}${alias}`, this.options)
+    return fetch(`${this.endpoint}${alias}`, options)
       .then(response => this.checkResponse(response))
       .catch(err => this.checkResponse(err));
   }

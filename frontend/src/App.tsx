@@ -10,12 +10,14 @@ import UserStore from "./stores/UserStore";
 import theme from './styles/muiTheme';
 import { MuiThemeProvider } from '@material-ui/core'
 import AuthService from "@/services/AuthService";
+import ProductService from "@/services/ProductService";
 
 class App extends React.Component {
   loaderStore: LoaderStore;
   userStore: UserStore;
   networkService: NetworkService;
   authService: AuthService;
+  productService: ProductService;
   stores: {[key: string]: any};
   services: {[key: string]: any};
 
@@ -29,6 +31,7 @@ class App extends React.Component {
     this.networkService.setToken(localStorage.getItem('token') || null);
     // this.requestService = new RequestService(this.networkService);
     this.authService = new AuthService(this.networkService, this.userStore);
+    this.productService = new ProductService(this.networkService, null);
 
     this.stores = {
       [StoresNames.LoaderStore]: this.loaderStore,
@@ -40,6 +43,7 @@ class App extends React.Component {
       networkService: this.networkService,
       // requestService: this.requestService,
       authService: this.authService,
+      productService: this.productService,
     };
   }
 
