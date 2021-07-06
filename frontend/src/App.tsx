@@ -7,6 +7,7 @@ import LoaderStore from '@/stores/LoaderStore';
 import ErrorWindow from '@/components/System/ErrorWindow';
 import Loader from '@/components/System/Loader';
 import UserStore from "./stores/UserStore";
+import ProductStore from "./stores/ProductStore";
 import theme from './styles/muiTheme';
 import { MuiThemeProvider } from '@material-ui/core'
 import AuthService from "@/services/AuthService";
@@ -15,6 +16,7 @@ import ProductService from "@/services/ProductService";
 class App extends React.Component {
   loaderStore: LoaderStore;
   userStore: UserStore;
+  productStore: ProductStore;
   networkService: NetworkService;
   authService: AuthService;
   productService: ProductService;
@@ -27,15 +29,17 @@ class App extends React.Component {
     const endpoint = 'http://localhost:8080/';
     this.loaderStore = new LoaderStore();
     this.userStore = new UserStore();
+    this.productStore = new ProductStore();
     this.networkService = new NetworkService(endpoint, this.loaderStore);
     this.networkService.setToken(localStorage.getItem('token') || null);
     // this.requestService = new RequestService(this.networkService);
     this.authService = new AuthService(this.networkService, this.userStore);
-    this.productService = new ProductService(this.networkService, null);
+    this.productService = new ProductService(this.networkService, this.productStore);
 
     this.stores = {
       [StoresNames.LoaderStore]: this.loaderStore,
       [StoresNames.UserStore]: this.userStore,
+      [StoresNames.ProductStore]: this.productStore,
       [StoresNames.URL]: endpoint,
     };
 

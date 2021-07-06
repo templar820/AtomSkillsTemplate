@@ -35,6 +35,17 @@ Product.belongsTo(Substance, {as: 'substance'});
 // User.hasOne(UserDetails, {as: 'user_details'});
 User.belongsTo(UserDetails, {as: 'user_details'});
 
+export interface IProduct {
+  id: string;
+  name: string;
+}
+
+export interface ISubstance {
+  name: string;
+  id: string;
+  code: string;
+  products: IProduct[];
+}
 
 export {
   User,

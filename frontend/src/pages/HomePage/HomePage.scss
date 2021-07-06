@@ -2,13 +2,21 @@
 
 .home-page{
   .product-card {
-    height: 11.5rem;
+    height: 13rem;
     &__wrapper {
       height: 100%;
       border: 1px solid rgba(0, 0, 0, 0.125);
       box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.06);
       border-radius: 5px;
       background: $white;
+      .card-title {
+        height: 3rem;
+        overflow: hidden;
+      }
+      .card-text {
+        height: 1.5rem;
+        overflow: hidden;
+      }
     }
   }
 }
