@@ -13,6 +13,6 @@ router.put('/users', asyncMiddleware(UserController.update));
 router.delete('/users/:id', asyncMiddleware(UserController.delete));
 
 router.get('/substances', asyncMiddleware(SubstancesController.getAll));
-router.get('/products', asyncMiddleware(ProductController.getAll));
+router.post('/products', asyncMiddleware(ProductController.get));
 
 export default router;

@@ -10,15 +10,20 @@ class ProductService {
     )
   }
 
-  async getAll() {
-    return await Product.findAll( {
-        include: [{
-          model: Substance,
-          as: Substance.name,
-          attributes: ['id','name', 'code']
-        }],
-      }
-    )
+  async get(offset, limit) {
+    return await Product.findAll({
+      offset: offset,
+      limit: limit,
+      include: [{
+        model: Substance,
+        as: Substance.name,
+        attributes: ['id', 'name', 'code']
+      }],
+    })
+  }
+
+  async getCount() {
+    return await Product.count();
   }
 
 }

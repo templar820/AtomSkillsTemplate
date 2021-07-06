@@ -20,6 +20,7 @@
     "loginGoogle": "Войти с Google"
   },
   "homePage": {
-    "products": "Продукты"
+    "products": "Продукты",
+    "button": "Кнопка"
   }
 }

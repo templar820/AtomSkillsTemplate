@@ -4,10 +4,10 @@ import LoaderStore from "@/stores/LoaderStore";
 export default class NetworkService {
   token: string | null = null;
   endpoint: string;
-  loaderStore: LoaderStore;
+  // loaderStore: LoaderStore;
   constructor(endpoint: string, loaderStore: LoaderStore) {
     this.endpoint = `${endpoint}api/`;
-    this.loaderStore = loaderStore;
+    // this.loaderStore = loaderStore;
   }
 
   setToken(token: string | null) {
@@ -17,7 +17,7 @@ export default class NetworkService {
   //TODO мы присылаем сообщение ошибки в json, переписать
   async checkResponse(res) {
     let response;
-    this.loaderStore.setLoader(null);
+    // this.loaderStore.setLoader(null);
 
     if (res.status === 500) {
       response = new MyError({ detail: 'Внутренняя ошибка сервера' });
@@ -47,7 +47,7 @@ export default class NetworkService {
     // console.log(this.options)
 
     if (parameters) options.body = JSON.stringify(parameters);
-    this.loaderStore.startLoader();
+    // this.loaderStore.startLoader();
     return fetch(`${this.endpoint}${alias}`, options)
       .then(response => this.checkResponse(response))
       .catch(err => this.checkResponse(err));
