@@ -6,10 +6,13 @@ import ContentLoader from "@/components/System/ContentLoader/ContentLoader";
 import {useTranslation} from "react-i18next";
 import {StoresNames} from "@/services/common/constDictionary";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {Autocomplete} from "@material-ui/lab";
+import {TextField} from "@material-ui/core";
 
 const HomePage:React.FC<{services: any}> = (props) => {
   const {t} = useTranslation();
   const [isFetching, setIsFetching] = useState(true);
+  const [searchIsOpen, setSearchIsOpen] = useState(false);
   const productStore = props[StoresNames.ProductStore];
 
   useEffect(() => {
@@ -41,8 +44,34 @@ const HomePage:React.FC<{services: any}> = (props) => {
   const products = productStore.products;
   return (
     <div className="home-page">
-      <div className="row">
-        <h4 className="mb-3 col-2">{t("homePage.products")}</h4>
+      <div className="mb-3 d-flex justify-content-between align-items-end">
+        <h4>{t("homePage.products")}</h4>
+        <Autocomplete
+          style={{width: "14rem"}}
+          open={searchIsOpen}
+          onOpen={() => setSearchIsOpen(true)}
+          onClose={() => setSearchIsOpen(false)}
+          value={products && products[0]}
+          getOptionSelected={(option, value) => option === value}
+          getOptionLabel={(option) => String(option.name)}
+          options={products}
+          renderOption={(option) => option.name}
+          onChange={(e, obj) => {}}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Найти продукт"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
+        />
       </div>
       <div className="row">
         {
