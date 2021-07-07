@@ -51,7 +51,7 @@ const HomePage:React.FC<{services: any}> = (props) => {
           open={searchIsOpen}
           onOpen={() => setSearchIsOpen(true)}
           onClose={() => setSearchIsOpen(false)}
-          value={products && products[0]}
+          value={null}
           getOptionSelected={(option, value) => option === value}
           getOptionLabel={(option) => String(option.name)}
           options={products}

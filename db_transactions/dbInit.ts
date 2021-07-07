@@ -1,5 +1,5 @@
-import substances from "./productToMNN.json";
-import products from "./products.json";
+import substances from "./data/productToMNN.json";
+import products from "./data/products.json";
 import {Product, Substance} from "../backend/src/models/DbModel"
 import db from "../backend/src/db"
 
