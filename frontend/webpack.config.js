@@ -151,7 +151,22 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
-        use: "ts-loader",
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: [['@babel/plugin-proposal-decorators', { legacy: true }], '@babel/plugin-proposal-class-properties'],
+            },
+          },
+          'ts-loader',
+          {
+            loader: 'eslint-loader',
+            options: {
+              emitWarning: true,
+            },
+          },
+        ],
       },
     ],
   },
