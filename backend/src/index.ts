@@ -10,39 +10,17 @@ import {responseHandler} from "./middleware/responseHandler";
 import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
-import morgan from 'morgan';
-import morganBody from 'morgan-body';
-import fs from "fs"
+import logger from "./router/logger"
+
+
 
 
 
 const PORT = process.env.BACKEND_PORT || 8080;
 
 const app = express();
+app.use(logger)
 
-// morgan.token('id', (req) => {
-//   console.log(req);
-//   return req.id
-// })
-
-morgan(function (tokens, req, res) {
-  return [
-    tokens.method(req, res),
-    tokens.url(req, res),
-    tokens.status(req, res),
-    tokens['response-time'](req, res), 'ms'
-  ].join(' ')
-})
-morgan.token('id',  (req, res) => { return req.headers.token })
-morgan.token('RequestBody',  (req, res) => { return JSON.stringify(req.body) })
-
-const morganSettings = "RequestType=:method URL=:url Status=:status ResponseTime=:response-time Token=:id RequestBody=:RequestBody"
-
-app.use(morgan(morganSettings, {
-  stream: fs.createWriteStream('./access.log', {flags: 'a'})
-}));
-
-app.use(morgan(morganSettings));
 
 
 app.use(cors());
