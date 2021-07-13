@@ -1,6 +1,6 @@
 import {User, UserDetails} from "../models/DbModel";
 import bcrypt from 'bcrypt';
-import db from "../db";
+import db from "../config/db";
 import BaseService from "./BaseService";
 
 class UserService extends BaseService{
@@ -56,7 +56,7 @@ class UserService extends BaseService{
       raw: true,
     })
     return this.flatKeysForObject(user, UserDetails.name);
-  
+
   }
 }
 
