@@ -21,9 +21,9 @@ class UserController {
   }
 
   async getUserByToken(req, res) {
-    const post = await UserService.getOne(req.user)
-    if (!post) throw new ServerError(404, 'User not found');
-    return res.sendFormat(post)
+    const user = await UserService.getOne(req.user);
+    if (!user) throw new ServerError(404, 'User not found');
+    return res.sendFormat(user)
   }
 
   async update(req, res) {

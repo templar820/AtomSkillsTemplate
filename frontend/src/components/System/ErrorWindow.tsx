@@ -1,14 +1,14 @@
 import React from 'react';
 import ErrorIcon from '@material-ui/icons/Error';
 import ModalBox from '@/components/System/ModalBox';
+import MyError from "@/services/MyError";
 
 export default class ErrorWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: '',
-      className: 'dialog',
-      statusCode: 404,
+      statusCode: null,
       description: '',
     };
     this.closeDialog = this.closeDialog.bind(this);
@@ -21,8 +21,13 @@ export default class ErrorWindow extends React.Component {
   }
 
   errorListener(e) {
+    let statusCode = null;
+    if (e instanceof MyError) {
+      statusCode = e.statusCode;
+    }
     this.setState({
       message: e.message,
+      statusCode: statusCode,
       openDialog: true,
     });
   }
@@ -30,6 +35,7 @@ export default class ErrorWindow extends React.Component {
   closeDialog() {
     this.setState({
       message: '',
+      statusCode: null,
       openDialog: false,
     });
   }
@@ -41,7 +47,7 @@ export default class ErrorWindow extends React.Component {
           <div className="errorWindow">
             <div>
               <ErrorIcon color="error" fontSize="large"/>
-              <label className="logo">Error</label>
+              <label className="logo">Error {this.state.statusCode}</label>
             </div>
             <span className="logo">{this.state.message}</span>
             <button onClick={() => this.closeDialog()}>Закрыть</button>
