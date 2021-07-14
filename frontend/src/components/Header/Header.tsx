@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {useTranslation} from "react-i18next";
 import './Header.scss';
-import {StoresNames} from "@/services/common/constDictionary";
+import {StoresNames} from "@/stores/StoresNames";
 import {Link} from 'react-router-dom';
 import {ButtonGroup, DropdownButton, Dropdown} from "react-bootstrap";
 
-const Header = (props: { services: any }) => {
+const Header = (props: { services?: any }) => {
   const {t, i18n} = useTranslation();
 
   const changeLanguage = (language: string) => {

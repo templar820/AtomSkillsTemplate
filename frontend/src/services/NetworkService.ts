@@ -12,11 +12,9 @@ export default class NetworkService {
   }
 
   //TODO мы присылаем сообщение ошибки в json, переписать
-  async checkResponse(res) {
+  async checkResponse(res: Response) {
     if (res.status === 500) {
       throw new MyError({ detail: 'Внутренняя ошибка сервера' });
-    } else if (res instanceof Error) {
-      throw new MyError({ detail: res.message });
     } else if (res.status === 200) {
       const response = await res.json();
       if (response.isError) {
@@ -34,9 +32,10 @@ export default class NetworkService {
    * @param {Object} extra - экстра параметры file, multipart
    */
   fetch = (alias: string, parameters?: object | null, type = 'POST') => {
-    const options = {
+    const options : {method: string, headers: any, body: null | string} = {
       method: type,
-      headers: this.buildHeaders()
+      headers: this.buildHeaders(),
+      body: null,
     };
 
     if (parameters) options.body = JSON.stringify(parameters);

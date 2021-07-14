@@ -3,13 +3,19 @@ import ErrorIcon from '@material-ui/icons/Error';
 import ModalBox from '@/components/System/ModalBox';
 import MyError from "@/services/MyError";
 
-export default class ErrorWindow extends React.Component {
-  constructor(props) {
+interface IErrorWindowState {
+  message: string;
+  statusCode: null | number| string;
+  openDialog: boolean;
+}
+
+export default class ErrorWindow extends React.Component<{}, IErrorWindowState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       message: '',
       statusCode: null,
-      description: '',
+      openDialog: false,
     };
     this.closeDialog = this.closeDialog.bind(this);
     window.onerror = (msg, url, lineNo, columnNo, error) => {
@@ -20,13 +26,13 @@ export default class ErrorWindow extends React.Component {
     };
   }
 
-  errorListener(e) {
+  errorListener(e:  Error | undefined) {
     let statusCode = null;
     if (e instanceof MyError) {
       statusCode = e.statusCode;
     }
     this.setState({
-      message: e.message,
+      message: e?.message || 'Error',
       statusCode: statusCode,
       openDialog: true,
     });

@@ -1,8 +1,7 @@
 export default class MyError extends Error {
   statusCode: number | string;
   description: string;
-  constructor({ status, detail } : {status?: string; detail: string;}) {
-    console.log(status, detail);
+  constructor({ status, detail } : {status?: number; detail: string;}) {
     super(detail);
     this.statusCode = status || 'Oops';
     this.message = detail;

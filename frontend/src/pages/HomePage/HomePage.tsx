@@ -4,7 +4,7 @@ import {inject, observer} from 'mobx-react';
 import {Link, withRouter} from "react-router-dom";
 import ContentLoader from "@/components/System/ContentLoader/ContentLoader";
 import {useTranslation} from "react-i18next";
-import {StoresNames} from "@/services/common/constDictionary";
+import {StoresNames} from "@/stores/StoresNames";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Autocomplete} from "@material-ui/lab";
 import {TextField} from "@material-ui/core";

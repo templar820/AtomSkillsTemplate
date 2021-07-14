@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from '@/Router';
 import NetworkService from '@/services/NetworkService';
-import { StoresNames } from '@/services/common/constDictionary';
+import { StoresNames } from '@/stores/StoresNames';
 import { Provider } from 'mobx-react';
 import LoaderStore from '@/stores/LoaderStore';
 import ErrorWindow from '@/components/System/ErrorWindow';

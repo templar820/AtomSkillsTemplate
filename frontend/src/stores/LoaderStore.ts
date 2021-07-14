@@ -1,5 +1,5 @@
 import {
-  action, makeObservable, observable, toJS
+  action, makeObservable, observable
 } from 'mobx';
 
 export default class AppStore {

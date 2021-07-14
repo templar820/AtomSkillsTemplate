@@ -13,17 +13,16 @@ const useStyles = makeStyles((theme) => ({
 
 interface IAuthorizationCardProps {
   setRegistrationView: () => void;
-  services: any;
+  services?: any;
 }
 
 const AuthorizationCard = (props: IAuthorizationCardProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [isRemember, setIsRemember] = useState(false);
   const {t} = useTranslation();
   const classes = useStyles();
 
-  const login = async (e) => {
+  const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await props.services.authService.login(email, password);
     await props.services.authService.authentication();
