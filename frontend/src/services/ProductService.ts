@@ -1,10 +1,11 @@
 import NetworkService from "@/services/NetworkService";
 import ProductStore from "@/stores/ProductStore";
+import LoaderStore from "@/stores/LoaderStore";
 
 export default class ProductService {
   private networkService: NetworkService;
   private productStore: ProductStore;
-  constructor(networkService: NetworkService, productStore: ProductStore) {
+  constructor(networkService: NetworkService, productStore: ProductStore, loaderStore: LoaderStore) {
     this.networkService = networkService;
     this.productStore = productStore;
   }

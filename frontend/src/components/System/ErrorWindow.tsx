@@ -12,8 +12,12 @@ export default class ErrorWindow extends React.Component {
       description: '',
     };
     this.closeDialog = this.closeDialog.bind(this);
-    window.onerror = (msg, url, lineNo, columnNo, error) => { this.errorListener(error); };
-    window.onunhandledrejection = e => { this.errorListener(e.reason); };
+    window.onerror = (msg, url, lineNo, columnNo, error) => {
+      this.errorListener(error);
+    };
+    window.onunhandledrejection = e => {
+      this.errorListener(e.reason);
+    };
   }
 
   errorListener(e) {
@@ -30,13 +34,13 @@ export default class ErrorWindow extends React.Component {
     });
   }
 
-  getErrorWindow() {
-    return (
-      this.state.openDialog && (
+  render() {
+    return this.state.openDialog
+      ? (
         <ModalBox show={this.state.openDialog} closeDialog={this.closeDialog}>
           <div className="errorWindow">
             <div>
-              <ErrorIcon color="error" fontSize="large" />
+              <ErrorIcon color="error" fontSize="large"/>
               <label className="logo">Error</label>
             </div>
             <span className="logo">{this.state.message}</span>
@@ -44,15 +48,6 @@ export default class ErrorWindow extends React.Component {
           </div>
         </ModalBox>
       )
-    );
-  }
-
-  render() {
-    return (
-      <>
-        {this.getErrorWindow()}
-        {this.props.children}
-      </>
-    );
+      : null
   }
 }

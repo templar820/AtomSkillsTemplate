@@ -14,12 +14,6 @@ import AuthService from "@/services/AuthService";
 import ProductService from "@/services/ProductService";
 
 class App extends React.Component {
-  loaderStore: LoaderStore;
-  userStore: UserStore;
-  productStore: ProductStore;
-  networkService: NetworkService;
-  authService: AuthService;
-  productService: ProductService;
   stores: {[key: string]: any};
   services: {[key: string]: any};
 
@@ -27,42 +21,42 @@ class App extends React.Component {
     super(props);
     // const endpoint = process.env.ENDPOINT;
     const endpoint = 'http://localhost:8080/';
-    this.loaderStore = new LoaderStore();
-    this.userStore = new UserStore();
-    this.productStore = new ProductStore();
-    this.networkService = new NetworkService(endpoint, this.loaderStore);
-    this.networkService.setToken(localStorage.getItem('token') || null);
+    const loaderStore = new LoaderStore();
+    const userStore = new UserStore();
+    const productStore = new ProductStore();
+    const networkService = new NetworkService(endpoint);
+    networkService.setToken(localStorage.getItem('token') || null);
     // this.requestService = new RequestService(this.networkService);
-    this.authService = new AuthService(this.networkService, this.userStore);
-    this.productService = new ProductService(this.networkService, this.productStore);
+    const authService = new AuthService(networkService, userStore, loaderStore);
+    const productService = new ProductService(networkService, productStore, loaderStore);
 
     this.stores = {
-      [StoresNames.LoaderStore]: this.loaderStore,
-      [StoresNames.UserStore]: this.userStore,
-      [StoresNames.ProductStore]: this.productStore,
+      [StoresNames.LoaderStore]: loaderStore,
+      [StoresNames.UserStore]: userStore,
+      [StoresNames.ProductStore]: productStore,
       [StoresNames.URL]: endpoint,
     };
 
     this.services = {
-      networkService: this.networkService,
+      networkService: networkService,
       // requestService: this.requestService,
-      authService: this.authService,
-      productService: this.productService,
+      authService: authService,
+      productService: productService,
     };
   }
 
   componentDidMount() {
-    this.authService.authentication();
+    this.services.authService.authentication();
   }
 
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <Provider {...this.stores} services={this.services}>
-          <ErrorWindow>
-            <Loader />
+          <ErrorWindow/>
+          <Loader>
             <Router />
-          </ErrorWindow>
+          </Loader>
         </Provider>
       </MuiThemeProvider>
     );

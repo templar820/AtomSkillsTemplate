@@ -15,7 +15,7 @@ import Decorator from "sequelize-es-decorator"
 import es from "./config/es";
 
 
-const decorator = new Decorator(es, db);
+// const decorator = new Decorator(es, db);
 
 
 
@@ -33,15 +33,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('static'));
 app.use(fileUpload({}));
 
-
-// try{
-//   await
-//   await db.sync()
-//
-// } catch (e) {
-//   console.log(e);
-// }
-
 app.get('/erd', (req, res) => {
   SequelizeErd({source: db}).then((erd: string) => {
     res.send(erd);
@@ -56,6 +47,7 @@ app.use('/api', authRouter);
 
 
 app.use('/api', auth, router);
+app.use(errorHandler);
 
 app.get('/', (req, res) => {
   console.log(req.session);

@@ -3,6 +3,7 @@
 /backend/dist
 /backend/node_modules
 /verdaccio/storage
+/backend/log
 /db_transactions/data
 .env
 *.idea

@@ -3,21 +3,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { inject, observer } from 'mobx-react';
 import { StoresNames } from '@/services/common/constDictionary';
 
-class Loader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.loaderStore = this.props[StoresNames.LoaderStore];
-  }
+const Loader: React.FC<any> = (props) => {
+    const loaderStore = props[StoresNames.LoaderStore];
 
-  render() {
-    if (!this.loaderStore.getLoader()) return null;
-
-    return (
-      <div className="maxSize Loader">
+    return loaderStore.isLoader
+      ? <div className="w-100 vh-100 d-flex justify-content-center align-items-center">
         <CircularProgress size={80} />
       </div>
-    );
-  }
+      : props.children;
 }
 
 export default inject(StoresNames.LoaderStore, 'services')(observer(Loader));
