@@ -1,7 +1,7 @@
 import substances from "./data/productToMNN.json";
 import products from "./data/products.json";
 import {Product, Substance} from "../backend/src/models/DbModel"
-import db from "../backend/src/db"
+import db from "../backend/src/config/db"
 
 interface IProduct {
   id: string;

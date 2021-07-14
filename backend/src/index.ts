@@ -11,11 +11,8 @@ import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 import logger from "./router/logger"
-import Decorator from "sequelize-es-decorator"
-import es from "./config/es";
 
 
-const decorator = new Decorator(es, db);
 
 
 

@@ -1,7 +1,5 @@
 import {Product, Substance} from "../backend/src/models/DbModel"
-import db from "../backend/src/db";
-import substances from "./productToMNN.json";
-// import db from "../backend/src/db"
+import es from "../backend/src/config/es";
 
 
 
@@ -16,6 +14,9 @@ async function createTransaction() {
       cascade: true,
       truncate: true
     })
+    await es.indices.delete({
+      index: "products",
+    });
   
     Substance.destroy({
       where: {},
