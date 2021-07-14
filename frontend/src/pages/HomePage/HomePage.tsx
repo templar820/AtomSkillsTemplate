@@ -53,9 +53,9 @@ const HomePage:React.FC<{services: any}> = (props) => {
           onClose={() => setSearchIsOpen(false)}
           value={null}
           getOptionSelected={(option, value) => option === value}
-          getOptionLabel={(option) => String(option.name)}
+          getOptionLabel={(option) => String(option?.name)}
           options={products}
-          renderOption={(option) => option.name}
+          renderOption={(option) => option?.name}
           onChange={(e, obj) => {}}
           renderInput={(params) => (
             <TextField

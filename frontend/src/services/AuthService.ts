@@ -35,6 +35,7 @@ export default class AuthService {
   }
 
   async authentication() {
+    this.loaderStore.setLoader(true);
     const {data} = await this.networkService.fetch('users/userInfo', null, 'GET');
     if (data) {
       this.userStore.setUser(data, true);
