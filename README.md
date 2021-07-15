@@ -6,3 +6,9 @@ docker rm $(docker ps -a -q)
 
 удаляем все образы
 docker rmi $(docker images -q)
+
+запуск end to end тестирования
+1. make start
+2. создаем пользователя email: cypress@test password: 1
+3. npm run cypress
+
