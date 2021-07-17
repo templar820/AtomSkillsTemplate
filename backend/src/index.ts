@@ -9,8 +9,9 @@ import {auth, authMiddleware} from "./middleware/authMiddleware";
 import {responseHandler} from "./middleware/responseHandler";
 import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from '../swagger.json';
 import logger from "./router/logger"
+import {RegisterRoutes} from "./router/routes";
 
 
 
@@ -45,7 +46,7 @@ app.get('/erd', (req, res) => {
   });
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(responseHandler);
 
 app.use(authMiddleware);
@@ -54,15 +55,15 @@ app.use('/api', authRouter);
 
 app.use('/api', auth, router);
 
-app.get('/', (req, res) => {
-  console.log(req.session);
-  res.send('HomePage');
-});
 
-Promise.all([db.authenticate(), db.sync()]).then(() => {
-  console.log("DB CONNECT")
-  app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
-});
+RegisterRoutes(app);
+
+
+// Promise.all([db.authenticate(), db.sync()]).then(() => {
+//   console.log("DB CONNECT")
+//   app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+// });
+app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
 
 
 

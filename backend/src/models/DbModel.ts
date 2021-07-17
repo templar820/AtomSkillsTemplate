@@ -69,7 +69,6 @@ export interface ISubstance {
   name: string;
   id: string;
   code: string;
-  products: IProduct[];
 }
 
 
