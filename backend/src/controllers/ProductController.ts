@@ -7,7 +7,7 @@ interface IProductExport extends IProduct{
   substance: ISubstance,
 }
 
-@Route("/product")
+@Route("/api/product")
 @Tags("Products")
 class ProductController extends Controller{
   @Post()
