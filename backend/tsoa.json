@@ -22,6 +22,6 @@
   "routes": {
     "basePath": "/api",
     "entryFile": "./src/index.ts",
-    "routesDir": "./src/router"
+    "routesDir": "./src/routes"
   }
 }

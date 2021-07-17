@@ -59,11 +59,11 @@ app.use('/api', auth, router);
 RegisterRoutes(app);
 
 
-// Promise.all([db.authenticate(), db.sync()]).then(() => {
-//   console.log("DB CONNECT")
-//   app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
-// });
-app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+Promise.all([db.authenticate(), db.sync()]).then(() => {
+  console.log("DB CONNECT")
+  app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
+});
+// app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
 
 
 
