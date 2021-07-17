@@ -1,6 +1,6 @@
 import express from 'express'
-import router from "./router/router";
-import authRouter from "./router/authRouter";
+import router from "./routes/router";
+import authRouter from "./routes/authRouter";
 import {errorHandler} from "./middleware/errorHandler";
 import fileUpload from 'express-fileupload';
 import db from "./config/db";
@@ -10,8 +10,8 @@ import {responseHandler} from "./middleware/responseHandler";
 import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
-import logger from "./router/logger"
-import {RegisterRoutes} from "./router/routes";
+import logger from "./middleware/logger"
+import {RegisterRoutes} from "./routes/routes";
 
 
 
