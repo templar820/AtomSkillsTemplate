@@ -1,5 +1,6 @@
 {
   "swagger": {
+    "noImplicitAdditionalProperties": "throw-on-extras",
     "info": {
       "description": "A Login authorization and registration using jwt",
       "version": "1.0.0",
@@ -16,12 +17,20 @@
       }
     ],
     "outputDirectory": "./",
-    "entryFile": "./src/index.ts"
-  },
-
-  "routes": {
-    "basePath": "/api",
     "entryFile": "./src/index.ts",
-    "routesDir": "./src/routes"
+    "securityDefinitions": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "token",
+        "description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InR0MTExZW1wbGFyODIwQGdtYWlsLmNvbSIsImlkIjoyLCJpYXQiOjE2MjQ2MjgwOTR9.KR38orfK4YWOMQNcuOKITrgvBff96kKwl8P9xLR8i_w",
+        "in": "header"
+      }
+    },
+    "basePath": "/api"
+  },
+  "routes": {
+    "entryFile": "./src/index.ts",
+    "routesDir": "./src/routes",
+    "authenticationModule": "./src/auth/SwaggerAuth.ts"
   }
 }

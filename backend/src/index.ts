@@ -55,8 +55,7 @@ app.use('/api', authRouter);
 
 app.use('/api', auth, router);
 
-
-RegisterRoutes(app);
+// RegisterRoutes(app);
 
 
 Promise.all([db.authenticate(), db.sync()]).then(() => {

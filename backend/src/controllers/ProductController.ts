@@ -1,18 +1,24 @@
 import {ServerError} from "../middleware/errorHandler";
 import ProductService from "../services/ProductService";
-import {Controller, Get, Post, Body, BodyProp, Route, Tags} from "tsoa"
+import {Controller, Get, Post, Body, BodyProp, Route, Tags, Security, Header} from "tsoa"
 import {IProduct, ISubstance} from "../models/DbModel";
 
 interface IProductExport extends IProduct{
   substance: ISubstance,
 }
 
-@Route("/api/product")
+interface ProductsArea {
+  offset: number;
+  limit: number;
+}
+
+@Route("/products")
 @Tags("Products")
+@Security("api_key")
 class ProductController extends Controller{
-  @Post()
-  public async get(@BodyProp() offset: number = 0, @BodyProp() limit: number = 48): {products: IProductExport[], count: number} {
-    const products = await ProductService.get(offset, limit);
+  @Post("/part")
+  public async get(@Body() body: ProductsArea): {products: IProductExport[], count: number} {
+    const products = await ProductService.get(body.offset, body.limit);
     const count = await ProductService.getCount();
     return {products, count};
   }
