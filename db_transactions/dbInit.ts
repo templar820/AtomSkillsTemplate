@@ -1,7 +1,8 @@
 import substances from "./data/productToMNN.json";
 import products from "./data/products.json";
-import {Product, Substance, User, UserDetails} from "../backend/src/models/DbModel"
+import {Product, Substance} from "../backend/src/models/DbModel"
 import db from "../backend/src/config/db"
+import UserService from "../backend/src/services/UserService";
 
 interface IProduct {
   id: string;
@@ -53,13 +54,7 @@ async function createTransaction() {
         }]
       })
     }
-    await User.create({email: "admin@admin", password: "admin", role: "ADMIN", user_details: {language: "RU"}},{
-      transaction: t,
-      include:[{
-        model: UserDetails,
-        as: UserDetails.name
-      }]
-    })
+    await UserService.create({email: "admin@admin", password: "admin", role: "ADMIN", language: "RU"})
 
     await t.commit();
     

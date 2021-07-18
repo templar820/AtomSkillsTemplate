@@ -19,7 +19,7 @@ class ProductRouter extends BaseRouter{
   
   
   
-    this.router.get('/users/userInfo', asyncMiddleware(async (req, res) => {
+    this.router.get('/user/userInfo', asyncMiddleware(async (req, res) => {
         res.sendFormat(await UserController.getUserByToken(req.user));
       }
     ));

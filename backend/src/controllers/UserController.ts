@@ -52,7 +52,7 @@ class UserController extends Controller{
   @Get('/userInfo')
   async getUserByToken(@Header('token') token?: string): Promise<IUserExport> {
     const user = await UserService.getOne(Number(token))
-    if (!post) throw new ServerError(404, 'User not found');
+    if (!user) throw new ServerError(404, 'User not found');
     return user
   }
   
