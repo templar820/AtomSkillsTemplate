@@ -464,3 +464,15 @@ RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=1.573 To
 RequestType=GET URL=/api/user/userInfo Status=404 ResponseTime=12.408 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
 RequestType=GET URL=/api/user/userInfo Status=500 ResponseTime=47.613 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
 RequestType=GET URL=/api/user/userInfo Status=200 ResponseTime=32.284 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=POST URL=/api/user/login Status=200 ResponseTime=54.208 Token=- RequestBody={"email":"admin@admin","password":"admin"}
+RequestType=GET URL=/api/user/userInfo Status=304 ResponseTime=41.467 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/user/userInfo Status=401 ResponseTime=7.712 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=40.584 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.948 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=3.092 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=3.332 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.377 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=200 ResponseTime=4.375 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=200 ResponseTime=3.202 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=200 ResponseTime=3.147 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=1.194 Token=- RequestBody={}

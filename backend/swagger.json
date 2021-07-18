@@ -253,7 +253,7 @@
 					{
 						"in": "header",
 						"name": "token",
-						"required": false,
+						"required": true,
 						"type": "string"
 					}
 				]
@@ -362,7 +362,7 @@
 		},
 		{
 			"name": "User",
-			"description": "Operations about user"
+			"description": "Операции с пользователем"
 		}
 	]
 }

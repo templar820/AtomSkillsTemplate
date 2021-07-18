@@ -1,7 +1,7 @@
 import {ServerError} from "../middleware/errorHandler";
 import UserService from "../services/UserService";
 import jwt from "jsonwebtoken";
-import {Body, Controller, Get, Post, Route, Header, Tags} from "tsoa";
+import {Body, Controller, Get, Post, Route, Header, Tags, Security} from "tsoa";
 import ProductService from "../services/ProductService";
 import {IProduct} from "../models/DbModel";
 
@@ -50,7 +50,7 @@ class UserController extends Controller{
   //   return res.sendFormat(post)
   // }
   @Get('/userInfo')
-  async getUserByToken(@Header('token') token?: string): Promise<IUserExport> {
+  async getUserByToken(@Header('token') token: string): Promise<IUserExport> {
     const user = await UserService.getOne(Number(token))
     if (!user) throw new ServerError(404, 'User not found');
     return user

@@ -15,14 +15,7 @@ class ProductRouter extends BaseRouter{
     // this.router.get('/users', asyncMiddleware(UserController.getAll));
     //
     // this.router.get('/users/:id', asyncMiddleware(UserController.getOne));
-  
-  
-  
-  
-    this.router.get('/user/userInfo', asyncMiddleware(async (req, res) => {
-        res.sendFormat(await UserController.getUserByToken(req.user));
-      }
-    ));
+    
     this.createHandleWithBody('post', '/products/part', ProductController.getPart)
     this.createHandleWithQueryParams('get', '/products/:id', ProductController.getById, 'id')
   }

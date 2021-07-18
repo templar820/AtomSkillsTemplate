@@ -6,6 +6,7 @@ import UserController from "../controllers/UserController";
 import jwt from "jsonwebtoken";
 import {ServerError} from "../middleware/errorHandler";
 import BaseRouter from "./BaseRouter";
+import {auth} from "../middleware/authMiddleware";
 
 
 
@@ -20,7 +21,15 @@ class AuthRouter extends BaseRouter{
       res.sendFormat(null);
     });
     
-    this.router.post('/user/login', (req, res, next) => {
+    this.router.post('/user/login', this.authenticate)
+    this.router.get('/user/userInfo', auth, asyncMiddleware(async (req, res) => {
+        res.sendFormat(await UserController.getUserByToken(req.user));
+      }
+    ));
+  }
+  
+  
+  authenticate(req, res, next){
       passport.authenticate('local', {session: false}, function(err, user) {
         if (err) {
           return next(err);
@@ -37,8 +46,7 @@ class AuthRouter extends BaseRouter{
           return res.sendFormat({token});
         });
       })(req, res, next);
-    });
-  }
+    };
 }
 
 

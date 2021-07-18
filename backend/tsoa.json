@@ -13,7 +13,7 @@
       },
       {
         "name":"User",
-        "description":"Operations about user"
+        "description":"Операции с пользователем"
       }
     ],
     "outputDirectory": "./",
