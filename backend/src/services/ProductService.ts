@@ -25,6 +25,10 @@ class ProductService {
   async getCount() {
     return await Product.count();
   }
+  
+  async getById(id: number){
+    return await Product.findByPk(id)
+  }
 
 }
 

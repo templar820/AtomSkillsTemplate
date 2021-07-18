@@ -17,14 +17,17 @@ interface ProductsArea {
 @Security("api_key")
 class ProductController extends Controller{
   @Post("/part")
-  public async get(@Body() body: ProductsArea): {products: IProductExport[], count: number} {
+  public async getPart(@Body() body: ProductsArea): {products: IProductExport[], count: number} {
+    console.log(body.offset, body.limit);
     const products = await ProductService.get(body.offset, body.limit);
     const count = await ProductService.getCount();
+    console.log(count, products);
     return {products, count};
   }
 
-  @Post("/foo")
-  public async create(@BodyProp() description: string) : Promise<void> {
+  @Get("{id}")
+  public async getById(id: number) : IProduct {
+    return await ProductService.getById(id);
     // const item = new TodoModel({description: description});
     // await item.save();
   }
