@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "nodemon --legacy-watch --ignore sessions/ src/index.ts",
-    "gen": "tsoa routes && tsoa swagger",
+    "swagger": "tsoa swagger",
     "build": "webpack"
   },
   "author": "",

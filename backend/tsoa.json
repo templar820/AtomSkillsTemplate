@@ -12,7 +12,7 @@
         "description":"Операции доступные с продуктами"
       },
       {
-        "name":"user",
+        "name":"User",
         "description":"Operations about user"
       }
     ],
@@ -30,7 +30,6 @@
   },
   "routes": {
     "entryFile": "./src/index.ts",
-    "routesDir": "./src/routes",
-    "authenticationModule": "./src/auth/SwaggerAuth.ts"
+    "routesDir": "./src/routes"
   }
 }
