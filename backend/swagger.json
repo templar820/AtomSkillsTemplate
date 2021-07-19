@@ -1,0 +1,391 @@
+{
+	"basePath": "/api",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"IUser": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"AuthCred": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"IUserExport": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"email"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"ISubstance": {
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"code": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name",
+				"id",
+				"code"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"IProduct": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double"
+				},
+				"name": {
+					"type": "string"
+				},
+				"substance": {
+					"$ref": "#/definitions/ISubstance",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"id",
+				"name"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"ProductsArea": {
+			"properties": {
+				"offset": {
+					"type": "number",
+					"format": "double"
+				},
+				"limit": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"required": [
+				"offset",
+				"limit"
+			],
+			"type": "object",
+			"additionalProperties": false
+		}
+	},
+	"info": {
+		"title": "backend",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/user/register": {
+			"post": {
+				"operationId": "CreateUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/IUser"
+						}
+					}
+				]
+			}
+		},
+		"/user/login": {
+			"post": {
+				"operationId": "LoginUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AuthCred"
+						}
+					}
+				]
+			}
+		},
+		"/user/userInfo": {
+			"get": {
+				"operationId": "GetUserByToken",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/IUserExport"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "token",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/products/part": {
+			"post": {
+				"operationId": "GetPart",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"products": {
+									"items": {
+										"$ref": "#/definitions/IProduct"
+									},
+									"type": "array"
+								},
+								"count": {
+									"type": "number",
+									"format": "double"
+								}
+							},
+							"required": [
+								"count",
+								"products"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ProductsArea"
+						}
+					}
+				]
+			}
+		},
+		"/products/{id}": {
+			"get": {
+				"operationId": "GetById",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/IProduct"
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"format": "double",
+						"type": "number"
+					}
+				]
+			}
+		},
+		"/products": {
+			"post": {
+				"operationId": "Insert",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/IProduct"
+							},
+							"type": "array"
+						}
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {
+		"api_key": {
+			"type": "apiKey",
+			"name": "token",
+			"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI",
+			"in": "header"
+		}
+	},
+	"tags": [
+		{
+			"name": "Products",
+			"description": "Операции доступные с продуктами"
+		},
+		{
+			"name": "User",
+			"description": "Операции с пользователем"
+		}
+	]
+}

@@ -4,9 +4,9 @@ import db from "../config/db";
 import BaseService from "./BaseService";
 
 class UserService extends BaseService{
-  async create({email, password, language = "RU"}) {
+  async create({email, password, language = "RU", role = 'USER'}) {
     const hashPassword = await this.getPassword(password)
-    return await User.create({email, password: hashPassword, user_details: {language}}, {
+    return await User.create({email, password: hashPassword, role, user_details: {language}}, {
       include: {
         model: UserDetails,
         as: UserDetails.name

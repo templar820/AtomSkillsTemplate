@@ -3,8 +3,8 @@
 /backend/dist
 /backend/node_modules
 /verdaccio/storage
+/db_transactions/data/*
 /backend/log
-/db_transactions/data
 .env
 *.idea
 package-lock.json
