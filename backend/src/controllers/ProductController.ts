@@ -1,7 +1,8 @@
 import ProductService from "../services/ProductService";
-import {Body, Controller, Delete, Get, Patch, Post, Route, Security, Tags} from "tsoa"
+import {Body, Controller, Delete, Get, Patch, Post, Query, Route, Security, Tags} from "tsoa"
 import {IProduct} from "../models/Product";
 import {ServerError} from "../middleware/errorHandler";
+import es from "../config/es";
 
 interface ProductsArea {
   offset: number;
@@ -47,6 +48,17 @@ class ProductController extends Controller{
   public async delete(id: string): Promise<boolean> {
     await ProductService.deleteById(Number(id))
     return true;
+  }
+  
+  @Get("?")
+  public async search(@Query() product?: string): Promise<IProduct[]>{
+    console.log(product);
+    const result = await es.search({
+      index: 'products',
+      type: 'products',
+      q: product
+    })
+    return await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id)));
   }
 }
 
