@@ -1,8 +1,9 @@
 import substances from "./data/productToMNN.json";
 import products from "./data/products.json";
-import {Product, Substance} from "../backend/src/models/DbModel"
+import {Product, Substance, User, UserDetails} from "../backend/src/models/DbModel"
 import db from "../backend/src/config/db"
 import UserService from "../backend/src/services/UserService";
+import bcrypt from 'bcrypt';
 
 interface IProduct {
   id: string;
@@ -16,6 +17,9 @@ interface ISubstance {
   products: IProduct[];
 }
 
+async function getPassword (password) {
+  return await bcrypt.hash(password, 5)
+}
 
 function getProductById(id: string){
   const product = products.find(el => el.ID === id);
@@ -54,7 +58,14 @@ async function createTransaction() {
         }]
       })
     }
-    await UserService.create({email: "admin@admin", password: "admin", role: "ADMIN", language: "RU"})
+    const password = await getPassword("admin")
+    await User.create({email: "admin@admin", password, role: "ADMIN", user_details: {language: "RU"}}, {
+      include: {
+        model: UserDetails,
+        as: UserDetails.name
+      },
+      transaction: t,
+    });
 
     await t.commit();
     

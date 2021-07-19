@@ -6,24 +6,16 @@ import BaseRouter from "./BaseRouter";
 
 
 class ProductRouter extends BaseRouter{
-  
+
   constructor() {
     super();
-    
-    
-    
-    // this.router.get('/users', asyncMiddleware(UserController.getAll));
-    //
-    // this.router.get('/users/:id', asyncMiddleware(UserController.getOne));
-    
     this.createHandleWithBody('post', '/products/part', ProductController.getPart)
+    this.createHandleWithBody('patch', '/products', ProductController.update)
     this.createHandleWithBody('post', '/products', ProductController.insert)
-    this.createHandleWithQueryParams('get', '/products/:id', ProductController.getById, 'id')
+    this.createHandleWithParams('get', '/products/:id', ProductController.getById, 'id')
+    this.createHandleWithParams('delete', '/products/:id', ProductController.delete, 'id')
+    this.createHandleWithQueryParams('get', '/products/?', ProductController.search, 'product')
   }
-  
-  
-  
-  
 }
 
 

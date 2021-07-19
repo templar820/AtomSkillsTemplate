@@ -511,3 +511,126 @@ RequestType=POST URL=/api/products Status=500 ResponseTime=55.985 Token=eyJhbGci
 RequestType=POST URL=/api/products Status=500 ResponseTime=54.282 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":11031998,"name":"Привет","substance":{"name":"Привет","id":11031998,"code":"string"}}]
 RequestType=POST URL=/api/products Status=500 ResponseTime=50.306 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":11031998,"name":"Привет","substance":{"name":"Привет","id":11031998,"code":"string"}}]
 RequestType=POST URL=/api/products Status=200 ResponseTime=82.781 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":11031998,"name":"Привет","substance":{"name":"Привет","id":11031998,"code":"string"}}]
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.454 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.861 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.683 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=0.767 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=2.293 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=3.882 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=200 ResponseTime=2.139 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=200 ResponseTime=2.662 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=200 ResponseTime=1.398 Token=- RequestBody={}
+RequestType=POST URL=/api/user/register Status=200 ResponseTime=72.108 Token=- RequestBody={"email":"admin@admin","role":"ADMIN","language":"RU","password":"admin"}
+RequestType=POST URL=/api/products/part Status=200 ResponseTime=31.624 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjEsImlhdCI6MTYyNjY5MjM0OX0.QVSiA79DpxfJV0QiJxClxrPOtp7GWuMvVIksYDRtOtA RequestBody={"offset":0,"limit":10}
+RequestType=GET URL=/api/products/540888 Status=200 ResponseTime=25.221 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjEsImlhdCI6MTYyNjY5MjM0OX0.QVSiA79DpxfJV0QiJxClxrPOtp7GWuMvVIksYDRtOtA RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.493 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.280 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.098 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=0.837 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=0.748 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=0.838 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=0.695 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=1.086 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=0.884 Token=- RequestBody={}
+RequestType=GET URL=/api/user/userInfo Status=500 ResponseTime=44.179 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=POST URL=/api/user/login Status=200 ResponseTime=38.082 Token=- RequestBody={"email":"admin@admin","password":"admin"}
+RequestType=GET URL=/api/user/userInfo Status=200 ResponseTime=12.427 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjEsImlhdCI6MTYyNjY5MzAxMH0.xgrI7DqfL_JxLkD8Ibasa1WiSLpkkb-5w8lie5kP17s RequestBody={}
+RequestType=POST URL=/api/products/part Status=401 ResponseTime=14.146 Token=- RequestBody={"offset":0,"limit":2}
+RequestType=POST URL=/api/products/part Status=200 ResponseTime=36.299 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={"offset":0,"limit":2}
+RequestType=GET URL=/api/products/462429 Status=200 ResponseTime=25.802 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.255 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.402 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=3.342 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=3.876 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=1.222 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=0.913 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=0.660 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.860 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=1.058 Token=- RequestBody={}
+RequestType=POST URL=/api/products/part Status=200 ResponseTime=44.560 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={"offset":0,"limit":2}
+RequestType=PATCH URL=/api/products Status=400 ResponseTime=4.590 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=PATCH URL=/api/products Status=400 ResponseTime=15.773 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.130 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.639 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.760 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=304 ResponseTime=0.936 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=1.441 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=1.025 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=1.462 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.748 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=1.099 Token=- RequestBody={}
+RequestType=PATCH URL=/api/products Status=401 ResponseTime=12.105 Token=- RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=26.504 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=23.679 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=200 ResponseTime=28.928 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=200 ResponseTime=28.033 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=200 ResponseTime=45.190 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=GET URL=/api/products/462428 Status=200 ResponseTime=22.269 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=PATCH URL=/api/products Status=200 ResponseTime=42.510 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":462428,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=200 ResponseTime=18.394 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"id":0,"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=29.414 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=36.263 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=53.753 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=35.608 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=PATCH URL=/api/products Status=500 ResponseTime=33.666 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody=[{"name":"Здарова отец","substance":{"id":1,"name":"Хинаприл","code":"khinapril"}}]
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.390 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=1.902 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=1.813 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=0.778 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=2.444 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=1.192 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=1.115 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.710 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=200 ResponseTime=2.052 Token=- RequestBody={}
+RequestType=DELETE URL=/api/products/62428 Status=200 ResponseTime=26.412 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/62428 Status=200 ResponseTime=29.997 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/62428 Status=500 ResponseTime=21.166 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.730 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=1.931 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.276 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=0.577 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=1.782 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=0.812 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=0.830 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.815 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=200 ResponseTime=2.144 Token=- RequestBody={}
+RequestType=GET URL=/api/products/?123 Status=401 ResponseTime=4.221 Token=- RequestBody={}
+RequestType=GET URL=/api/products/?123= Status=404 ResponseTime=4.182 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?products%3D%D0%92%D0%B8%D0%B0%D0%B3%D1%80%D0%B0= Status=404 ResponseTime=1.738 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?products%3D%D0%92%D0%B8%D0%B0%D0%B3%D1%80%D0%B0= Status=404 ResponseTime=1.309 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=5.902 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.912 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=3.908 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=1.499 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=4.320 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=1.333 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=1.345 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.961 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=0.774 Token=- RequestBody={}
+RequestType=GET URL=/api/products/?name=123 Status=401 ResponseTime=2.545 Token=- RequestBody={}
+RequestType=GET URL=/api/products/?name=pr Status=404 ResponseTime=7.595 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/docs/ Status=304 ResponseTime=4.838 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css Status=304 ResponseTime=2.104 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js Status=304 ResponseTime=1.654 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js Status=304 ResponseTime=2.171 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-init.js Status=200 ResponseTime=0.978 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui.css.map Status=304 ResponseTime=0.847 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-bundle.js.map Status=304 ResponseTime=0.601 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/swagger-ui-standalone-preset.js.map Status=304 ResponseTime=0.807 Token=- RequestBody={}
+RequestType=GET URL=/api/docs/favicon-32x32.png Status=304 ResponseTime=1.105 Token=- RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=404 ResponseTime=5.545 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=500 ResponseTime=50.357 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=200 ResponseTime=7.768 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=304 ResponseTime=8.433 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=304 ResponseTime=7.905 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=123123 Status=304 ResponseTime=7.671 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%92%D0%B8%D0%B0%D0%B3%D1%80%D0%B0 Status=500 ResponseTime=38.579 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=500 ResponseTime=7.458 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=500 ResponseTime=35.481 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=200 ResponseTime=62.995 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=304 ResponseTime=36.663 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=304 ResponseTime=33.369 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=200 ResponseTime=35.511 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=304 ResponseTime=32.248 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=500 ResponseTime=46.056 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}
+RequestType=GET URL=/api/products/?product=%D0%BA%D1%81%D0%B0%D0%BB%D0%B0%D1%82%D0%B0%D0%BD Status=200 ResponseTime=35.813 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI RequestBody={}

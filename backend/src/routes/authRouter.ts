@@ -14,21 +14,22 @@ class AuthRouter extends BaseRouter{
   constructor() {
     super();
     this.createHandleWithBody('post', '/user/register', UserController.createUser)
-    
-  
+
+
     this.router.get('/user/logout', (req, res) => {
       req.logOut();
       res.sendFormat(null);
     });
-    
+
     this.router.post('/user/login', this.authenticate)
+
     this.router.get('/user/userInfo', auth, asyncMiddleware(async (req, res) => {
         res.sendFormat(await UserController.getUserByToken(req.user));
       }
     ));
   }
-  
-  
+
+
   authenticate(req, res, next){
       passport.authenticate('local', {session: false}, function(err, user) {
         if (err) {
