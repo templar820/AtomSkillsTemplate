@@ -326,6 +326,36 @@
 						"type": "number"
 					}
 				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
 			}
 		},
 		"/products": {
@@ -339,6 +369,44 @@
 						"description": "Ok",
 						"schema": {
 							"type": "boolean"
+						}
+					}
+				},
+				"tags": [
+					"Products"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/IProduct"
+							},
+							"type": "array"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "Update",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/IProduct"
+							},
+							"type": "array"
 						}
 					}
 				},

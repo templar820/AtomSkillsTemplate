@@ -1,7 +1,7 @@
-import {ServerError} from "../middleware/errorHandler";
 import ProductService from "../services/ProductService";
-import {Controller, Get, Post, Body, BodyProp, Route, Tags, Security, Header} from "tsoa"
-import Product, {IProduct} from "../models/Product";
+import {Body, Controller, Delete, Get, Patch, Post, Route, Security, Tags} from "tsoa"
+import {IProduct} from "../models/Product";
+import {ServerError} from "../middleware/errorHandler";
 
 interface ProductsArea {
   offset: number;
@@ -14,16 +14,16 @@ interface ProductsArea {
 class ProductController extends Controller{
   @Post("/part")
   public async getPart(@Body() body: ProductsArea): {products: IProduct[], count: number} {
-    const products = await ProductService.get(body.offset, body.limit);
+    const products = await ProductService.getPart(body.offset, body.limit);
     const count = await ProductService.getCount();
     return {products, count};
   }
 
   @Get("{id}")
   public async getById(id: number) : Promise<IProduct> {
-    return await ProductService.getById(id);
-    // const item = new TodoModel({description: description});
-    // await item.save();
+    const product = await ProductService.getById(id);
+    if (!product) throw new ServerError(500, "Сущность не найдена");
+    return product
   }
   
   @Post()
@@ -33,7 +33,24 @@ class ProductController extends Controller{
     }
     return true
   }
+  
+  @Patch()
+  public async update(@Body() body: IProduct[]): Promise<IProduct[]> {
+    const answer = [];
+    for await (const el of body) {
+      answer.push(await ProductService.update(el));
+    }
+    return answer;
+  }
+  
+  @Delete("{id}")
+  public async delete(id: string): Promise<boolean> {
+    await ProductService.deleteById(Number(id))
+    return true;
+  }
 }
 
 
 export default new ProductController();
+
+

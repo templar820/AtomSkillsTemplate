@@ -1,7 +1,7 @@
 import Router, {Express} from "express";
 import {asyncMiddleware} from "../middleware/asyncMiddleware";
 
-type requestType = "get" | "post" | "delete" | "put";
+type requestType = "get" | "post" | "delete" | "patch";
 
 export default class BaseRouter {
   router: Express;

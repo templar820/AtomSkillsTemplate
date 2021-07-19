@@ -14,6 +14,7 @@ async function createTransaction() {
       cascade: true,
       truncate: true
     })
+    
     await es.indices.delete({
       index: "products",
     });
