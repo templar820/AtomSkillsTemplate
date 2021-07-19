@@ -8,11 +8,15 @@ import {StoresNames} from "@/stores/StoresNames";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Autocomplete} from "@material-ui/lab";
 import {TextField} from "@material-ui/core";
+import ProductDialog from "@pages/HomePage/components/ProductDialog";
+import ProductModel from "@/model/ProductModel";
 
 const HomePage:React.FC<{services: any}> = (props) => {
   const {t} = useTranslation();
   const [isFetching, setIsFetching] = useState(true);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState<ProductModel | null>(null);
+  const [productMode, setProductMode] = useState<'create' | 'update' | null>(null);
   const productStore = props[StoresNames.ProductStore];
 
   useEffect(() => {
@@ -45,7 +49,13 @@ const HomePage:React.FC<{services: any}> = (props) => {
   return (
     <div className="home-page">
       <div className="mb-3 d-flex justify-content-between align-items-end">
-        <h4>{t("homePage.products")}</h4>
+        <div className="d-flex ">
+          <h4>{t("homePage.products")}</h4>
+          <button
+            className="btn ml-3"
+            onClick={() => setProductMode("create")}
+          >Создать</button>
+        </div>
         <Autocomplete
           style={{width: "14rem"}}
           open={searchIsOpen}
@@ -93,6 +103,21 @@ const HomePage:React.FC<{services: any}> = (props) => {
                         <Link to="/" className="btn btn-primary">{t("homePage.button")}</Link>
                       </div>
                     </div>
+                    <div className="product-card__button-group pr-4 pt-2">
+                      <button
+                        className="btn btn-sm mr-2"
+                        onClick={() => {
+                          setProductMode("update");
+                          setActiveProduct(product);
+                        }}
+                      ><i className="bi bi-pencil-fill"/></button>
+                      <button
+                        className="btn btn-sm"
+                        onClick={() => {
+                          props.services.productService.deleteProduct(product.id);
+                        }}
+                      ><i className="bi bi-x-lg"/></button>
+                    </div>
                   </div>
                 ))
               }
@@ -105,6 +130,14 @@ const HomePage:React.FC<{services: any}> = (props) => {
             </>
         }
       </div>
+      <ProductDialog
+        closeDialog={() => {
+          setProductMode(null);
+          setActiveProduct(null);
+        }}
+        mode={productMode}
+        product={activeProduct}
+      />
     </div>
   );
 }

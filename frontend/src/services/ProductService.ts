@@ -14,8 +14,38 @@ export default class ProductService {
     const offset = this.productStore.products?.length || 0;
     const limit = 48;
     const {data} = await this.networkService.fetch('products/part', {offset, limit});
-    if (!data) return; //TODO это ошибка, сделать обработку ошибок
     this.productStore.addProducts(data.products);
     this.productStore.setCount(data.count);
+  }
+
+  async deleteProduct(id: number) {
+    await this.networkService.fetch(`products/${id}`, undefined, 'DELETE');
+    this.productStore.deleteProduct(id);
+  }
+
+  async createProduct(productName: string, substanceName: string, substanceCode: string) {
+    // const {data} = await this.networkService.fetch('products', {name: productName, substanceName, substanceCode});
+    this.productStore.unshiftProduct({
+      id: productName,
+      name: productName,
+      substance: {
+        name: substanceName,
+        id: substanceName,
+        code: substanceCode,
+      }
+    });
+  }
+
+  async updateProduct(id: number, productName: string, substanceName: string, substanceCode: string) {
+    // const {data} = await this.networkService.fetch('products', {id, name: productName, substanceName, substanceCode}, 'PATCH');
+    this.productStore.updateProduct({
+      id: id,
+      name: productName,
+      substance: {
+        name: substanceName,
+        id: substanceName,
+        code: substanceCode,
+      }
+    });
   }
 }

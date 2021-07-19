@@ -16,6 +16,25 @@ export default class ProductStore {
       : newProducts;
   };
 
+  @action deleteProduct = (id: number) => {
+    if (!this.products) return;
+    this.products = this.products.filter((product) => product.id !== id);
+  };
+
+  @action unshiftProduct = (obj: object) => {
+    this.products = this.products
+      ? [new ProductModel(obj), ...this.products]
+      : [new ProductModel(obj)];
+  };
+
+  @action updateProduct = (obj: any) => {
+    if (!this.products) return;
+    this.products = this.products.map(product => {
+      if (product.id !== obj.id) return product;
+      return new ProductModel(obj);
+    });
+  };
+
   @action setCount = (count: number) => {
     this.count = count;
   }
