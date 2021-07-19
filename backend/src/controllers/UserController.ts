@@ -33,22 +33,7 @@ class UserController extends Controller{
   
   @Post("/login")
   public async loginUser(@Body() body: AuthCred) : Promise<{ token: string }>{}
-  
-  // async create(req, res) {
-  //
-  //   return res.sendFormat({token});
-  // }
-  //
-  // async getAll(req, res) {
-  //   const users = await UserService.getAll();
-  //   return res.sendFormat(users);
-  // }
-  //
-  // async getOne(req, res) {
-  //   const post = await UserService.getOne(req.params.id)
-  //   if (!post) throw new ServerError(404, 'User not found');
-  //   return res.sendFormat(post)
-  // }
+
   @Get('/userInfo')
   async getUserByToken(@Header('token') token: string): Promise<IUserExport> {
     const user = await UserService.getOne(Number(token))

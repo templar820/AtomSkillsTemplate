@@ -17,6 +17,7 @@ class ProductRouter extends BaseRouter{
     // this.router.get('/users/:id', asyncMiddleware(UserController.getOne));
     
     this.createHandleWithBody('post', '/products/part', ProductController.getPart)
+    this.createHandleWithBody('post', '/products', ProductController.insert)
     this.createHandleWithQueryParams('get', '/products/:id', ProductController.getById, 'id')
   }
   
