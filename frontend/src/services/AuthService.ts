@@ -15,9 +15,7 @@ export default class AuthService {
   async login(email: string, password: string) {
     this.loaderStore.setLoader(true);
     const {data} = await this.networkService.fetch('user/login', {email, password});
-    if (!data) return; //TODO это ошибка, сделать обработку ошибок
     const {token} = data;
-    if (!token) return;
     this.networkService.setToken(token);
     localStorage.setItem('token', token);
     this.loaderStore.setLoader(false);
@@ -26,9 +24,7 @@ export default class AuthService {
   async register(email: string, password: string) {
     this.loaderStore.setLoader(true);
     const {data} = await this.networkService.fetch('user/register', {email, password});
-    if (!data) return;
     const {token} = data;
-    if (!token) return;
     this.networkService.setToken(token);
     localStorage.setItem('token', token);
     this.loaderStore.setLoader(false);
@@ -36,7 +32,7 @@ export default class AuthService {
 
   async authentication() {
     this.loaderStore.setLoader(true);
-    const {data} = await this.networkService.fetch('users/userInfo', null, 'GET');
+    const {data} = await this.networkService.fetch('user/userInfo', null, 'GET');
     if (data) {
       this.userStore.setUser(data, true);
     } else {

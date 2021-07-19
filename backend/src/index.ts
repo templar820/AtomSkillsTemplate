@@ -47,8 +47,6 @@ app.use('/api', authRouter);
 app.use('/api', auth, router);
 app.use(errorHandler);
 
-
-app.use(errorHandler);
 Promise.all([db.authenticate(), db.sync()]).then(() => {
   console.log("DB CONNECT")
   app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));

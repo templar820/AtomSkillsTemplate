@@ -13,7 +13,7 @@ export default class ProductService {
   async getProducts() {
     const offset = this.productStore.products?.length || 0;
     const limit = 48;
-    const {data} = await this.networkService.fetch('products', {offset, limit});
+    const {data} = await this.networkService.fetch('products/part', {offset, limit});
     if (!data) return; //TODO это ошибка, сделать обработку ошибок
     this.productStore.addProducts(data.products);
     this.productStore.setCount(data.count);

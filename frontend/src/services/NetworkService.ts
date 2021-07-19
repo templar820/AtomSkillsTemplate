@@ -25,12 +25,6 @@ export default class NetworkService {
     return res;
   }
 
-  /**
-   * Общий запрос ко всем методам StaticService
-   * @param {String} alias - метод в сваггере
-   * @param {Object} parameters
-   * @param {Object} extra - экстра параметры file, multipart
-   */
   fetch = (alias: string, parameters?: object | null, type = 'POST') => {
     const options : {method: string, headers: any, body: null | string} = {
       method: type,
@@ -48,4 +42,5 @@ export default class NetworkService {
     'Content-Type': 'application/json',
     ...(this.token ? { token: `${this.token}` } : {})
   })
-}
+};
+
