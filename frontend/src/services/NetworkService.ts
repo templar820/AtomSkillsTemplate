@@ -1,13 +1,10 @@
 import MyError from '@/services/MyError';
-import LoaderStore from "@/stores/LoaderStore";
 
 export default class NetworkService {
   token: string | null = null;
   endpoint: string;
-  // loaderStore: LoaderStore;
-  constructor(endpoint: string, loaderStore: LoaderStore) {
+  constructor(endpoint: string) {
     this.endpoint = `${endpoint}api/`;
-    // this.loaderStore = loaderStore;
   }
 
   setToken(token: string | null) {
@@ -15,46 +12,35 @@ export default class NetworkService {
   }
 
   //TODO мы присылаем сообщение ошибки в json, переписать
-  async checkResponse(res) {
-    let response;
-    // this.loaderStore.setLoader(null);
-
+  async checkResponse(res: Response) {
     if (res.status === 500) {
-      response = new MyError({ detail: 'Внутренняя ошибка сервера' });
-    } else if (res instanceof Error) {
-      response = new MyError({ detail: res.message });
-    } else {
-      response = await res.json();
+      throw new MyError({ detail: 'Внутренняя ошибка сервера' });
+    } else if (res.status === 200) {
+      const response = await res.json();
+      if (response.isError) {
+        throw new MyError({status: response.statusCode, detail: response.message})
+      }
       return response;
-      //response = (response.success) ? response.result : new MyError(response.error);
     }
-
-    return response;
+    return res;
   }
 
-  /**
-   * Общий запрос ко всем методам StaticService
-   * @param {String} alias - метод в сваггере
-   * @param {Object} parameters
-   * @param {Object} extra - экстра параметры file, multipart
-   */
   fetch = (alias: string, parameters?: object | null, type = 'POST') => {
-    // this.loaderStore.setIsBlocked(true);
-    const options = {
+    const options : {method: string, headers: any, body: null | string} = {
       method: type,
-      headers: this.buildHeaders()
+      headers: this.buildHeaders(),
+      body: null,
     };
-    // console.log(this.options)
 
     if (parameters) options.body = JSON.stringify(parameters);
-    // this.loaderStore.startLoader();
+
     return fetch(`${this.endpoint}${alias}`, options)
-      .then(response => this.checkResponse(response))
-      .catch(err => this.checkResponse(err));
+      .then(response => this.checkResponse(response));
   }
 
   buildHeaders = () => ({
     'Content-Type': 'application/json',
     ...(this.token ? { token: `${this.token}` } : {})
   })
-}
+};
+

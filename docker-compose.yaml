@@ -91,11 +91,11 @@ services:
       - "./verdaccio/storage:/verdaccio/storage"
       - "./verdaccio/conf:/verdaccio/conf"
       - "./verdaccio/plugins:/verdaccio/plugins"
-#  backend:
-#    <<: *backend
-#    command: npm run start
-#    ports:
-#      - 8080:8080
+  backend:
+    <<: *backend
+    command: npm run start
+    ports:
+      - 8080:8080
   db_init:
     <<: *db_transactions
     container_name: "db_init"
@@ -104,9 +104,9 @@ services:
     <<: *db_transactions
     container_name: "db_clean"
     command: npm run clean
-#  frontend:
-#    <<: *frontend
-#    command: npm run start
-#    ports:
-#    - 3000:3000
+  frontend:
+    <<: *frontend
+    command: npm run start
+    ports:
+    - 3000:3000
 

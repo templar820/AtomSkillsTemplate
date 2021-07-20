@@ -1,5 +1,8 @@
-export default class MyError {
-  constructor({ status, detail }) {
+export default class MyError extends Error {
+  statusCode: number | string;
+  description: string;
+  constructor({ status, detail } : {status?: number; detail: string;}) {
+    super(detail);
     this.statusCode = status || 'Oops';
     this.message = detail;
     this.description = this.getDescription();

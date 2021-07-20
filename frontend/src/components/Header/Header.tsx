@@ -1,53 +1,13 @@
 import React, {useState} from 'react';
 import {inject, observer} from 'mobx-react';
-import {makeStyles} from '@material-ui/core/styles';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {useTranslation} from "react-i18next";
 import './Header.scss';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Menu from '@material-ui/core/Menu';
-import colors from '@styles/colors.modules.scss';
-import {IconButton} from "@material-ui/core";
-import {StoresNames} from "@/services/common/constDictionary";
+import {StoresNames} from "@/stores/StoresNames";
 import {Link} from 'react-router-dom';
 import {ButtonGroup, DropdownButton, Dropdown} from "react-bootstrap";
-import UserStore from "@/stores/UserStore";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    "& .MuiInput-underline:hover:not(.Mui-disabled):before": {
-      border: "none",
-    }
-  },
-  select: {
-    "& .MuiSelect-root": {
-      paddingBottom: 0,
-      paddingTop: 0,
-    },
-    '&:before': {
-      border: "none"
-    },
-    '&:after': {
-      border: "none"
-    },
-    "& .MuiSvgIcon-root": {
-      color: colors.white,
-    },
-    "& .MuiInput-input": {
-      color: colors.white,
-    }
-  },
-  accountIcon: {
-    color: colors.white,
-  }
-}));
-
-const Header = (props: { services: any }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const Header = (props: { services?: any }) => {
   const {t, i18n} = useTranslation();
-  const classes = useStyles();
 
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);

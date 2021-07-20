@@ -1,9 +1,12 @@
 /frontend/node_modules
 /frontend/build
+/frontend/coverage
 /backend/dist
 /backend/node_modules
+/backend/coverage
 /verdaccio/storage
 /db_transactions/data/*
+/backend/log
 .env
 *.idea
 package-lock.json

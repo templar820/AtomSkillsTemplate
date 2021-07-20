@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 import {inject} from "mobx-react";
 import './AuthorizationPage.scss';
 
-const AuthorizationPage = (props) => {
+const AuthorizationPage = () => {
   const [viewState, setViewState] = useState('authorization');
   const {t} = useTranslation();
 

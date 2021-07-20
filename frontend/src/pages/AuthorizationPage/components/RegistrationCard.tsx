@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface IRegistrationCardProps {
   setAuthorizationCardView: () => void;
-  services: any;
+  services?: any;
 }
 
 const RegistrationCard = (props: IRegistrationCardProps) => {
@@ -25,7 +25,7 @@ const RegistrationCard = (props: IRegistrationCardProps) => {
 
   const classes = useStyles();
 
-  const register = async (e) => {
+  const register = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password !== password1) throw new MyError({status: 400, detail: t("authorizationCard.errorPasswordMismatch")})
     await props.services.authService.register(email, password);

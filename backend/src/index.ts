@@ -31,15 +31,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('static'));
 app.use(fileUpload({}));
 
-
-// try{
-//   await
-//   await db.sync()
-//
-// } catch (e) {
-//   console.log(e);
-// }
-
 app.get('/erd', (req, res) => {
   SequelizeErd({source: db}).then((erd: string) => {
     res.send(erd);
@@ -54,9 +45,8 @@ app.use('/api', authRouter);
 
 
 app.use('/api', auth, router);
-
-
 app.use(errorHandler);
+
 Promise.all([db.authenticate(), db.sync()]).then(() => {
   console.log("DB CONNECT")
   app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));

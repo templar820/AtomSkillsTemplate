@@ -10,7 +10,7 @@ import Page from '@/components/System/Page';
 import HomePage from '@pages/HomePage/HomePage';
 import AuthorizationPage from '@pages/AuthorizationPage/AuthorizationPage';
 import NotFound from '@pages/System/NotFound';
-import {StoresNames} from "@/services/common/constDictionary";
+import {StoresNames} from "@/stores/StoresNames";
 import UserStore from "@/stores/UserStore";
 
 class Router extends React.Component {

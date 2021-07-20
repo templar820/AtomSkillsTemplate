@@ -3,7 +3,8 @@
     "login": "Войти",
     "logout": "Выйти",
     "save": "Сохранить",
-    "cancel": "Отмена"
+    "cancel": "Отмена",
+    "create": "Создать"
   },
   "header": {
     "translations": "Переводы"
@@ -21,6 +22,11 @@
   },
   "homePage": {
     "products": "Продукты",
-    "button": "Кнопка"
+    "button": "Кнопка",
+    "createProduct": "Создание продукта",
+    "updateProduct": "Редактирование продукта",
+    "productName": "Название продукта",
+    "substanceName": "Название вещества",
+    "substanceCode": "Код вещества"
   }
 }
