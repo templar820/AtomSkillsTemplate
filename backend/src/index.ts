@@ -11,7 +11,6 @@ import SequelizeErd from 'sequelize-erd';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import logger from "./middleware/logger"
-import {RegisterRoutes} from "./routes/routes";
 
 
 
