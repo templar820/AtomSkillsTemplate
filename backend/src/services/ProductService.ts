@@ -53,7 +53,16 @@ class ProductService {
   }
   
   async getById(id: number){
-    return await Product.findByPk(id)
+    return await Product.findOne({
+      where:{
+        id
+      },
+      include: [{
+        model: Substance,
+        as: Substance.name,
+        attributes: ['id', 'name', 'code']
+      }],
+    })
   }
   
   async deleteById(id: number){

@@ -407,7 +407,7 @@
 					"200": {
 						"description": "Ok",
 						"schema": {
-							"type": "boolean"
+							"$ref": "#/definitions/IProduct"
 						}
 					}
 				},

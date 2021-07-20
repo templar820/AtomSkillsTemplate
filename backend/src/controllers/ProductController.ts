@@ -39,13 +39,15 @@ class ProductController extends Controller{
   }
 
   @Post()
-  public async insert(@Body() body: CreateProduct): Promise<boolean> {
-    return await ProductService.create(body);
+  public async insert(@Body() body: CreateProduct): Promise<IProduct> {
+    const newProduct =  await ProductService.create(body);
+    return this.getById(newProduct.id);
   }
 
   @Patch()
   public async update(@Body() body: UpdateProduct): Promise<IProduct[]> {
-    return await ProductService.update(body);
+    const newProduct = await ProductService.update(body);
+    return this.getById(newProduct.id);
   }
 
   @Delete("{id}")

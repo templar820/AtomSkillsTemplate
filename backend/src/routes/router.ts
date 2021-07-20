@@ -9,12 +9,12 @@ class ProductRouter extends BaseRouter{
 
   constructor() {
     super();
-    this.createHandleWithBody('post', '/products/part', ProductController.getPart)
-    this.createHandleWithBody('patch', '/products', ProductController.update)
-    this.createHandleWithBody('post', '/products', ProductController.insert)
-    this.createHandleWithParams('get', '/products/:id', ProductController.getById, 'id')
-    this.createHandleWithParams('delete', '/products/:id', ProductController.delete, 'id')
-    this.createHandleWithQueryParams('get', '/products/?', ProductController.search, 'product')
+    this.createHandleWithBody('post', '/products/part', (data) => ProductController.getPart(data))
+    this.createHandleWithBody('patch', '/products', (data) => ProductController.update(data))
+    this.createHandleWithBody('post', '/products', (data) => ProductController.insert(data))
+    this.createHandleWithParams('get', '/products/:id', (data)=> ProductController.getById(data), 'id')
+    this.createHandleWithParams('delete', '/products/:id', (data) => ProductController.delete(data), 'id')
+    this.createHandleWithQueryParams('get', '/products/?', (data) => ProductController.search(data), 'product')
   }
 }
 
