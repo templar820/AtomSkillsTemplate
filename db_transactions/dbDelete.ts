@@ -1,4 +1,4 @@
-import {Product, Substance, User, UserDetails} from "../backend/src/models/DbModel"
+import {Product, Substance, User, UserDetails} from "./backend/src/models/DbModel"
 import es from "./backend/src/config/es";
 
 
