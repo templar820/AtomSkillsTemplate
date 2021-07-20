@@ -40,8 +40,7 @@ class ProductController extends Controller{
 
   @Post()
   public async insert(@Body() body: CreateProduct): Promise<boolean> {
-    await ProductService.create(body);
-    return true
+    return await ProductService.create(body);
   }
 
   @Patch()
