@@ -22,10 +22,11 @@ authMiddleware.use(
 );
 
 
-import '../auth/passportConfig'
+import '../config/passportConfig'
 
 authMiddleware.use(passport.initialize());
 authMiddleware.use(passport.session());
+
 
 
 const auth = passport.authenticate('jwt', {session: false})

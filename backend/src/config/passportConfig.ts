@@ -32,8 +32,8 @@ passport.use(
     //Проверяем пользователя на наличие
     const user = await UserService.loginUser({email,password})
     if(user){
-      const {email, id, password} = user;
-      return done(null, {email, id, password});
+      const {email, id, password, role} = user;
+      return done(null, {email, id, password, role});
     } else {
       return done(null, false);
     }
@@ -47,6 +47,7 @@ passport.use(
           jwtFromRequest: ExtractJWT.fromHeader('token')
         },
         async (token, done) => {
+          console.log(token);
           try {
               return done(null, token.id);
           } catch (error) {
