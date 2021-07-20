@@ -6,6 +6,7 @@ export default class AuthService {
   private networkService: NetworkService;
   private userStore: UserStore;
   private loaderStore: LoaderStore;
+
   constructor(networkService: NetworkService, userStore: UserStore, loaderStore: LoaderStore) {
     this.networkService = networkService;
     this.userStore = userStore;

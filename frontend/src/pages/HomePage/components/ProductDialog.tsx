@@ -22,28 +22,26 @@ interface IProductDialogProps {
 const ProductDialog: React.FC<IProductDialogProps> = ({closeDialog, mode, services, product}) => {
   const classes = useStyles();
   const [productName, setProductName] = useState('');
-  const [substanceName, setSubstanceName] = useState('');
-  const [substanceCode, setSubstanceCode] = useState('');
+  const [substanceId, setSubstanceId] = useState('');
   const {t} = useTranslation();
 
   const create = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await services.productService.createProduct(productName, substanceName, substanceCode);
+    await services.productService.createProduct(productName, Number(substanceId));
     closeDialog();
   };
 
   const update = async (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!product) return;
-    await services.productService.updateProduct(product.id, productName, substanceName, substanceCode);
+    await services.productService.updateProduct(product.id, productName, substanceId);
     closeDialog();
   };
 
   useEffect(() => {
     if (mode !== "update" || !product) return;
     setProductName(product.name);
-    setSubstanceName(product.substanceName);
-    setSubstanceCode(product.substanceCode);
+    setSubstanceId(String(product.substanceId));
   }, [product])
 
   return (
@@ -71,21 +69,11 @@ const ProductDialog: React.FC<IProductDialogProps> = ({closeDialog, mode, servic
           />
           <TextField
             className={classes.input}
-            label={t('homePage.substanceName')}
+            label={t('homePage.substanceId')}
             variant="outlined"
             size="small"
-            value={substanceName}
-            onChange={(e) => setSubstanceName(e.target.value)}
-            required
-            InputLabelProps={{ required: false }}
-          />
-          <TextField
-            className={classes.input}
-            label={t('homePage.substanceCode')}
-            variant="outlined"
-            size="small"
-            value={substanceCode}
-            onChange={(e) => setSubstanceCode(e.target.value)}
+            value={substanceId}
+            onChange={(e) => setSubstanceId(e.target.value)}
             required
             InputLabelProps={{ required: false }}
           />

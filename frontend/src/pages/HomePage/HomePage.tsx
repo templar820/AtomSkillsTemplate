@@ -6,15 +6,15 @@ import ContentLoader from "@/components/System/ContentLoader/ContentLoader";
 import {useTranslation} from "react-i18next";
 import {StoresNames} from "@/stores/StoresNames";
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {Autocomplete} from "@material-ui/lab";
-import {TextField} from "@material-ui/core";
+import {IconButton, TextField} from "@material-ui/core";
 import ProductDialog from "@pages/HomePage/components/ProductDialog";
 import ProductModel from "@/model/ProductModel";
+import SearchIcon from '@material-ui/icons/Search';
 
-const HomePage:React.FC<{services: any}> = (props) => {
+const HomePage: React.FC<{ services: any }> = (props) => {
   const {t} = useTranslation();
   const [isFetching, setIsFetching] = useState(true);
-  const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const [searchProduct, setSearchProduct] = useState('');
   const [activeProduct, setActiveProduct] = useState<ProductModel | null>(null);
   const [productMode, setProductMode] = useState<'create' | 'update' | null>(null);
   const productStore = props[StoresNames.ProductStore];
@@ -54,34 +54,31 @@ const HomePage:React.FC<{services: any}> = (props) => {
           <button
             className="btn ml-3"
             onClick={() => setProductMode("create")}
-          >Создать</button>
+          >Создать
+          </button>
         </div>
-        <Autocomplete
-          style={{width: "14rem"}}
-          open={searchIsOpen}
-          onOpen={() => setSearchIsOpen(true)}
-          onClose={() => setSearchIsOpen(false)}
-          value={null}
-          getOptionSelected={(option, value) => option === value}
-          getOptionLabel={(option) => String(option?.name)}
-          options={products}
-          renderOption={(option) => option?.name}
-          onChange={(e, obj) => {}}
-          renderInput={(params) => (
+        <div className="home-page__search">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              props.services.productService.searchProduct(searchProduct)
+            }}
+            className="d-flex align-items-center"
+          >
             <TextField
-              {...params}
-              label="Найти продукт"
-              InputProps={{
-                ...params.InputProps,
-                endAdornment: (
-                  <React.Fragment>
-                    {params.InputProps.endAdornment}
-                  </React.Fragment>
-                ),
-              }}
+              label={"Найти продукт"}
+              variant="standard"
+              size="small"
+              value={searchProduct}
+              onChange={(e) => setSearchProduct(e.target.value)}
+              required
+              InputLabelProps={{required: false}}
             />
-          )}
-        />
+            <IconButton
+              type="submit"
+            ><SearchIcon/></IconButton>
+          </form>
+        </div>
       </div>
       <div className="row">
         {
@@ -124,7 +121,7 @@ const HomePage:React.FC<{services: any}> = (props) => {
               {
                 productStore.products.length < productStore.count
                 && <div className="home-page__loader d-flex justify-content-center w-100 m-3">
-                  <CircularProgress size={30}/>
+                    <CircularProgress size={30}/>
                 </div>
               }
             </>

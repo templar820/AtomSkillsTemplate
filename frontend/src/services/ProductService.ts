@@ -23,29 +23,22 @@ export default class ProductService {
     this.productStore.deleteProduct(id);
   }
 
-  async createProduct(productName: string, substanceName: string, substanceCode: string) {
-    // const {data} = await this.networkService.fetch('products', {name: productName, substanceName, substanceCode});
-    this.productStore.unshiftProduct({
-      id: productName,
-      name: productName,
-      substance: {
-        name: substanceName,
-        id: substanceName,
-        code: substanceCode,
-      }
-    });
+  async createProduct(productName: string, substanceId: number) {
+    if (Number.isNaN(substanceId)) throw Error('Неверный id');
+    const {data} = await this.networkService.fetch('products', {name: productName, substanceId});
+    this.productStore.unshiftProduct(data);
   }
 
-  async updateProduct(id: number, productName: string, substanceName: string, substanceCode: string) {
-    // const {data} = await this.networkService.fetch('products', {id, name: productName, substanceName, substanceCode}, 'PATCH');
-    this.productStore.updateProduct({
-      id: id,
-      name: productName,
-      substance: {
-        name: substanceName,
-        id: substanceName,
-        code: substanceCode,
-      }
-    });
+  async updateProduct(id: number, productName: string, substanceId: number) {
+    if (Number.isNaN(substanceId)) throw Error('Неверный id');
+    const {data} = await this.networkService.fetch('products', {id, name: productName, substanceId}, 'PATCH');
+    this.productStore.updateProduct(data);
+  }
+
+  async searchProduct(product: string) {
+    const {data} = await this.networkService.fetch(`products/?product=${product}`, undefined, 'GET');
+    this.productStore.clearProducts();
+    this.productStore.addProducts(data);
+    this.productStore.setCount(data.length);
   }
 }

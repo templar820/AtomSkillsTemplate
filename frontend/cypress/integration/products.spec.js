@@ -22,7 +22,7 @@ describe('Products', () => {
     cy.get('.product-card').should('have.length', productsCount * 3);
   });
 
-  it('Я могу добавить продукт', () => {
+  it('Я могу создать продукт', () => {
     cy.visit('http://localhost:3000/');
     cy.wait(2000);
   });

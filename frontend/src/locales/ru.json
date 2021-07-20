@@ -26,7 +26,6 @@
     "createProduct": "Создание продукта",
     "updateProduct": "Редактирование продукта",
     "productName": "Название продукта",
-    "substanceName": "Название вещества",
-    "substanceCode": "Код вещества"
+    "substanceId": "Id вещества"
   }
 }
