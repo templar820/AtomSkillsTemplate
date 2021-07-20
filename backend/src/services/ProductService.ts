@@ -4,30 +4,19 @@ import db from "../config/db";
 import {ServerError} from "../middleware/errorHandler";
 
 class ProductService {
-  async create({name, id, substance}: IProduct) {
-    return await Product.create({name, id, [Substance.name]: {...substance}}, {
-        include: [{
-          model: Substance,
-          as: Substance.name
-        }]
-      }
+  async create({name, substanceId}: IProduct) {
+    return await Product.create({name, substanceId}
     )
   }
   
   
-  async update({name, id, substance}: IProduct) {
+  async update({name, id, substanceId}: IProduct) {
     const t = await db.transaction();
     try {
-      await Product.update({id, name}, {
+      await Product.update({id, name, substanceId}, {
         transaction: t,
         where:{
           id,
-        }
-      })
-      await Substance.update(substance, {
-        transaction: t,
-        where: {
-          id: substance?.id,
         }
       })
       await t.commit()

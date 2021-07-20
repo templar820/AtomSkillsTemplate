@@ -131,6 +131,45 @@
 			],
 			"type": "object",
 			"additionalProperties": false
+		},
+		"CreateProduct": {
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"substanceId": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"required": [
+				"name",
+				"substanceId"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"UpdateProduct": {
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"substanceId": {
+					"type": "number",
+					"format": "double"
+				},
+				"id": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"required": [
+				"name",
+				"substanceId",
+				"id"
+			],
+			"type": "object",
+			"additionalProperties": false
 		}
 	},
 	"info": {
@@ -386,10 +425,7 @@
 						"name": "body",
 						"required": true,
 						"schema": {
-							"items": {
-								"$ref": "#/definitions/IProduct"
-							},
-							"type": "array"
+							"$ref": "#/definitions/CreateProduct"
 						}
 					}
 				]
@@ -424,10 +460,7 @@
 						"name": "body",
 						"required": true,
 						"schema": {
-							"items": {
-								"$ref": "#/definitions/IProduct"
-							},
-							"type": "array"
+							"$ref": "#/definitions/UpdateProduct"
 						}
 					}
 				]

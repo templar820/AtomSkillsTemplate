@@ -9,6 +9,17 @@ interface ProductsArea {
   limit: number;
 }
 
+
+
+interface CreateProduct {
+  name: string;
+  substanceId: number;
+}
+
+interface UpdateProduct extends CreateProduct{
+  id: number;
+}
+
 @Route("/products")
 @Tags("Products")
 @Security("api_key")
@@ -26,30 +37,24 @@ class ProductController extends Controller{
     if (!product) throw new ServerError(500, "Сущность не найдена");
     return product
   }
-  
+
   @Post()
-  public async insert(@Body() body: IProduct[]): Promise<boolean> {
-    for await (const el of body) {
-      await ProductService.create(el);
-    }
+  public async insert(@Body() body: CreateProduct): Promise<boolean> {
+    await ProductService.create(body);
     return true
   }
-  
+
   @Patch()
-  public async update(@Body() body: IProduct[]): Promise<IProduct[]> {
-    const answer = [];
-    for await (const el of body) {
-      answer.push(await ProductService.update(el));
-    }
-    return answer;
+  public async update(@Body() body: UpdateProduct): Promise<IProduct[]> {
+    return await ProductService.update(body);
   }
-  
+
   @Delete("{id}")
   public async delete(id: string): Promise<boolean> {
     await ProductService.deleteById(Number(id))
     return true;
   }
-  
+
   @Get("?product=")
   public async search(@Query() product?: string): Promise<IProduct[]>{
     const result = await es.search({
