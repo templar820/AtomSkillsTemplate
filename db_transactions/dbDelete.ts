@@ -14,10 +14,6 @@ async function createTransaction() {
       cascade: true,
       truncate: true
     })
-    
-    await es.indices.delete({
-      index: "products",
-    });
   
     Substance.destroy({
       where: {},
@@ -30,12 +26,18 @@ async function createTransaction() {
       truncate: true,
       cascade: true,
     })
-    
+  
     UserDetails.destroy({
       where: {},
       truncate: true,
       cascade: true,
     })
+    
+    await es.indices.delete({
+      index: "products",
+    });
+  
+
     
   } catch (error) {
     console.log(error);

@@ -12,8 +12,15 @@ const saveDocument = (instance) => {
   });
 }
 
+const updateDocument = (instance) => {
+  return es.update({
+    id: instance.dataValues.id,
+    index: 'products',
+    body: { doc: {name: instance.dataValues.name }},
+  });
+}
+
 const deleteDocument = (instance) => {
-  console.log("delete document");
   return es.delete({
     index: 'products',
     type: 'products',
@@ -39,7 +46,8 @@ const Product = db.define('products', {
 }, {
   hooks: {
     afterCreate: saveDocument,
-    afterDestroy: deleteDocument
+    afterDestroy: deleteDocument,
+    afterUpdate: updateDocument,
   }
 })
 

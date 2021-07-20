@@ -17,7 +17,8 @@ class ProductService {
         transaction: t,
         where:{
           id,
-        }
+        },
+        individualHooks: true,
       })
       await t.commit()
       return Product.findOne({
