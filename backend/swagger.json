@@ -433,7 +433,7 @@
 				]
 			}
 		},
-		"/products/?": {
+		"/products/?product=": {
 			"get": {
 				"operationId": "Search",
 				"produces": [

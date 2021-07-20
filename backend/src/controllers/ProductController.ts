@@ -50,7 +50,7 @@ class ProductController extends Controller{
     return true;
   }
   
-  @Get("?")
+  @Get("?product=")
   public async search(@Query() product?: string): Promise<IProduct[]>{
     console.log(product);
     const result = await es.search({
