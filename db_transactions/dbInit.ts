@@ -1,7 +1,7 @@
 import substances from "./data/productToMNN.json";
 import products from "./data/products.json";
-import {Product, Substance, User, UserDetails} from "../backend/src/models/DbModel"
-import db from "../backend/src/config/db"
+import {Product, Substance, User, UserDetails} from "./backend/src/models/DbModel"
+import db from "./backend/src/config/db"
 import bcrypt from 'bcrypt';
 
 interface IProduct {
@@ -65,8 +65,8 @@ async function createTransaction() {
       },
       transaction: t,
     });
-    const password1 = await getPassword(1)
-    await User.create({email: "cypress@test", password1, role: "USER", user_details: {language: "RU"}}, {
+    const password1 = await getPassword("1")
+    await User.create({email: "cypress@test", password: password1, role: "USER", user_details: {language: "RU"}}, {
       include: {
         model: UserDetails,
         as: UserDetails.name

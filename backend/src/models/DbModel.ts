@@ -1,8 +1,7 @@
-import Sequelize from 'sequelize';
+import {DataTypes} from 'sequelize';
 import db from "../config/db"
 import es from "../config/es";
 
-const DataTypes = Sequelize.DataTypes;
 
 const saveDocument = (instance) => {
   return es.create({

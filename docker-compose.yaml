@@ -24,12 +24,11 @@ x-db_transactions: &db_transactions
   depends_on:
     - verdaccio
     - postgres
-#    - backend
   image: db_transactions
   volumes:
     - ./db_transactions:/db_transactions
     - /db_transactions/node_modules
-    - ./backend:/backend
+    - ./backend/src:/db_transactions/backend/src
   env_file: .env
 
 
@@ -104,9 +103,9 @@ services:
     <<: *db_transactions
     container_name: "db_clean"
     command: npm run clean
-  frontend:
-    <<: *frontend
-    command: npm run start
-    ports:
-    - 3000:3000
+#  frontend:
+#    <<: *frontend
+#    command: npm run start
+#    ports:
+#    - 3000:3000
 
