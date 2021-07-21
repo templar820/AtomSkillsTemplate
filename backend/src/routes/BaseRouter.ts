@@ -22,9 +22,9 @@ export default class BaseRouter {
     }))
   }
   
-  createHandleWithQueryParams(request: requestType, path: string, handler: (params: any) => any, params: string | number){
+  createHandleWithQueryParams(request: requestType, path: string, handler: (params: any) => any, params: string[] | number[]){
     this.router[request](path, asyncMiddleware(async (req, res) =>{
-      res.sendFormat(await handler(req.query[params]))
+      res.sendFormat(await handler(params.map(el => req.query[el])));
     }))
   }
 }

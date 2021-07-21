@@ -57,7 +57,9 @@ class ProductController extends Controller{
   }
 
   @Get("?product={name}&offset={start_index}&limit={count_items}")
-  public async search(@Query("product") product: string, @Query("offset") offset?: string, @Query("limit") limit?: string): Promise<{ products: IProduct[], count: number }>{
+  public async search(@Query("product") product: string, @Query("offset") offset?: number, @Query("limit") limit?: number): Promise<{ products: IProduct[], count: number }>{
+    console.log(product, offset, limit);
+  
     const result = await es.search({
       index: 'products',
       type: 'products',

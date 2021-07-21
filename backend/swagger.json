@@ -476,10 +476,23 @@
 					"200": {
 						"description": "Ok",
 						"schema": {
-							"items": {
-								"$ref": "#/definitions/IProduct"
+							"properties": {
+								"products": {
+									"items": {
+										"$ref": "#/definitions/IProduct"
+									},
+									"type": "array"
+								},
+								"count": {
+									"type": "number",
+									"format": "double"
+								}
 							},
-							"type": "array"
+							"required": [
+								"count",
+								"products"
+							],
+							"type": "object"
 						}
 					}
 				},
@@ -502,13 +515,15 @@
 						"in": "query",
 						"name": "offset",
 						"required": false,
-						"type": "string"
+						"format": "double",
+						"type": "number"
 					},
 					{
 						"in": "query",
 						"name": "limit",
 						"required": false,
-						"type": "string"
+						"format": "double",
+						"type": "number"
 					}
 				]
 			}
