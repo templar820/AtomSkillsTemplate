@@ -42,7 +42,14 @@ const ProductDialog: React.FC<IProductDialogProps> = ({closeDialog, mode, servic
     if (mode !== "update" || !product) return;
     setProductName(product.name);
     setSubstanceId(String(product.substanceId));
-  }, [product])
+  }, [product]);
+
+  useEffect(() => {
+    if (mode === null) {
+      setProductName('');
+      setSubstanceId('');
+    }
+  }, [mode]);
 
   return (
     <div>
