@@ -25,7 +25,7 @@ interface UpdateProduct extends CreateProduct{
 @Security("api_key")
 class ProductController extends Controller{
   @Post("/part")
-  public async getPart(@Body() body: ProductsArea): {products: IProduct[], count: number} {
+  public async getPart(@Body() body: ProductsArea): Promise<{ products: IProduct[], count: number }> {
     const products = await ProductService.getPart(body.offset, body.limit);
     const count = await ProductService.getCount();
     return {products, count};
@@ -56,14 +56,17 @@ class ProductController extends Controller{
     return true;
   }
 
-  @Get("?product=")
-  public async search(@Query() product?: string): Promise<IProduct[]>{
+  @Get("?product={name}&offset={start_index}&limit={count_items}")
+  public async search(@Query("product") product: string, @Query("offset") offset?: string, @Query("limit") limit?: string): Promise<{ products: IProduct[], count: number }>{
     const result = await es.search({
       index: 'products',
       type: 'products',
       q: product
     })
-    return await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id)));
+    return {
+      products: await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id))),
+      count: result.body.hits.hits.length
+    }
   }
 }
 

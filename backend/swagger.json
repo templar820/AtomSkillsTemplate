@@ -466,7 +466,7 @@
 				]
 			}
 		},
-		"/products/?product=": {
+		"/products/?product={name}&offset={start_index}&limit={count_items}": {
 			"get": {
 				"operationId": "Search",
 				"produces": [
@@ -495,6 +495,18 @@
 					{
 						"in": "query",
 						"name": "product",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "offset",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "limit",
 						"required": false,
 						"type": "string"
 					}
