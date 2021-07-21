@@ -58,16 +58,22 @@ class ProductController extends Controller{
 
   @Get("?product={name}&offset={start_index}&limit={count_items}")
   public async search(@Query("product") product: string, @Query("offset") offset?: number, @Query("limit") limit?: number): Promise<{ products: IProduct[], count: number }>{
-    console.log(product, offset, limit);
   
     const result = await es.search({
       index: 'products',
       type: 'products',
-      q: product
+      q: product,
+      from: offset,
+      size: limit
     })
+    const es_count = await es.count({
+      index: 'products',
+      type: 'products',
+      q: product,
+    });
     return {
       products: await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id))),
-      count: result.body.hits.hits.length
+      count: es_count.body.count,
     }
   }
 }
