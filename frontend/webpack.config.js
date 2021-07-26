@@ -7,12 +7,14 @@ const OptimizeCssAssetWebPackPlugin = require('optimize-css-assets-webpack-plugi
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const WorkboxPlugin = require("workbox-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 console.log('isDev', isDev);
-const filename = ext => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = ext => (isDev ? `[name].${ext}` : `[name].${ext}`);
 
 const optimization = () => {
   const config = {
@@ -95,16 +97,23 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      title: 'EApteka',
+      title: 'HackTemplate',
       template: 'public/index.html',
       filename: 'index.html',
       favicon: 'public/static/images/favicon.png',
     }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }),
     new MiniCssExtractPlugin({
+
       filename: 'static/css/[name].css',
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+    new CopyWebpackPlugin({
+      patterns:[
+        { from: 'public/manifest.json', to: '.' }
+      ]
     }),
     new CleanWebpackPlugin({
       root: path.join(__dirname, './build'),
@@ -136,14 +145,21 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'static/images/[name].[ext]',
+            }
+          }
+        ],
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|)$/,
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: 'fonts/[name].[ext]',
+          name: 'static/fonts/[name].[ext]',
           context: 'src', // prevent display of src/ in filename
         },
       },
