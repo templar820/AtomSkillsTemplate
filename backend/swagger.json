@@ -4,74 +4,6 @@
 		"application/json"
 	],
 	"definitions": {
-		"IUser": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"role": {
-					"type": "string",
-					"enum": [
-						"ADMIN",
-						"USER"
-					],
-					"x-nullable": true
-				},
-				"language": {
-					"type": "string",
-					"x-nullable": true
-				},
-				"password": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"email",
-				"password"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
-		"AuthCred": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"email",
-				"password"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
-		"IUserExport": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"role": {
-					"type": "string",
-					"enum": [
-						"ADMIN",
-						"USER"
-					],
-					"x-nullable": true
-				},
-				"language": {
-					"type": "string",
-					"x-nullable": true
-				}
-			},
-			"required": [
-				"email"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
 		"ISubstance": {
 			"properties": {
 				"name": {
@@ -170,6 +102,74 @@
 			],
 			"type": "object",
 			"additionalProperties": false
+		},
+		"IUser": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"AuthCred": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"IUserExport": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"email"
+			],
+			"type": "object",
+			"additionalProperties": false
 		}
 	},
 	"info": {
@@ -180,110 +180,6 @@
 		}
 	},
 	"paths": {
-		"/user/register": {
-			"post": {
-				"operationId": "CreateUser",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"properties": {
-								"token": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"token"
-							],
-							"type": "object"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/IUser"
-						}
-					}
-				]
-			}
-		},
-		"/user/login": {
-			"post": {
-				"operationId": "LoginUser",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"properties": {
-								"token": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"token"
-							],
-							"type": "object"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/AuthCred"
-						}
-					}
-				]
-			}
-		},
-		"/user/userInfo": {
-			"get": {
-				"operationId": "GetUserByToken",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"$ref": "#/definitions/IUserExport"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "header",
-						"name": "token",
-						"required": true,
-						"type": "string"
-					}
-				]
-			}
-		},
 		"/products/part": {
 			"post": {
 				"operationId": "GetPart",
@@ -466,7 +362,7 @@
 				]
 			}
 		},
-		"/products/?product={name}&offset={start_index}&limit={count_items}": {
+		"/products/?product=name&offset=start_index&limit=count_items": {
 			"get": {
 				"operationId": "Search",
 				"produces": [
@@ -524,6 +420,110 @@
 						"required": false,
 						"format": "double",
 						"type": "number"
+					}
+				]
+			}
+		},
+		"/user/register": {
+			"post": {
+				"operationId": "CreateUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/IUser"
+						}
+					}
+				]
+			}
+		},
+		"/user/login": {
+			"post": {
+				"operationId": "LoginUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AuthCred"
+						}
+					}
+				]
+			}
+		},
+		"/user/userInfo": {
+			"get": {
+				"operationId": "GetUserByToken",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/IUserExport"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "token",
+						"required": true,
+						"type": "string"
 					}
 				]
 			}
