@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const WorkboxPlugin = require("workbox-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const fs = require("fs");
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -93,7 +94,11 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000
-    }
+    },
+    https: {
+      key: fs.readFileSync('./public/static/ssl/key.key'),
+      cert: fs.readFileSync('./public/static/ssl/certificate.crt')
+    },
   },
   plugins: [
     new HTMLWebpackPlugin({
