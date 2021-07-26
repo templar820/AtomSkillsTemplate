@@ -47,9 +47,9 @@ passport.use(
           jwtFromRequest: ExtractJWT.fromHeader('token')
         },
         async (token, done) => {
-          console.log(token);
+          console.log("IN JWT: ",token);
           try {
-              return done(null, token.id);
+              return done(null, token);
           } catch (error) {
             done(error);
           }

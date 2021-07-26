@@ -537,7 +537,7 @@
 		"api_key": {
 			"type": "apiKey",
 			"name": "token",
-			"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI",
+			"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjgsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyNzI5MjAyOX0.smA9a5v47rs-oG2loD1jR5Zd5RlGqmb0XN0KWjniyKo",
 			"in": "header"
 		}
 	},

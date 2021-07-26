@@ -11,9 +11,9 @@ class ProductRouter extends BaseRouter{
     super();
     this.createHandleWithBody('post', '/products/part', (data) => ProductController.getPart(data))
     this.createHandleWithBody('patch', '/products', (data) => ProductController.update(data))
-    this.createHandleWithBody('post', '/products', (data) => ProductController.insert(data))
+    this.createHandleWithBody('post', '/products', (data) => ProductController.insert(data), ['ADMIN'])
     this.createHandleWithParams('get', '/products/:id', (data)=> ProductController.getById(data), 'id')
-    this.createHandleWithParams('delete', '/products/:id', (data) => ProductController.delete(data), 'id')
+    this.createHandleWithParams('delete', '/products/:id', (data) => ProductController.delete(data), 'id', ['ADMIN'])
     this.createHandleWithQueryParams('get', '/products/?', (data) => ProductController.search(...data), ['product', 'offset', 'limit'])
   }
 }
