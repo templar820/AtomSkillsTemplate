@@ -2,6 +2,7 @@ import {User, UserDetails} from "../models/DbModel";
 import bcrypt from 'bcrypt';
 import db from "../config/db";
 import BaseService from "./BaseService";
+import {ServerError} from "../middleware/errorHandler";
 
 class UserService extends BaseService{
   async create({email, password, language = "RU", role = 'USER'}) {
@@ -55,8 +56,8 @@ class UserService extends BaseService{
       }],
       raw: true,
     })
-    return this.flatKeysForObject(user, UserDetails.name);
-
+    if (user) return this.flatKeysForObject(user, UserDetails.name);
+    throw new ServerError(401, "Неавторизованный пользователь")
   }
 }
 

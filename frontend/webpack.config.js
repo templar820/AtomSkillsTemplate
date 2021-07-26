@@ -88,7 +88,6 @@ module.exports = {
       modules: false,
     },
     noInfo: true,
-    host: '0.0.0.0',
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000

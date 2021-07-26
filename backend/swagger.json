@@ -103,6 +103,28 @@
 			"type": "object",
 			"additionalProperties": false
 		},
+		"SearchArea": {
+			"properties": {
+				"offset": {
+					"type": "number",
+					"format": "double"
+				},
+				"limit": {
+					"type": "number",
+					"format": "double"
+				},
+				"query": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"offset",
+				"limit",
+				"query"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
 		"IUser": {
 			"properties": {
 				"email": {
@@ -362,8 +384,8 @@
 				]
 			}
 		},
-		"/products/?product=name&offset=start_index&limit=count_items": {
-			"get": {
+		"/products/search": {
+			"post": {
 				"operationId": "Search",
 				"produces": [
 					"application/json"
@@ -402,24 +424,12 @@
 				],
 				"parameters": [
 					{
-						"in": "query",
-						"name": "product",
+						"in": "body",
+						"name": "body",
 						"required": true,
-						"type": "string"
-					},
-					{
-						"in": "query",
-						"name": "offset",
-						"required": false,
-						"format": "double",
-						"type": "number"
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"required": false,
-						"format": "double",
-						"type": "number"
+						"schema": {
+							"$ref": "#/definitions/SearchArea"
+						}
 					}
 				]
 			}

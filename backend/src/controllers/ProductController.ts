@@ -9,6 +9,10 @@ interface ProductsArea {
   limit: number;
 }
 
+interface SearchArea extends ProductsArea {
+  query: string;
+}
+
 
 
 interface CreateProduct {
@@ -55,20 +59,22 @@ class ProductController extends Controller{
     await ProductService.deleteById(Number(id))
     return true;
   }
-
-  @Get("?product=name&offset=start_index&limit=count_items")
-  public async search(@Query("product") product: string, @Query("offset") offset?: number, @Query("limit") limit?: number): Promise<{ products: IProduct[], count: number }>{
+  
+  
+  @Post("/search")
+  public async search(@Body() body: SearchArea): Promise<{ products: IProduct[], count: number }>{
+    console.log(body.query);
     const es_count = await es.count({
       index: 'products',
       type: 'products',
-      q: `*${product}*`,
+      q: `*${body.query}*`,
     });
     const result = await es.search({
       index: 'products',
       type: 'products',
-      q: `*${product}*`,
-      from: !!Number(offset) ? Number(offset) : 0,
-      size: !!Number(limit) ?Number(limit) : Number(es_count.body.count),
+      q: `*${body.query}*`,
+      from: !!Number(body.offset) ? Number(body.offset) : 0,
+      size: !!Number(body.limit) ?Number(body.limit) : Number(es_count.body.count),
     })
 
     return {
