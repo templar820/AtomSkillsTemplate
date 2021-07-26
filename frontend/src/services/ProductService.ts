@@ -36,9 +36,11 @@ export default class ProductService {
   }
 
   async searchProduct(product: string) {
-    const {data} = await this.networkService.fetch(`products/?product=${product}`, undefined, 'GET');
+    const offset = 0;
+    const limit = 48;
+    const {data} = await this.networkService.fetch('products/search', {offset, limit, query: product}, );
     this.productStore.clearProducts();
-    this.productStore.addProducts(data);
+    this.productStore.addProducts(data.products);
     this.productStore.setCount(data.length);
   }
 }
