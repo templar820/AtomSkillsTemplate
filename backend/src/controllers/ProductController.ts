@@ -63,7 +63,6 @@ class ProductController extends Controller{
   
   @Post("/search")
   public async search(@Body() body: SearchArea): Promise<{ products: IProduct[], count: number }>{
-    console.log(body.query);
     const es_count = await es.count({
       index: 'products',
       type: 'products',
