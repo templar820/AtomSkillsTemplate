@@ -1,9 +1,15 @@
 import { action, makeObservable, observable } from 'mobx';
 import ProductModel from "@/model/ProductModel";
+interface IMode {
+  value: 'all' | 'search';
+  searchProduct: string;
+}
 
 export default class ProductStore {
   @observable products: ProductModel[] | null = null;
   @observable count: number = 0;
+
+  mode: IMode = {value: 'all', searchProduct: ''};
 
   constructor() {
     makeObservable(this);
@@ -42,4 +48,11 @@ export default class ProductStore {
   @action clearProducts = () => {
     this.products = null;
   };
+
+  setMode(value: 'all' | 'search', searchProduct?: string) {
+    this.mode.value = value;
+    if (searchProduct) {
+      this.mode.searchProduct = searchProduct;
+    }
+  }
 }

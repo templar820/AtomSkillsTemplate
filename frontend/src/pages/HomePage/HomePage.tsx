@@ -21,7 +21,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
 
   useEffect(() => {
     if (isFetching) {
-      props.services.productService.getProducts().finally(() => {
+      props.services.productService.loadProduct().finally(() => {
         setIsFetching(false);
       });
     }
@@ -71,7 +71,6 @@ const HomePage: React.FC<{ services: any }> = (props) => {
               size="small"
               value={searchProduct}
               onChange={(e) => setSearchProduct(e.target.value)}
-              required
               InputLabelProps={{required: false}}
             />
             <IconButton

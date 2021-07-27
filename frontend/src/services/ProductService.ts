@@ -2,6 +2,8 @@ import NetworkService from "@/services/NetworkService";
 import ProductStore from "@/stores/ProductStore";
 import LoaderStore from "@/stores/LoaderStore";
 
+const limit = 48;
+
 export default class ProductService {
   private networkService: NetworkService;
   private productStore: ProductStore;
@@ -11,9 +13,9 @@ export default class ProductService {
   }
 
   async getProducts() {
-    const offset = this.productStore.products?.length || 0;
-    const limit = 48;
-    const {data} = await this.networkService.fetch('products/part', {offset, limit});
+    const {data} = await this.networkService.fetch('products/part', {offset: 0, limit});
+    this.productStore.setMode('all');
+    this.productStore.clearProducts();
     this.productStore.addProducts(data.products);
     this.productStore.setCount(data.count);
   }
@@ -36,11 +38,25 @@ export default class ProductService {
   }
 
   async searchProduct(product: string) {
-    const offset = 0;
-    const limit = 48;
-    const {data} = await this.networkService.fetch('products/search', {offset, limit, query: product}, );
+    const {data} = await this.networkService.fetch('products/search', {offset: 0, limit, query: product});
+    this.productStore.setMode('search', product);
     this.productStore.clearProducts();
     this.productStore.addProducts(data.products);
-    this.productStore.setCount(data.length);
+    this.productStore.setCount(data.count);
+  }
+
+  async loadProduct() {
+    const offset = this.productStore.products?.length || 0;
+    if (this.productStore.mode.value === 'all') {
+      const {data} = await this.networkService.fetch('products/part', {offset, limit});
+      this.productStore.addProducts(data.products);
+      this.productStore.setCount(data.count);
+    }
+
+    if (this.productStore.mode.value === 'search') {
+      const {data} = await this.networkService.fetch('products/search', {offset, limit, query: this.productStore.mode.searchProduct});
+      this.productStore.addProducts(data.products);
+      this.productStore.setCount(data.count);
+    }
   }
 }
