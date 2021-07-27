@@ -69,6 +69,7 @@ class ProductService {
   async deleteById(id: number){
     return await Product.destroy({
       where: {id},
+      individualHooks: true,
     })
   }
   
