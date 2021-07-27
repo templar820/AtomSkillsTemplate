@@ -101,14 +101,14 @@ const HomePage: React.FC<{ services: any }> = (props) => {
                     </div>
                     <div className="product-card__button-group pr-4 pt-2">
                       <button
-                        className="btn btn-sm mr-2"
+                        className="btn btn-sm mr-2 edit"
                         onClick={() => {
                           setProductMode("update");
                           setActiveProduct(product);
                         }}
                       ><i className="bi bi-pencil-fill"/></button>
                       <button
-                        className="btn btn-sm"
+                        className="btn btn-sm delete"
                         onClick={() => {
                           props.services.productService.deleteProduct(product.id);
                         }}

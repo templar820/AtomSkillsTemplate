@@ -16,6 +16,7 @@ export default class ProductStore {
   }
 
   @action addProducts = (array: any[]) => {
+    array = array.filter(item => item);
     const newProducts = array.map(obj => new ProductModel(obj));
     this.products = this.products
       ? [...this.products, ...newProducts]
@@ -23,8 +24,10 @@ export default class ProductStore {
   };
 
   @action deleteProduct = (id: number) => {
+    console.log(id);
     if (!this.products) return;
     this.products = this.products.filter((product) => product.id !== id);
+    console.log(this.products);
   };
 
   @action unshiftProduct = (obj: object) => {

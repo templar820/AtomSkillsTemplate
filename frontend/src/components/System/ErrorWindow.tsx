@@ -27,6 +27,7 @@ export default class ErrorWindow extends React.Component<{}, IErrorWindowState> 
   }
 
   errorListener(e:  Error | undefined) {
+    if (!e) return;
     let statusCode = null;
     if (e instanceof MyError) {
       statusCode = e.statusCode;

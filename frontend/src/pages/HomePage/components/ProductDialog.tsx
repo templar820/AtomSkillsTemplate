@@ -65,7 +65,7 @@ const ProductDialog: React.FC<IProductDialogProps> = ({closeDialog, mode, servic
           }}
         >
           <TextField
-            className={classes.input}
+            className={`${classes.input} product-name`}
             label={t('homePage.productName')}
             variant="outlined"
             size="small"
@@ -75,7 +75,7 @@ const ProductDialog: React.FC<IProductDialogProps> = ({closeDialog, mode, servic
             InputLabelProps={{ required: false }}
           />
           <TextField
-            className={classes.input}
+            className={`${classes.input} product-substanceId`}
             label={t('homePage.substanceId')}
             variant="outlined"
             size="small"

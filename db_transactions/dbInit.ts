@@ -66,7 +66,7 @@ async function createTransaction() {
       transaction: t,
     });
     const password1 = await getPassword("1")
-    await User.create({email: "cypress@test", password: password1, role: "USER", user_details: {language: "RU"}}, {
+    await User.create({email: "cypress@test", password: password1, role: "ADMIN", user_details: {language: "RU"}}, {
       include: {
         model: UserDetails,
         as: UserDetails.name
