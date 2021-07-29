@@ -4,9 +4,12 @@
 /backend/dist
 /backend/node_modules
 /backend/coverage
+/backend/log
+/phone/.expo
+/phone/node_modules
 /verdaccio/storage
 /db_transactions/data/*
-/backend/log
+
 .env
 *.idea
 package-lock.json
