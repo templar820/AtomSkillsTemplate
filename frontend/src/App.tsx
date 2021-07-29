@@ -19,8 +19,7 @@ class App extends React.Component {
 
   constructor(props: {}) {
     super(props);
-    // const endpoint = process.env.ENDPOINT;
-    const endpoint = 'http://localhost:8080/';
+    const endpoint = process.env.ENDPOINT;
     const loaderStore = new LoaderStore();
     const userStore = new UserStore();
     const productStore = new ProductStore();

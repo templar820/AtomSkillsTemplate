@@ -10,6 +10,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const WorkboxPlugin = require("workbox-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const fs = require("fs");
+const dotenv = require('dotenv');
 
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -56,6 +57,15 @@ const jsLoaders = p => {
   return loaders;
 };
 
+const getEnv = () => {
+  const env = dotenv.config({path: '../.env'}).parsed;
+  console.log(env);
+  return envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+};
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -94,11 +104,7 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000
-    },
-    https: {
-      key: fs.readFileSync('./public/static/ssl/key.key'),
-      cert: fs.readFileSync('./public/static/ssl/certificate.crt')
-    },
+    }
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -130,9 +136,10 @@ module.exports = {
       APPMODE: JSON.stringify(process.env.NODE_ENV),
       ENDPOINT: process.env.ENDPOINT,
       'process.env.NODE_ENV': '"production"',
+      ...getEnv(),
     }),
     new Dotenv({
-      path: path.resolve(__dirname, '../', ".env"), // Path to .env file (this is the default)
+      path: path.resolve(__dirname, '../.env'), // Path to .env file (this is the default)
     }),
     new LodashModuleReplacementPlugin(),
 

@@ -97,7 +97,7 @@
     "cross-env": "^7.0.2",
     "cypress": "^7.7.0",
     "cypress-keycloak-commands": "^1.2.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "free-google-image-search": "^1.0.0",
     "gcp-img": "^0.1.4",
     "i18next": "^20.3.1",
