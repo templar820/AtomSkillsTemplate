@@ -21,7 +21,7 @@ export default class ProductService {
   }
 
   async deleteProduct(id: number) {
-    await this.networkService.fetch({alias: `products/${id}`, type: 'DELETE'};
+    await this.networkService.fetch({alias: `products/${id}`, type: 'DELETE'});
     this.productStore.deleteProduct(id);
   }
 
