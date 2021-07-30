@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './HomePage.scss';
 import {inject, observer} from 'mobx-react';
 import {Link, withRouter} from "react-router-dom";
@@ -10,6 +10,9 @@ import {IconButton, TextField} from "@material-ui/core";
 import ProductDialog from "@pages/HomePage/components/ProductDialog";
 import ProductModel from "@/model/ProductModel";
 import SearchIcon from '@material-ui/icons/Search';
+import {Chart, registerables} from 'chart.js';
+import Charts from "@pages/HomePage/components/Charts/Charts";
+Chart.register(...registerables);
 
 const HomePage: React.FC<{ services: any }> = (props) => {
   const {t} = useTranslation();
@@ -29,6 +32,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
+
     return () => {
       document.removeEventListener('scroll', scrollHandler);
       productStore.clearProducts();
@@ -48,6 +52,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
   const products = productStore.products;
   return (
     <div className="home-page">
+      <Charts/>
       <div className="mb-3 d-flex justify-content-between align-items-end">
         <div className="d-flex ">
           <h4>{t("homePage.products")}</h4>
