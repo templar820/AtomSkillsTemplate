@@ -1,6 +1,4 @@
-import Router from 'express'
 import passport from "passport";
-const authRouter = new Router();
 import {asyncMiddleware} from "../middleware/asyncMiddleware";
 import UserController from "../controllers/UserController";
 import jwt from "jsonwebtoken";

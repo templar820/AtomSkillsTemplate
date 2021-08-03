@@ -103,7 +103,11 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000
-    }
+    },
+    // https: {
+    //   key: fs.readFileSync('./public/static/ssl/localhost.key'),
+    //   cert: fs.readFileSync('./public/static/ssl/localhost.crt'),
+    // },
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -112,10 +116,10 @@ module.exports = {
       filename: 'index.html',
       favicon: 'public/static/images/favicon.png',
     }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
-    }),
+    // new WorkboxPlugin.GenerateSW({
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // }),
     new MiniCssExtractPlugin({
 
       filename: 'static/css/[name].css',
