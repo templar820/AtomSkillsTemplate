@@ -15,7 +15,7 @@ export default class AuthService {
 
   async login(email: string, password: string) {
     this.loaderStore.setLoader(true);
-    const {data} = await this.networkService.fetch('user/login', {email, password});
+    const {data} = await this.networkService.fetch({alias: 'user/login', parameters: {email, password}});
     const {token} = data;
     this.networkService.setToken(token);
     localStorage.setItem('token', token);
@@ -24,7 +24,7 @@ export default class AuthService {
 
   async register(email: string, password: string) {
     this.loaderStore.setLoader(true);
-    const {data} = await this.networkService.fetch('user/register', {email, password});
+    const {data} = await this.networkService.fetch({alias: 'user/register', parameters: {email, password}});
     const {token} = data;
     this.networkService.setToken(token);
     localStorage.setItem('token', token);
@@ -33,7 +33,11 @@ export default class AuthService {
 
   async authentication() {
     this.loaderStore.setLoader(true);
-    const {data} = await this.networkService.fetch('user/userInfo', null, 'GET');
+    const {data} = await this.networkService.fetch({alias: 'user/userInfo', type: 'GET', errorHandler: err => {
+        this.userStore.setUser({}, false);
+        localStorage.removeItem('token');
+      }
+    });
     if (data) {
       this.userStore.setUser(data, true);
     } else {
@@ -46,7 +50,7 @@ export default class AuthService {
 
   async logout() {
     this.loaderStore.setLoader(true);
-    await this.networkService.fetch('user/logout', null, 'GET');
+    await this.networkService.fetch({alias: 'user/logout', type: 'GET'});
     this.userStore.setUser({}, false);
     localStorage.removeItem('token');
     this.loaderStore.setLoader(false);

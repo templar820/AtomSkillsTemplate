@@ -4,74 +4,6 @@
 		"application/json"
 	],
 	"definitions": {
-		"IUser": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"role": {
-					"type": "string",
-					"enum": [
-						"ADMIN",
-						"USER"
-					],
-					"x-nullable": true
-				},
-				"language": {
-					"type": "string",
-					"x-nullable": true
-				},
-				"password": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"email",
-				"password"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
-		"AuthCred": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"password": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"email",
-				"password"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
-		"IUserExport": {
-			"properties": {
-				"email": {
-					"type": "string"
-				},
-				"role": {
-					"type": "string",
-					"enum": [
-						"ADMIN",
-						"USER"
-					],
-					"x-nullable": true
-				},
-				"language": {
-					"type": "string",
-					"x-nullable": true
-				}
-			},
-			"required": [
-				"email"
-			],
-			"type": "object",
-			"additionalProperties": false
-		},
 		"ISubstance": {
 			"properties": {
 				"name": {
@@ -170,6 +102,96 @@
 			],
 			"type": "object",
 			"additionalProperties": false
+		},
+		"SearchArea": {
+			"properties": {
+				"offset": {
+					"type": "number",
+					"format": "double"
+				},
+				"limit": {
+					"type": "number",
+					"format": "double"
+				},
+				"query": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"offset",
+				"limit",
+				"query"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"IUser": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"AuthCred": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"email",
+				"password"
+			],
+			"type": "object",
+			"additionalProperties": false
+		},
+		"IUserExport": {
+			"properties": {
+				"email": {
+					"type": "string"
+				},
+				"role": {
+					"type": "string",
+					"enum": [
+						"ADMIN",
+						"USER"
+					],
+					"x-nullable": true
+				},
+				"language": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"email"
+			],
+			"type": "object",
+			"additionalProperties": false
 		}
 	},
 	"info": {
@@ -180,110 +202,6 @@
 		}
 	},
 	"paths": {
-		"/user/register": {
-			"post": {
-				"operationId": "CreateUser",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"properties": {
-								"token": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"token"
-							],
-							"type": "object"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/IUser"
-						}
-					}
-				]
-			}
-		},
-		"/user/login": {
-			"post": {
-				"operationId": "LoginUser",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"properties": {
-								"token": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"token"
-							],
-							"type": "object"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/AuthCred"
-						}
-					}
-				]
-			}
-		},
-		"/user/userInfo": {
-			"get": {
-				"operationId": "GetUserByToken",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"$ref": "#/definitions/IUserExport"
-						}
-					}
-				},
-				"tags": [
-					"User"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "header",
-						"name": "token",
-						"required": true,
-						"type": "string"
-					}
-				]
-			}
-		},
 		"/products/part": {
 			"post": {
 				"operationId": "GetPart",
@@ -466,8 +384,8 @@
 				]
 			}
 		},
-		"/products/?product={name}&offset={start_index}&limit={count_items}": {
-			"get": {
+		"/products/search": {
+			"post": {
 				"operationId": "Search",
 				"produces": [
 					"application/json"
@@ -506,24 +424,116 @@
 				],
 				"parameters": [
 					{
-						"in": "query",
-						"name": "product",
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/SearchArea"
+						}
+					}
+				]
+			}
+		},
+		"/user/register": {
+			"post": {
+				"operationId": "CreateUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/IUser"
+						}
+					}
+				]
+			}
+		},
+		"/user/login": {
+			"post": {
+				"operationId": "LoginUser",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"token": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"token"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AuthCred"
+						}
+					}
+				]
+			}
+		},
+		"/user/userInfo": {
+			"get": {
+				"operationId": "GetUserByToken",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/IUserExport"
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "header",
+						"name": "token",
 						"required": true,
 						"type": "string"
-					},
-					{
-						"in": "query",
-						"name": "offset",
-						"required": false,
-						"format": "double",
-						"type": "number"
-					},
-					{
-						"in": "query",
-						"name": "limit",
-						"required": false,
-						"format": "double",
-						"type": "number"
 					}
 				]
 			}
@@ -537,7 +547,7 @@
 		"api_key": {
 			"type": "apiKey",
 			"name": "token",
-			"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjMsImlhdCI6MTYyNjYyNDk1OH0.JExG4DtPu6GTiJhstuKexsq12oneDYXifPbVZ1owaiI",
+			"description": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjgsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyNzI5MjAyOX0.smA9a5v47rs-oG2loD1jR5Zd5RlGqmb0XN0KWjniyKo",
 			"in": "header"
 		}
 	},

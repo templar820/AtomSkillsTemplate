@@ -1,6 +1,4 @@
-import Router from 'express'
 import passport from "passport";
-const authRouter = new Router();
 import {asyncMiddleware} from "../middleware/asyncMiddleware";
 import UserController from "../controllers/UserController";
 import jwt from "jsonwebtoken";
@@ -24,7 +22,8 @@ class AuthRouter extends BaseRouter{
     this.router.post('/user/login', this.authenticate)
 
     this.router.get('/user/userInfo', auth, asyncMiddleware(async (req, res) => {
-        res.sendFormat(await UserController.getUserByToken(req.user));
+      console.log(req.user.id);
+      res.sendFormat(await UserController.getUserByToken(req.user.id));
       }
     ));
   }

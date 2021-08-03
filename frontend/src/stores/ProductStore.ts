@@ -1,15 +1,22 @@
 import { action, makeObservable, observable } from 'mobx';
 import ProductModel from "@/model/ProductModel";
+interface IMode {
+  value: 'all' | 'search';
+  searchProduct: string;
+}
 
 export default class ProductStore {
   @observable products: ProductModel[] | null = null;
   @observable count: number = 0;
+
+  mode: IMode = {value: 'all', searchProduct: ''};
 
   constructor() {
     makeObservable(this);
   }
 
   @action addProducts = (array: any[]) => {
+    array = array.filter(item => item);
     const newProducts = array.map(obj => new ProductModel(obj));
     this.products = this.products
       ? [...this.products, ...newProducts]
@@ -17,8 +24,10 @@ export default class ProductStore {
   };
 
   @action deleteProduct = (id: number) => {
+    console.log(id);
     if (!this.products) return;
     this.products = this.products.filter((product) => product.id !== id);
+    console.log(this.products);
   };
 
   @action unshiftProduct = (obj: object) => {
@@ -42,4 +51,11 @@ export default class ProductStore {
   @action clearProducts = () => {
     this.products = null;
   };
+
+  setMode(value: 'all' | 'search', searchProduct?: string) {
+    this.mode.value = value;
+    if (searchProduct) {
+      this.mode.searchProduct = searchProduct;
+    }
+  }
 }

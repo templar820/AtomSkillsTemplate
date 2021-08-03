@@ -14,9 +14,6 @@ import logger from "./middleware/logger"
 
 
 
-
-
-
 const PORT = process.env.BACKEND_PORT || 8080;
 
 const app = express();
@@ -50,6 +47,5 @@ Promise.all([db.authenticate(), db.sync()]).then(() => {
   console.log("DB CONNECT")
   app.listen(PORT, () => console.log('SERVER STARTED ON PORT ' + PORT));
 });
-
 
 

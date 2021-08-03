@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './HomePage.scss';
 import {inject, observer} from 'mobx-react';
 import {Link, withRouter} from "react-router-dom";
@@ -10,6 +10,9 @@ import {IconButton, TextField} from "@material-ui/core";
 import ProductDialog from "@pages/HomePage/components/ProductDialog";
 import ProductModel from "@/model/ProductModel";
 import SearchIcon from '@material-ui/icons/Search';
+import {Chart, registerables} from 'chart.js';
+import Charts from "@pages/HomePage/components/Charts/Charts";
+Chart.register(...registerables);
 
 const HomePage: React.FC<{ services: any }> = (props) => {
   const {t} = useTranslation();
@@ -21,7 +24,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
 
   useEffect(() => {
     if (isFetching) {
-      props.services.productService.getProducts().finally(() => {
+      props.services.productService.loadProduct().finally(() => {
         setIsFetching(false);
       });
     }
@@ -29,6 +32,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
 
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
+
     return () => {
       document.removeEventListener('scroll', scrollHandler);
       productStore.clearProducts();
@@ -48,6 +52,7 @@ const HomePage: React.FC<{ services: any }> = (props) => {
   const products = productStore.products;
   return (
     <div className="home-page">
+      <Charts/>
       <div className="mb-3 d-flex justify-content-between align-items-end">
         <div className="d-flex ">
           <h4>{t("homePage.products")}</h4>
@@ -71,7 +76,6 @@ const HomePage: React.FC<{ services: any }> = (props) => {
               size="small"
               value={searchProduct}
               onChange={(e) => setSearchProduct(e.target.value)}
-              required
               InputLabelProps={{required: false}}
             />
             <IconButton
@@ -102,14 +106,14 @@ const HomePage: React.FC<{ services: any }> = (props) => {
                     </div>
                     <div className="product-card__button-group pr-4 pt-2">
                       <button
-                        className="btn btn-sm mr-2"
+                        className="btn btn-sm mr-2 edit"
                         onClick={() => {
                           setProductMode("update");
                           setActiveProduct(product);
                         }}
                       ><i className="bi bi-pencil-fill"/></button>
                       <button
-                        className="btn btn-sm"
+                        className="btn btn-sm delete"
                         onClick={() => {
                           props.services.productService.deleteProduct(product.id);
                         }}

@@ -7,12 +7,16 @@ const OptimizeCssAssetWebPackPlugin = require('optimize-css-assets-webpack-plugi
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const WorkboxPlugin = require("workbox-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
+const fs = require("fs");
+const dotenv = require('dotenv');
 
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 console.log('isDev', isDev);
-const filename = ext => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = ext => (isDev ? `[name].${ext}` : `[name].${ext}`);
 
 const optimization = () => {
   const config = {
@@ -53,6 +57,14 @@ const jsLoaders = p => {
   return loaders;
 };
 
+const getEnv = () => {
+  const env = dotenv.config({path: '../.env'}).parsed;
+  return envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+};
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -88,24 +100,34 @@ module.exports = {
       modules: false,
     },
     noInfo: true,
-    host: '0.0.0.0',
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000
-    }
+    },
+    // https: {
+    //   key: fs.readFileSync('./public/static/ssl/localhost.key'),
+    //   cert: fs.readFileSync('./public/static/ssl/localhost.crt'),
+    // },
   },
   plugins: [
     new HTMLWebpackPlugin({
-      title: 'EApteka',
+      title: 'HackTemplate',
       template: 'public/index.html',
       filename: 'index.html',
       favicon: 'public/static/images/favicon.png',
     }),
+    // new WorkboxPlugin.GenerateSW({
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // }),
     new MiniCssExtractPlugin({
+
       filename: 'static/css/[name].css',
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+    new CopyWebpackPlugin({
+      patterns:[
+        { from: 'public/manifest.json', to: '.' }
+      ]
     }),
     new CleanWebpackPlugin({
       root: path.join(__dirname, './build'),
@@ -117,9 +139,10 @@ module.exports = {
       APPMODE: JSON.stringify(process.env.NODE_ENV),
       ENDPOINT: process.env.ENDPOINT,
       'process.env.NODE_ENV': '"production"',
+      ...getEnv(),
     }),
     new Dotenv({
-      path: path.resolve(__dirname, '../', ".env"), // Path to .env file (this is the default)
+      path: path.resolve(__dirname, '../.env'), // Path to .env file (this is the default)
     }),
     new LodashModuleReplacementPlugin(),
 
@@ -137,14 +160,21 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'static/images/[name].[ext]',
+            }
+          }
+        ],
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf|)$/,
         loader: 'url-loader',
         options: {
           limit: 8192,
-          name: 'fonts/[name].[ext]',
+          name: 'static/fonts/[name].[ext]',
           context: 'src', // prevent display of src/ in filename
         },
       },

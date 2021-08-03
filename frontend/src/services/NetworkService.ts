@@ -1,5 +1,7 @@
 import MyError from '@/services/MyError';
 
+type postType = 'GET' | 'POST' | 'DELETE' | 'PATCH';
+
 export default class NetworkService {
   token: string | null = null;
   endpoint: string;
@@ -11,21 +13,25 @@ export default class NetworkService {
     this.token = token;
   }
 
-  //TODO мы присылаем сообщение ошибки в json, переписать
-  async checkResponse(res: Response) {
+  async checkResponse(res: Response, errorHandler?: (err: MyError) => void) {
     if (res.status === 500) {
       throw new MyError({ detail: 'Внутренняя ошибка сервера' });
     } else if (res.status === 200) {
       const response = await res.json();
       if (response.isError) {
-        throw new MyError({status: response.statusCode, detail: response.message})
+        const error = new MyError({status: response.statusCode, detail: response.message});
+        if (errorHandler) {
+          errorHandler(error);
+        } else {
+          throw error;
+        }
       }
       return response;
     }
     return res;
   }
 
-  fetch = (alias: string, parameters?: object | null, type = 'POST') => {
+  fetch = ({alias, parameters, type = 'POST', errorHandler}: {alias: string; parameters?: object; type?: postType, errorHandler?: (err: MyError) => void}) => {
     const options : {method: string, headers: any, body: null | string} = {
       method: type,
       headers: this.buildHeaders(),
@@ -35,7 +41,7 @@ export default class NetworkService {
     if (parameters) options.body = JSON.stringify(parameters);
 
     return fetch(`${this.endpoint}${alias}`, options)
-      .then(response => this.checkResponse(response));
+      .then(response => this.checkResponse(response, errorHandler));
   }
 
   buildHeaders = () => ({
