@@ -1,11 +1,12 @@
-import session from 'express-session'
-import SessionFileStore from 'session-file-store'
-import passport from "passport";
-import Router from 'express'
+import session from 'express-session';
+import SessionFileStore from 'session-file-store';
+import passport from 'passport';
+import Router from 'express';
+
+import '../config/passportConfig';
 
 const FileStore = SessionFileStore(session);
 const authMiddleware = new Router();
-
 
 authMiddleware.use(
   session({
@@ -21,18 +22,12 @@ authMiddleware.use(
   })
 );
 
-
-import '../config/passportConfig'
-
 authMiddleware.use(passport.initialize());
 authMiddleware.use(passport.session());
 
-
-
-const auth = passport.authenticate('jwt', {session: false})
-
+const auth = passport.authenticate('jwt', { session: true });
 
 export {
   auth,
   authMiddleware
-}
+};
