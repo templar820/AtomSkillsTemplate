@@ -76,6 +76,7 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
     container_name: "elastic"
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
     volumes:
