@@ -50,14 +50,16 @@ services:
   nginx:
     restart: unless-stopped
     image: nginx:latest
-    container_name: "nginx-conf"
+    container_name: "nginx"
     ports:
       - 3000:3000
     depends_on:
       - backend
     volumes:
       - ./frontend/build:/frontend/build
-      - ./nginx-conf:/etc/nginx-conf/conf.d
+      - ./nginx:/etc/nginx/conf.d
+    env_file:
+      - .env
 
   postgres:
     image: postgres:latest
