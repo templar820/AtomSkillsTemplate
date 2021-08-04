@@ -47,6 +47,17 @@ x-frontend: &frontend
     - /frontend/node_modules
 
 services:
+  nginx:
+    restart: unless-stopped
+    image: nginx:latest
+    container_name: "nginx"
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/build:/frontend/build
+
   postgres:
     image: postgres:latest
     container_name: "postgres"
