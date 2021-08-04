@@ -7,11 +7,8 @@ const OptimizeCssAssetWebPackPlugin = require('optimize-css-assets-webpack-plugi
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
-const WorkboxPlugin = require("workbox-webpack-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-const fs = require("fs");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
-
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -30,36 +27,9 @@ const optimization = () => {
   return config;
 };
 
-const getBabelOptions = prop => {
-  const options = {
-    presets: ['@babel/preset-env'],
-    plugins: [['@babel/plugin-proposal-decorators', { legacy: true }], '@babel/plugin-proposal-class-properties'],
-  };
-  if (prop) {
-    options.presets.push(prop);
-  }
-  return options;
-};
-
-const jsLoaders = p => {
-  const loaders = [
-    {
-      loader: 'babel-loader',
-      options: getBabelOptions(p),
-    },
-    {
-      loader: 'eslint-loader',
-      options: {
-        emitWarning: true,
-      },
-    },
-  ];
-  return loaders;
-};
-
 const getEnv = () => {
-  const env = dotenv.config({path: '../.env'}).parsed;
-  return envKeys = Object.keys(env).reduce((prev, next) => {
+  const env = dotenv.config({ path: '../.env' }).parsed;
+  return Object.keys(env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(env[next]);
     return prev;
   }, {});
@@ -86,7 +56,7 @@ module.exports = {
     filename: filename('js'),
     path: path.resolve(__dirname, 'build'),
     clean: true,
-    publicPath: "/",
+    publicPath: '/',
   },
   optimization: optimization(),
   devServer: {
@@ -103,7 +73,11 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 500,
       poll: 1000
-    }
+    },
+    // https: {
+    //   key: fs.readFileSync('./public/static/ssl/localhost.key'),
+    //   cert: fs.readFileSync('./public/static/ssl/localhost.crt'),
+    // },
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -112,16 +86,16 @@ module.exports = {
       filename: 'index.html',
       favicon: 'public/static/images/favicon.png',
     }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
-    }),
+    // new WorkboxPlugin.GenerateSW({
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // }),
     new MiniCssExtractPlugin({
 
       filename: 'static/css/[name].css',
     }),
     new CopyWebpackPlugin({
-      patterns:[
+      patterns: [
         { from: 'public/manifest.json', to: '.' }
       ]
     }),
@@ -181,11 +155,9 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: [['@babel/plugin-proposal-decorators', { legacy: true }], '@babel/plugin-proposal-class-properties'],
-            },
+              presets: ['@babel/preset-env']
+            }
           },
-          'ts-loader',
           {
             loader: 'eslint-loader',
             options: {
