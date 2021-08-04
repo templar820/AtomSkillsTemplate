@@ -54,7 +54,8 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - backend
+      frontend:
+          condition: service_completed_successfully
     volumes:
       - ./frontend/build:/frontend/build
       - ./nginx:/etc/nginx/conf.d
@@ -122,9 +123,7 @@ services:
     <<: *db_transactions
     container_name: "db_clean"
     command: npm run clean
-#  frontend:
-#    <<: *frontend
-#    command: npm run start
-#    ports:
-#    - 3000:3000
+  frontend:
+    <<: *frontend
+    command: npm run build
 
