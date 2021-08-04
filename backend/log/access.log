@@ -3367,3 +3367,7 @@ RequestType=OPTIONS URL=/api/products/part Status=204 ResponseTime=0.135 Token=-
 RequestType=POST URL=/api/products/part Status=200 ResponseTime=14.295 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODA2OTIxOH0.qgnRaNYeWp0OI0t1dSQp8Ew2J7m4N9Jmd4AhPQFrHGs RequestBody={"offset":0,"limit":48}
 RequestType=OPTIONS URL=/api/user/userInfo Status=204 ResponseTime=1.452 Token=- RequestBody=-
 RequestType=GET URL=/api/user/userInfo Status=200 ResponseTime=32.276 Token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluIiwiaWQiOjEsInJvbGUiOiJBRE1JTiIsImlhdCI6MTYyODA2OTIxOH0.qgnRaNYeWp0OI0t1dSQp8Ew2J7m4N9Jmd4AhPQFrHGs RequestBody={}
+RequestType=OPTIONS URL=/api/user/userInfo Status=204 ResponseTime=1.224 Token=- RequestBody=-
+RequestType=GET URL=/api/user/userInfo Status=401 ResponseTime=7.682 Token=- RequestBody={}
+RequestType=OPTIONS URL=/api/user/userInfo Status=204 ResponseTime=1.142 Token=- RequestBody=-
+RequestType=GET URL=/api/user/userInfo Status=401 ResponseTime=7.596 Token=- RequestBody={}

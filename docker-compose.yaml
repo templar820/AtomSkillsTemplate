@@ -58,6 +58,7 @@ services:
     volumes:
       - ./frontend/build:/frontend/build
       - ./nginx:/etc/nginx/conf.d
+    command: /etc/nginx/conf.d/run_nginx.sh
     env_file:
       - .env
 
