@@ -28,7 +28,7 @@ export default class BaseRouter {
   router: Express;
 
   constructor() {
-    this.router = new Router();
+    this.router = Router();
   }
 
   checkRole(role: string, access?: string[]) {

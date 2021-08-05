@@ -68,7 +68,7 @@ class ProductController extends Controller {
 
   @Post('/search')
   public async search(@Body() body: SearchArea): Promise<{ products: IProduct[], count: number }> {
-    const es_count = await es.count({
+    const esCount = await es.count({
       index: 'products',
       type: 'products',
       q: `*${body.query}*`,
@@ -78,12 +78,12 @@ class ProductController extends Controller {
       type: 'products',
       q: `*${body.query}*`,
       from: Number(body.offset) ? Number(body.offset) : 0,
-      size: Number(body.limit) ? Number(body.limit) : Number(es_count.body.count),
+      size: Number(body.limit) ? Number(body.limit) : Number(esCount.body.count),
     });
 
     return Promise.resolve({
       products: await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id))),
-      count: es_count.body.count,
+      count: esCount.body.count,
     });
   }
 }
