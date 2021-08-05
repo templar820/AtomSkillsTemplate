@@ -2,6 +2,8 @@ import Router, {Express} from "express";
 import {asyncMiddleware} from "../middleware/asyncMiddleware";
 import {ServerError} from "../middleware/errorHandler";
 
+
+// TODO сделать ENUM
 type requestType = "get" | "post" | "delete" | "patch";
 
 export default class BaseRouter {
