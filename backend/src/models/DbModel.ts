@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../config/db';
 import es from '../config/es';
 
-const saveDocument = (instance) => {
+const saveDocument = (instance: any) => {
   return es.create({
     index: 'products',
     type: 'products',
@@ -11,7 +11,7 @@ const saveDocument = (instance) => {
   });
 };
 
-const updateDocument = (instance) => {
+const updateDocument = (instance: any) => {
   return es.update({
     id: instance.dataValues.id,
     index: 'products',
@@ -19,7 +19,7 @@ const updateDocument = (instance) => {
   });
 };
 
-const deleteDocument = (instance) => {
+const deleteDocument = (instance: any) => {
   return es.delete({
     index: 'products',
     type: 'products',

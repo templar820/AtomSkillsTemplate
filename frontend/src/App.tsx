@@ -12,6 +12,7 @@ import theme from './styles/muiTheme';
 import { MuiThemeProvider } from '@material-ui/core'
 import AuthService from "@/services/AuthService";
 import ProductService from "@/services/ProductService";
+import socketClient  from "socket.io-client";
 
 class App extends React.Component {
   stores: {[key: string]: any};
@@ -19,7 +20,13 @@ class App extends React.Component {
 
   constructor(props: {}) {
     super(props);
+    
     const endpoint = process.env.ENDPOINT;
+    const socket = socketClient(endpoint);
+    socket.on('connection', (value) => {
+      console.log(value);
+      console.log(`I'm connected with the back-end`);
+    });
     const loaderStore = new LoaderStore();
     const userStore = new UserStore();
     const productStore = new ProductStore();

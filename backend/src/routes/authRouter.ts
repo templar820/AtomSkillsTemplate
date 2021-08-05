@@ -3,14 +3,13 @@ import jwt from 'jsonwebtoken';
 import { asyncMiddleware } from '../middleware/asyncMiddleware';
 import UserController from '../controllers/UserController';
 import { ServerError } from '../middleware/errorHandler';
-import BaseRouter, { requestType } from './BaseRouter';
+import BaseRouter from './BaseRouter';
 import { auth } from '../middleware/authMiddleware';
-import {JWTUser} from "../models/DbModel";
 
 class AuthRouter extends BaseRouter {
   constructor() {
     super();
-    this.createHandleWithBody(requestType.POST, '/user/register', UserController.createUser);
+    this.createHandleWithBody('post', '/user/register', UserController.createUser);
 
     this.router.get('/user/logout', (req, res) => {
       req.logOut();
@@ -38,7 +37,7 @@ class AuthRouter extends BaseRouter {
           return next(err);
         }
         const { email, id, role } = user;
-        const token = jwt.sign({ email, id, role } as JWTUser, process.env.SECRET_KEY || 'hacktemplate');
+        const token = jwt.sign({ email, id, role }, process.env.SECRET_KEY || 'hacktemplate');
         return res.sendFormat({ token });
       });
     })(req, res, next);
