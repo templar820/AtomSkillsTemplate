@@ -12,7 +12,8 @@ docker rmi $(docker images -q)
 2. создаем пользователя email: cypress@test password: 1
 3. npm run cypress
 
-
+Версия TSOA
+"tsoa": "^2.3.8",
 
 Оконные функции:
 http://thisisdata.ru/blog/uchimsya-primenyat-okonnyye-funktsii/

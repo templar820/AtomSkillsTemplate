@@ -1,7 +1,7 @@
 import {ServerError} from "../middleware/errorHandler";
 import UserService from "../services/UserService";
 import jwt from "jsonwebtoken";
-import {Body, Controller, Get, Post, Route, Header, Tags, Security} from "tsoa";
+import {Body, Controller, Get, Post, Route, Header, Tags, Security} from 'tsoa';
 import ProductService from "../services/ProductService";
 import {IProduct} from "../models/DbModel";
 
