@@ -10,6 +10,7 @@ import {IconButton, TextField} from "@material-ui/core";
 import ProductDialog from "@pages/HomePage/components/ProductDialog";
 import ProductModel from "@/model/ProductModel";
 import SearchIcon from '@material-ui/icons/Search';
+import { MapContainer, Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
 import {Chart, registerables} from 'chart.js';
 import Charts from "@pages/HomePage/components/Charts/Charts";
 Chart.register(...registerables);
@@ -52,6 +53,20 @@ const HomePage: React.FC<{ services: any }> = (props) => {
   const products = productStore.products;
   return (
     <div className="home-page">
+      {/*<MapContainer*/}
+      {/*  center={[40.8054, -74.0241]}*/}
+      {/*  zoom={14}*/}
+      {/*  scrollWheelZoom={false}*/}
+      {/*  style={{ height: "500px", width: "100%" }}*/}
+      {/*>*/}
+      {/*  <TileLayer*/}
+      {/*    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'*/}
+      {/*    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"*/}
+      {/*  />*/}
+      {/*  <Marker position={[40.8054, -74.0241]} draggable={true} animate={true}>*/}
+      {/*    <Popup>Hey ! I live here</Popup>*/}
+      {/*  </Marker>*/}
+      {/*</MapContainer>*/}
       <Charts/>
       <div className="mb-3 d-flex justify-content-between align-items-end">
         <div className="d-flex ">

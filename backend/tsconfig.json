@@ -16,7 +16,8 @@
     "strict": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": false,
+
   },
   "ts-node": {
     "files": true,

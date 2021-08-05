@@ -6,7 +6,8 @@ import Router from 'express';
 import '../config/passportConfig';
 
 const FileStore = SessionFileStore(session);
-const authMiddleware = new Router();
+
+const authMiddleware = Router();
 
 authMiddleware.use(
   session({

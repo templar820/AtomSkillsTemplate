@@ -2,6 +2,7 @@ import passport from 'passport';
 import Local from 'passport-local';
 import passportJWT from 'passport-jwt';
 import UserService from '../services/UserService';
+import { JWTUser } from '../models/DbModel';
 
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
@@ -9,14 +10,14 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const LocalStrategy = Local.Strategy;
 
 passport.serializeUser((user, done) => {
-  console.log('Serrialize', user.email);
-  done(null, user.id);
+  console.log('Serrialize', user);
+  done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
   console.log('Deserialization', user);
   // const user = userDB.id === id ? userDB : false;
-  done(null, user);
+  done(null, user as JWTUser);
 });
 
 passport.use(
@@ -52,7 +53,7 @@ passport.use(
       try {
         return done(null, token);
       } catch (error) {
-        done(error);
+        return done(error);
       }
     }
   )
