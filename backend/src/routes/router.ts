@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import ProductController from '../controllers/ProductController';
 import BaseRouter, { requestType } from './BaseRouter';
 
@@ -16,8 +17,7 @@ class ProductRouter extends BaseRouter {
     this.createHandleWithBody(requestType.POST, '/products/search', ProductController.search);
   }
 
-  deleteCallback(answer, req, res): boolean {
-    console.log(111111111111111111111, answer);
+  deleteCallback(answer: any, req: Request, res: Response): boolean {
     res.io.emit('connection', 'DELETED');
     return true;
   }
