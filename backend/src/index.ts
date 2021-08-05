@@ -29,17 +29,17 @@ app.get('/erd', (req, res) => {
   });
 });
 
-app.use((req, res, next) => {
-  // mySuperSingleTon
-  // inversify req, res => inversify Надо сделать BaseController Относледовать от TSOA далее в него заинджектить req, res, и протестировать генерацию сваггера
-  next();
-})
-
+// app.use((req, res, next) => {
+//   // mySuperSingleTon
+//   // inversify req, res => inversify Надо сделать BaseController Относледовать от TSOA далее в него заинджектить req, res, и протестировать генерацию сваггера
+//   next();
+// });
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(responseHandler);
 
 app.use(authMiddleware);
+
 app.use('/api', authRouter);
 
 app.use('/api', auth, router);

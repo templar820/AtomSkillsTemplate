@@ -9,8 +9,8 @@ const ExtractJWT = passportJWT.ExtractJwt;
 const LocalStrategy = Local.Strategy;
 
 passport.serializeUser((user, done) => {
-  console.log('Serrialize', user.email);
-  done(null, user.id);
+  console.log('Serrialize', user);
+  done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
@@ -52,7 +52,7 @@ passport.use(
       try {
         return done(null, token);
       } catch (error) {
-        done(error);
+        return done(error);
       }
     }
   )

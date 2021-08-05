@@ -30,6 +30,9 @@
   },
   "routes": {
     "entryFile": "./src/index.ts",
+    "basePath": "/api",
+    "middleware": "express",
+    "authenticationModule": "./src/middleware/authMiddleware",
     "routesDir": "./src/routes"
   }
 }

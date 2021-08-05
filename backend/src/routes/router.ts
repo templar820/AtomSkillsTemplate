@@ -1,22 +1,16 @@
-import ProductController from "../controllers/ProductController";
-import BaseRouter from "./BaseRouter";
+import ProductController from '../controllers/ProductController';
+import BaseRouter, { requestType } from './BaseRouter';
 
-
-class ProductRouter extends BaseRouter{
-
+class ProductRouter extends BaseRouter {
   constructor() {
     super();
-    this.createHandleWithBody('post', '/products/part', (data) => ProductController.getPart(data))
-    this.createHandleWithBody('patch', '/products', (data) => ProductController.update(data))
-    this.createHandleWithBody('post', '/products', (data) => ProductController.insert(data), ['ADMIN'])
-    this.createHandleWithParams('get', '/products/:id', (data)=> ProductController.getById(data), 'id')
-    this.createHandleWithParams('delete', '/products/:id', (data) => ProductController.delete(data), 'id', ['ADMIN'])
-    this.createHandleWithBody('post', '/products/search', (data) => ProductController.search(data))
+    this.createHandleWithBody(requestType.POST, '/products/part', ProductController.getPart);
+    this.createHandleWithBody(requestType.PATCH, '/products', ProductController.update);
+    this.createHandleWithBody(requestType.POST, '/products', ProductController.insert, ['ADMIN']);
+    this.createHandleWithParams(requestType.GET, '/products/:id', ProductController.getById, 'id');
+    this.createHandleWithParams(requestType.DELETE, '/products/:id', ProductController.delete, 'id', ['ADMIN']);
+    this.createHandleWithBody(requestType.POST, '/products/search', ProductController.search);
   }
 }
-
-
-
-
 
 export default new ProductRouter().router;
