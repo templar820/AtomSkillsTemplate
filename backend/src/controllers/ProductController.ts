@@ -38,7 +38,6 @@ class ProductController extends Controller {
   public async getPart(@Body() body: ProductsArea): Promise<{ products: IProduct[], count: number }> {
     const products = await ProductService.getPart(body.offset, body.limit);
     const count = await ProductService.getCount();
-    console.log(count);
     return { products, count };
   }
 
