@@ -18,6 +18,7 @@ class ProductRouter extends BaseRouter {
 
   deleteCallback(answer, req, res): boolean {
     console.log(111111111111111111111, answer);
+    res.io.emit('connection', 'DELETED');
     return true;
   }
 }

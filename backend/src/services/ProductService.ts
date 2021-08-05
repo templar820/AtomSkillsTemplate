@@ -1,61 +1,58 @@
-import {Substance, Product} from "../models/DbModel";
-import {IProduct} from "../models/Product";
-import db from "../config/db";
-import {ServerError} from "../middleware/errorHandler";
+import { Substance, Product } from '../models/DbModel';
+import { IProduct } from '../models/Product';
+import db from '../config/db';
+import { ServerError } from '../middleware/errorHandler';
 
 class ProductService {
-  async create({name, substanceId}: IProduct) {
-    return await Product.create({name, substanceId}
-    )
+  async create({ name, substanceId }: IProduct) {
+    return await Product.create({ name, substanceId });
   }
-  
-  
-  async update({name, id, substanceId}: IProduct) {
+
+  async update({ name, id, substanceId }: IProduct) {
     const t = await db.transaction();
     try {
-      await Product.update({id, name, substanceId}, {
+      await Product.update({ id, name, substanceId }, {
         transaction: t,
-        where:{
+        where: {
           id,
         },
         individualHooks: true,
-      })
-      await t.commit()
+      });
+      await t.commit();
       return Product.findOne({
-        where:{
+        where: {
           id,
         },
-        include:[{
+        include: [{
           model: Substance,
           as: Substance.name,
           attributes: ['id', 'name', 'code']
         }],
-      })
+      });
     } catch (e) {
       throw new ServerError(500, e.message);
     }
   }
-  
-  
+
   async getPart(offset: number, limit: number) {
     return await Product.findAll({
-      offset: offset,
-      limit: limit,
+      offset,
+      limit,
       include: [{
         model: Substance,
         as: Substance.name,
         attributes: ['id', 'name', 'code']
       }],
-    })
+    });
   }
 
   async getCount() {
     return await Product.count();
   }
-  
-  async getById(id: number){
+
+  async getById(id: number) {
     return await Product.findOne({
-      where:{
+      where: {
         id
       },
       include: [{
@@ -63,18 +60,15 @@ class ProductService {
         as: Substance.name,
         attributes: ['id', 'name', 'code']
       }],
-    })
+    });
   }
-  
-  async deleteById(id: number){
-    return await Product.destroy({
-      where: {id},
-      individualHooks: true,
-    })
-  }
-  
-  
 
+  async deleteById(id: number) {
+    return await Product.destroy({
+      where: { id },
+      individualHooks: true,
+    });
+  }
 }
 
 export default new ProductService();

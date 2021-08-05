@@ -63,7 +63,7 @@ class ProductController extends Controller {
   @Delete('{id}')
   public async delete(id: string): Promise<boolean> {
     await ProductService.deleteById(Number(id));
-    return id;
+    return true;
   }
 
   @Post('/search')

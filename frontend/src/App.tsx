@@ -23,9 +23,10 @@ class App extends React.Component {
     
     const endpoint = process.env.ENDPOINT;
     const socket = socketClient(endpoint);
+    // networkService;
     socket.on('connection', (value) => {
       console.log(value);
-      console.log(`I'm connected with the back-end`);
+      // console.log(`I'm connected with the back-end`);
     });
     const loaderStore = new LoaderStore();
     const userStore = new UserStore();

@@ -39,6 +39,10 @@ io.on('connection', (socket: any) => {
   console.log('a user connected');
   socket.emit('connection', 'Здарова отец');
 });
+app.use((req, res, next) => {
+  res.io = io;
+  next();
+});
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(responseHandler);
