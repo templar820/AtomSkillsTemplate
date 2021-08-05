@@ -57,9 +57,11 @@ export default class BaseRouter {
   }
 
   sendAnswer(answer: any, req: MyRequest, res: MyResponse, next, options?: RequestOptions) {
+    console.log(!options?.callback || options?.callback(answer, req, res));
     if (!options?.callback || options?.callback(answer, req, res)) {
       res.sendFormat(answer);
+    } else {
+      next();
     }
-    next();
   }
 }

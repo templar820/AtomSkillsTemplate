@@ -11,6 +11,8 @@ import { auth, authMiddleware } from './middleware/authMiddleware';
 import { responseHandler } from './middleware/responseHandler';
 import swaggerDocument from '../swagger.json';
 import logger from './middleware/logger';
+import { IResponse } from './config/Interfaces';
+import {NextFunction, Response} from "express/ts4.0";
 
 const PORT = process.env.BACKEND_PORT || 8080;
 const app = express();
@@ -29,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('static'));
 app.use(fileUpload({}));
 
-app.get('/erd', (req, res) => {
+app.get('/erd', (req: Request, res: IResponse) => {
   SequelizeErd({ source: db }).then((erd: string) => {
     res.send(erd);
   });
