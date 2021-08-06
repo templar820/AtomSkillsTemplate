@@ -37,11 +37,15 @@
 				"substance": {
 					"$ref": "#/definitions/ISubstance",
 					"x-nullable": true
+				},
+				"substanceId": {
+					"type": "string"
 				}
 			},
 			"required": [
 				"id",
-				"name"
+				"name",
+				"substanceId"
 			],
 			"type": "object",
 			"additionalProperties": false

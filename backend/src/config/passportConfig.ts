@@ -3,6 +3,7 @@ import Local from 'passport-local';
 import passportJWT from 'passport-jwt';
 import UserService from '../services/UserService';
 import { JWTUser } from '../models/DbModel';
+import CONSTANT from "./CONSTANT";
 
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
@@ -45,7 +46,7 @@ passport.use(
 passport.use(
   new JWTStrategy(
     {
-      secretOrKey: process.env.SECRET_KEY || 'hacktemplate',
+      secretOrKey: CONSTANT.secretWord,
       jwtFromRequest: ExtractJWT.fromHeader('token')
     },
     async (token, done) => {

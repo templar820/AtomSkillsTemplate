@@ -24,10 +24,8 @@ export default class ProductStore {
   };
 
   @action deleteProduct = (id: number) => {
-    console.log(id);
     if (!this.products) return;
     this.products = this.products.filter((product) => product.id !== id);
-    console.log(this.products);
   };
 
   @action unshiftProduct = (obj: object) => {

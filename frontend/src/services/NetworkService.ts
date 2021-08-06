@@ -1,15 +1,32 @@
 import MyError from '@/services/MyError';
+import socketClient from 'socket.io-client';
 
 type postType = 'GET' | 'POST' | 'DELETE' | 'PATCH';
 
 export default class NetworkService {
   token: string | null = null;
+
   endpoint: string;
+  
+  private readonly address: string;
+
   constructor(endpoint: string) {
     this.endpoint = `${endpoint}api/`;
+    this.address = endpoint;
   }
 
   setToken(token: string | null) {
+    // Т.Е. пользователь авторизовался TODO вынести отсюда контролировать в UserStore
+    if (!this.token && token) {
+      const socket = socketClient(this.address, {
+        query: { token }
+      });
+      // networkService;
+      socket.on('connection', (value) => {
+        console.log(value);
+        // console.log(`I'm connected with the back-end`);
+      });
+    }
     this.token = token;
   }
 
@@ -19,7 +36,7 @@ export default class NetworkService {
     } else if (res.status === 200) {
       const response = await res.json();
       if (response.isError) {
-        const error = new MyError({status: response.statusCode, detail: response.message});
+        const error = new MyError({ status: response.statusCode, detail: response.message });
         if (errorHandler) {
           errorHandler(error);
         } else {
@@ -31,7 +48,9 @@ export default class NetworkService {
     return res;
   }
 
-  fetch = ({alias, parameters, type = 'POST', errorHandler}: {alias: string; parameters?: object; type?: postType, errorHandler?: (err: MyError) => void}) => {
+  fetch = ({
+    alias, parameters, type = 'POST', errorHandler
+  }: {alias: string; parameters?: object; type?: postType, errorHandler?: (err: MyError) => void}) => {
     const options : {method: string, headers: any, body: null | string} = {
       method: type,
       headers: this.buildHeaders(),
@@ -48,5 +67,4 @@ export default class NetworkService {
     'Content-Type': 'application/json',
     ...(this.token ? { token: `${this.token}` } : {})
   })
-};
-
+}

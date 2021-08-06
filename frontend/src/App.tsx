@@ -6,28 +6,24 @@ import { Provider } from 'mobx-react';
 import LoaderStore from '@/stores/LoaderStore';
 import ErrorWindow from '@/components/System/ErrorWindow';
 import Loader from '@/components/System/Loader';
-import UserStore from "./stores/UserStore";
-import ProductStore from "./stores/ProductStore";
+import { MuiThemeProvider } from '@material-ui/core';
+import AuthService from '@/services/AuthService';
+import ProductService from '@/services/ProductService';
+import socketClient from 'socket.io-client';
 import theme from './styles/muiTheme';
-import { MuiThemeProvider } from '@material-ui/core'
-import AuthService from "@/services/AuthService";
-import ProductService from "@/services/ProductService";
-import socketClient  from "socket.io-client";
+import ProductStore from './stores/ProductStore';
+import UserStore from './stores/UserStore';
 
 class App extends React.Component {
   stores: {[key: string]: any};
+
   services: {[key: string]: any};
 
   constructor(props: {}) {
     super(props);
-    
+
     const endpoint = process.env.ENDPOINT;
-    const socket = socketClient(endpoint);
-    // networkService;
-    socket.on('connection', (value) => {
-      console.log(value);
-      // console.log(`I'm connected with the back-end`);
-    });
+
     const loaderStore = new LoaderStore();
     const userStore = new UserStore();
     const productStore = new ProductStore();
@@ -45,10 +41,10 @@ class App extends React.Component {
     };
 
     this.services = {
-      networkService: networkService,
+      networkService,
       // requestService: this.requestService,
-      authService: authService,
-      productService: productService,
+      authService,
+      productService,
     };
   }
 
@@ -60,7 +56,7 @@ class App extends React.Component {
     return (
       <MuiThemeProvider theme={theme}>
         <Provider {...this.stores} services={this.services}>
-          <ErrorWindow/>
+          <ErrorWindow />
           <Loader>
             <Router />
           </Loader>

@@ -32,6 +32,7 @@ const User = db.define('user', {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: 'USER' },
+  token: { type: DataTypes.STRING }
 });
 
 const UserDetails = db.define('user_details', {

@@ -1,4 +1,4 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import {createMuiTheme} from "@material-ui/core/styles";
 import colors from "./colors.modules.scss";
 
 const theme = createMuiTheme({
