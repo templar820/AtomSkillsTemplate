@@ -29,13 +29,12 @@ export default class IoModel {
       handshake: true
     }));
     this.io.on('connection', (socket: any) => {
-      console.log(socket.conn.id);
-      SessionStore.set(socket.conn.id, {token: socket.handshake.query.token}, (err, data) => {
-        console.log(err, data);
-      })
+      console.log();
+      SessionStore.set(socket.handshake.query.token, {sid: socket.conn.id})
       socket.emit('connection', 'Здарова отец');
     });
 
+    
     app.use((req, res, next) => {
       res.io = this.io;
       next();

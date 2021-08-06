@@ -5,6 +5,7 @@ import UserController from '../controllers/UserController';
 import { ServerError } from '../middleware/errorHandler';
 import BaseRouter, { requestType } from './BaseRouter';
 import { auth } from '../middleware/authMiddleware';
+import SessionStore from "../config/SessionStore";
 
 class AuthRouter extends BaseRouter {
   constructor() {
@@ -13,6 +14,7 @@ class AuthRouter extends BaseRouter {
 
     this.router.get('/user/logout', (req, res) => {
       req.logOut();
+      SessionStore.destroy(req.headers.token);
       res.sendFormat(null);
     });
 
