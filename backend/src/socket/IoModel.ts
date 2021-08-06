@@ -30,9 +30,9 @@ export default class IoModel {
     }));
     this.io.on('connection', (socket: any) => {
       console.log(socket.conn.id);
-      // SessionStore.set(socket.conn.id, {token: socket.handshake.query.token}, (err, data) => {
-      //   console.log(err, data);
-      // })
+      SessionStore.set(socket.conn.id, {token: socket.handshake.query.token}, (err, data) => {
+        console.log(err, data);
+      })
       socket.emit('connection', 'Здарова отец');
     });
 
