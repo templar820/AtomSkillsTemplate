@@ -29,7 +29,7 @@ export default class IoModel {
       handshake: true
     }));
     this.io.on('connection', (socket: any) => {
-      console.log();
+      console.log(11111111111111111111);
       SessionStore.set(socket.handshake.query.token, {sid: socket.conn.id})
       socket.emit('connection', 'Здарова отец');
     });
