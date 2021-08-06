@@ -9,7 +9,7 @@ import Loader from '@/components/System/Loader';
 import { MuiThemeProvider } from '@material-ui/core';
 import AuthService from '@/services/AuthService';
 import ProductService from '@/services/ProductService';
-import socketClient from 'socket.io-client';
+import SocketService from "@/services/SocketService";
 import theme from './styles/muiTheme';
 import ProductStore from './stores/ProductStore';
 import UserStore from './stores/UserStore';
@@ -26,11 +26,12 @@ class App extends React.Component {
 
     const loaderStore = new LoaderStore();
     const userStore = new UserStore();
+    const socketService = new SocketService(endpoint);
     const productStore = new ProductStore();
     const networkService = new NetworkService(endpoint);
     networkService.setToken(localStorage.getItem('token') || null);
     // this.requestService = new RequestService(this.networkService);
-    const authService = new AuthService(networkService, userStore, loaderStore);
+    const authService = new AuthService(networkService, userStore, loaderStore, socketService);
     const productService = new ProductService(networkService, productStore, loaderStore);
 
     this.stores = {

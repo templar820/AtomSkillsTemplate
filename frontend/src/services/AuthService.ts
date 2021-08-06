@@ -1,16 +1,19 @@
 import NetworkService from "@/services/NetworkService";
 import UserStore from "@/stores/UserStore";
 import LoaderStore from "@/stores/LoaderStore";
+import SocketService from "@/services/SocketService";
 
 export default class AuthService {
   private networkService: NetworkService;
   private userStore: UserStore;
   private loaderStore: LoaderStore;
+  private socketService: SocketService;
 
-  constructor(networkService: NetworkService, userStore: UserStore, loaderStore: LoaderStore) {
+  constructor(networkService: NetworkService, userStore: UserStore, loaderStore: LoaderStore, socketService: SocketService) {
     this.networkService = networkService;
     this.userStore = userStore;
     this.loaderStore = loaderStore;
+    this.socketService = socketService;
   }
 
   async login(email: string, password: string) {
@@ -40,6 +43,7 @@ export default class AuthService {
     });
     if (data) {
       this.userStore.setUser(data, true);
+      this.socketService.register(localStorage.getItem('token'));
     } else {
       this.userStore.setUser({}, false);
       localStorage.removeItem('token');
@@ -54,5 +58,6 @@ export default class AuthService {
     this.userStore.setUser({}, false);
     localStorage.removeItem('token');
     this.loaderStore.setLoader(false);
+    this.socketService.disconnect();
   }
 }

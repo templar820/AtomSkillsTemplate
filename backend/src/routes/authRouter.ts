@@ -14,7 +14,6 @@ class AuthRouter extends BaseRouter {
 
     this.router.get('/user/logout', (req, res) => {
       req.logOut();
-      SessionStore.destroy(req.headers.token);
       res.sendFormat(null);
     });
 

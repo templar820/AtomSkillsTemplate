@@ -1,5 +1,4 @@
 import MyError from '@/services/MyError';
-import socketClient from 'socket.io-client';
 
 type postType = 'GET' | 'POST' | 'DELETE' | 'PATCH';
 
@@ -17,16 +16,7 @@ export default class NetworkService {
 
   setToken(token: string | null) {
     // Т.Е. пользователь авторизовался TODO вынести отсюда контролировать в UserStore
-    if (!this.token && token) {
-      const socket = socketClient(this.address, {
-        query: { token }
-      });
-      // networkService;
-      socket.on('connection', (value) => {
-        console.log(value);
-        // console.log(`I'm connected with the back-end`);
-      });
-    }
+
     this.token = token;
   }
 

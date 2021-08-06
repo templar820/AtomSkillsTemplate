@@ -29,9 +29,15 @@ export default class IoModel {
       handshake: true
     }));
     this.io.on('connection', (socket: any) => {
-      console.log(11111111111111111111);
+      console.log(3333333333333333333333);
       SessionStore.set(socket.handshake.query.token, {sid: socket.conn.id})
       socket.emit('connection', 'Здарова отец');
+      socket.on('product', this.productHandler);
+
+      socket.on('disconnect', () => {
+        // SessionStore.destroy(req.headers.token);
+        console.log('SOCKET DISCONNECT');
+      });
     });
 
     
@@ -39,5 +45,9 @@ export default class IoModel {
       res.io = this.io;
       next();
     });
+  }
+
+  productHandler() {
+
   }
 }
