@@ -2,7 +2,9 @@ import socketClient from 'socket.io-client';
 
 class SocketService {
   private socket: any;
+
   readonly endpoint: string;
+
   constructor(endpoint: string) {
     this.endpoint = 'http://localhost:8080';
   }
@@ -26,8 +28,6 @@ class SocketService {
   disconnect() {
     this.socket.disconnect();
   }
-
-
 }
 
 export default SocketService;
