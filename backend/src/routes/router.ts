@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import ProductController from '../controllers/ProductController';
 import BaseRouter, { requestType } from './BaseRouter';
-import IoModel from "../socket/IoModel";
+import IoModel from '../socket/IoModel';
 
 class ProductRouter extends BaseRouter {
   constructor() {
@@ -19,8 +19,9 @@ class ProductRouter extends BaseRouter {
   }
 
   deleteCallback(answer: any, req: Request, res: Response): boolean {
-    const io = res.io as IoModel
-    io.sendInCurrentSession(req.user,'connection', 'CURRENT');
+    const io = res.io as IoModel;
+    io.sendInSession(req.user.email, 'connection', 'CURRENT');
+    io.sendToUsers('connection', `FROM ${req.user.email}`, ['cypress@test']);
     io.sendAll('connection', 'ALL');
     return true;
   }

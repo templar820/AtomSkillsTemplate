@@ -49,16 +49,16 @@ export default class IoModel {
     });
   }
 
-  sendInCurrentSession(user: {email: string}, channel: string, message: any) {
-    const currentSocket = this.socketsMap.get(user.email) as Socket;
-    currentSocket.emit(channel, defaultRespose(message))
+  sendInSession(email: string, channel: string, message: any) {
+    const currentSocket = this.socketsMap.get(email) as Socket;
+    if (currentSocket) currentSocket.emit(channel, defaultRespose(message))
   }
 
   sendAll(channel: string, message: any) {
     this.io.emit(channel, defaultRespose(message));
   }
 
-  sendToUsers() {
-
+  sendToUsers(channel: string, message: any, usersMail: string[]) {
+    usersMail.forEach(email => this.sendInSession(email, channel, message));
   }
 }
