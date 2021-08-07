@@ -10,18 +10,18 @@ class SocketService {
   }
 
   register(token: string) {
-    console.log(1, this.endpoint);
     this.socket = socketClient(this.endpoint, {
       query: { token },
     });
 
     this.socket.on('connection', (value) => {
+      console.log(value);
       // this.socket.on('product', productService.socketHandler);
-      switch (value.type) {
-        case 'delete': {
-
-        }
-      }
+      // switch (value.type) {
+      //   case 'delete': {
+      //
+      //   }
+      // }
     });
   }
 

@@ -1,6 +1,7 @@
 import { Request } from 'express';
 import ProductController from '../controllers/ProductController';
 import BaseRouter, { requestType } from './BaseRouter';
+import IoModel from "../socket/IoModel";
 
 class ProductRouter extends BaseRouter {
   constructor() {
@@ -18,7 +19,9 @@ class ProductRouter extends BaseRouter {
   }
 
   deleteCallback(answer: any, req: Request, res: Response): boolean {
-    res.io.emit('connection', 'DELETED');
+    const io = res.io as IoModel
+    io.sendInCurrentSession('connection', 'CURRENT');
+    io.sendAll('connection', 'ALL');
     return true;
   }
 }
