@@ -20,7 +20,7 @@ class ProductRouter extends BaseRouter {
 
   deleteCallback(answer: any, req: Request, res: Response): boolean {
     const io = res.io as IoModel
-    io.sendInCurrentSession('connection', 'CURRENT');
+    io.sendInCurrentSession(req.user,'connection', 'CURRENT');
     io.sendAll('connection', 'ALL');
     return true;
   }
