@@ -39,6 +39,7 @@ export default class IoModel {
       // socket.on('product', this.productHandler);
       socket.on('disconnect', () => {
         SessionStore.destroy(socket.encoded_token);
+        this.socketsMap.delete(socket.decoded_token.email);
         console.log('SOCKET DISCONNECT');
       });
     });
