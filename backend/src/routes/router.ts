@@ -2,11 +2,13 @@ import { Request } from 'express';
 import ProductController from '../controllers/ProductController';
 import BaseRouter, { requestType } from './BaseRouter';
 import IoModel from '../socket/IoModel';
+import CarController from "../controllers/CarController";
 
 class ProductRouter extends BaseRouter {
   constructor() {
     super();
     this.createHandleWithBody(requestType.POST, '/products/part', ProductController.getPart);
+    this.createHandleWithBody(requestType.POST, '/cars', CarController.create);
     this.createHandleWithBody(requestType.PATCH, '/products', ProductController.update);
     this.createHandleWithBody(requestType.POST, '/products', ProductController.insert, { access: ['ADMIN'] });
     this.createHandleWithParams(requestType.GET, '/products/:id', ProductController.getById, { params: 'id' });

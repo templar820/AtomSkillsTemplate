@@ -32,7 +32,7 @@ const User = db.define('user', {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: 'USER' },
-  // token: { type: DataTypes.STRING }
+  token: { type: DataTypes.STRING }
 });
 
 const UserDetails = db.define('user_details', {
@@ -56,6 +56,23 @@ const Substance = db.define('substance', {
   code: { type: DataTypes.STRING },
 });
 
+const Car = db.define('car', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING },
+});
+
+const Oil = db.define('oil', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.INTEGER },
+});
+
+const Car_Oil = db.define('Car_Oil', {
+  selfGranted: DataTypes.BOOLEAN
+}, { timestamps: false });
+
+Car.belongsToMany(Oil, { through: Car_Oil });
+Oil.belongsToMany(Car, { through: Car_Oil });
+
 Substance.hasMany(Product);
 Product.belongsTo(Substance, { as: 'substance' });
 
@@ -77,6 +94,8 @@ export interface JWTUser {
 
 export {
   User,
+  Car,
+  Oil,
   UserDetails,
   Product,
   Substance
