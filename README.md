@@ -4,7 +4,7 @@ ________________
 # Конфигурация Windows
 .env
 ```bash
-IPv4=YOUR_IP_ADDRESS:3000
+IPV4=YOUR_IP_ADDRESS:3000
 POSTGRESS_HOST=host.docker.internal
 ENDPOINT=host.docker.internal:8080
 ```
@@ -16,7 +16,7 @@ ENDPOINT=http://localhost:8080
 # Конфигурация Linux
 .env
 ```bash
-IPv4=YOUR_IP_ADDRESS:3000
+IPV4=YOUR_IP_ADDRESS:3000
 POSTGRESS_HOST=172.17.0.1
 ENDPOINT=172.17.0.1:8080
 ```
