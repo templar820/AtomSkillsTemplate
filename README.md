@@ -1,6 +1,12 @@
 # AtomSkills
 Описание нашей супер пупер навороченной информационной системы, ее предназначения, функционала.
 ________________
+# Установка
+Если запускаете на Windows то проверте чтобы POSTGRESS_HOST был равен host.docker.internal, ENDPOINT=host.docker.internal:8080, либо localhost
+Если Linux POSTGRESS_HOST=172.17.0.1, ENDPOINT=172.17.0.1:8080, либо localhost
+________________
+
+
 ### Структура базы данных
 
 ![](./readme/db.PNG)
@@ -28,24 +34,5 @@ make build
 
 make production
 ```
-________________
-### Какой-то старый хлам
-npm cache clean --force
 
-удаляем все остановленные контейнеры
-docker rm $(docker ps -a -q)
-
-удаляем все образы
-docker rmi $(docker images -q)
-
-запуск end to end тестирования
-1. make start
-2. создаем пользователя email: cypress@test password: 1
-3. npm run cypress
-
-Версия TSOA
-"tsoa": "^2.3.8",
-
-Оконные функции:
-http://thisisdata.ru/blog/uchimsya-primenyat-okonnyye-funktsii/
 
