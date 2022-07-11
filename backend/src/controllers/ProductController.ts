@@ -5,7 +5,6 @@ import autoBind from 'auto-bind';
 import ProductService from '../services/ProductService';
 import { IProduct } from '../models/Product';
 import { ServerError } from '../middleware/errorHandler';
-import es from '../config/es';
 
 interface ProductsArea {
   offset: number;
@@ -68,23 +67,7 @@ class ProductController extends Controller {
 
   @Post('/search')
   public async search(@Body() body: SearchArea): Promise<{ products: IProduct[], count: number }> {
-    const esCount = await es.count({
-      index: 'products',
-      type: 'products',
-      q: `*${body.query}*`,
-    });
-    const result = await es.search({
-      index: 'products',
-      type: 'products',
-      q: `*${body.query}*`,
-      from: Number(body.offset) ? Number(body.offset) : 0,
-      size: Number(body.limit) ? Number(body.limit) : Number(esCount.body.count),
-    });
-
-    return Promise.resolve({
-      products: await Promise.all(result.body.hits.hits.map(async (el) => await ProductService.getById(el._id))),
-      count: esCount.body.count,
-    });
+    return Promise.resolve(true);
   }
 }
 
