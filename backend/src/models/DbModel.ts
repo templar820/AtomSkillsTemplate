@@ -1,30 +1,16 @@
 import { DataTypes } from 'sequelize';
 import db from '../config/db';
-import es from '../config/es';
 
 const saveDocument = (instance: any) => {
-  return es.create({
-    index: 'products',
-    type: 'products',
-    id: instance.dataValues.id,
-    body: { name: instance.dataValues.name },
-  });
+
 };
 
 const updateDocument = (instance: any) => {
-  return es.update({
-    id: instance.dataValues.id,
-    index: 'products',
-    body: { doc: { name: instance.dataValues.name } },
-  });
+
 };
 
 const deleteDocument = (instance: any) => {
-  return es.delete({
-    index: 'products',
-    type: 'products',
-    id: instance.dataValues.id,
-  });
+
 };
 
 const User = db.define('user', {
@@ -43,11 +29,6 @@ const Product = db.define('products', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING },
 }, {
-  hooks: {
-    afterCreate: saveDocument,
-    afterDestroy: deleteDocument,
-    afterUpdate: updateDocument,
-  }
 });
 
 const Substance = db.define('substance', {
