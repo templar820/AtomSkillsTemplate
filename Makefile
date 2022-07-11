@@ -1,5 +1,5 @@
 start:
-	docker-compose up -d  --scale db_init=0 --scale db_clean=0 --scale nginx=0 --scale frontend=0
+	docker-compose up -d  --scale db_init=0 --scale db_clean=0 --scale nginx=0
 stop:
 	docker-compose down
 production:
@@ -9,9 +9,9 @@ build:
 	docker-compose build
 
 db:
-	docker-compose up -d db_init
+	docker-compose up db_init
 db-clean:
-	docker-compose up -d db_clean
+	docker-compose up db_clean
 
 delete-all:
 	docker-compose down
