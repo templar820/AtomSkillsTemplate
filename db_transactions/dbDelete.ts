@@ -1,5 +1,4 @@
 import {Product, Substance, User, UserDetails} from "./backend/src/models/DbModel"
-import es from "./backend/src/config/es";
 
 
 
@@ -32,10 +31,6 @@ async function createTransaction() {
       truncate: true,
       cascade: true,
     })
-    
-    await es.indices.delete({
-      index: "products",
-    });
   
 
     
